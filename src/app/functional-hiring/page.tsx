@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import HeroSection from '@/components/ui/HeroSection';
 import MetricsStrip from '@/components/ui/MetricsStrip';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "Functional Hiring - StaffAnchor Talent Solutions | Building Functional Excellence",
@@ -12,43 +13,135 @@ const functionalMetrics = [
   { value: "250+", label: "Roles/Year", description: "Functional positions" },
   { value: "72hr", label: "Shortlisting", description: "Speed to market" },
   { value: "Pan-India", label: "Reach", description: "Geographic coverage" },
-  { value: "85%", label: "Success Rate", description: "Placement success" },
+  { value: "95%", label: "Success Rate", description: "Placement success" },
 ];
 
 const functions = [
   {
     focus: "Sales & Business Development",
-    roles: ["CRO", "VP Sales", "Sales Director", "BDM", "Key Account Manager", "Inside Sales Manager"]
+    roles: [
+      "Chief Revenue Officer (CRO)",
+      "VP Sales / Sales Head",
+      "National Sales Head",
+      "Regional / Zonal Sales Head",
+      "Category Manager",
+      "City Manager",
+      "Business Development Manager",
+      "Key Account Manager",
+      "Account Manager",
+      "Channel Sales Manager",
+      "Partnerships Manager",
+      "Inside Sales / SDR Manager",
+      "Customer Success Manager",
+      "Sales Operations Manager"
+    ]
   },
   {
-    focus: "Marketing & Growth", 
-    roles: ["CMO", "Head of Marketing", "Digital Marketing Lead", "Growth Manager", "Brand Manager", "Content Head"]
+    focus: "Marketing & Growth",
+    roles: [
+      "Chief Marketing Officer (CMO)",
+      "VP Marketing / Head of Marketing",
+      "Head of Growth",
+      "Brand Manager / Assistant Brand Manager",
+      "Product Marketing Manager",
+      "Trade Marketing Manager",
+      "Performance Marketing Manager",
+      "SEO / SEM Specialist",
+      "Paid Media Manager",
+      "Social Media Manager",
+      "Content Strategist / Content Writer / Copywriter",
+      "PR & Corporate Communications Manager",
+      "Events & Activation Manager",
+      "Government Relations / Lobbyist"
+    ]
   },
   {
     focus: "Operations & Supply Chain",
-    roles: ["COO", "Operations Head", "SCM Manager", "Process Manager", "Quality Head", "Logistics Manager"]
+    roles: [
+      "Chief Operating Officer (COO)",
+      "VP Operations / Head of Operations",
+      "Plant Head / Plant Manager",
+      "Supply Chain Manager",
+      "Logistics Head",
+      "Procurement Manager",
+      "Warehouse Operations Head",
+      "Hospitality Operations Head",
+      "Restaurant / F&B Operations Head",
+      "Fitness / Wellness Centre Manager",
+      "Quick Commerce / Fulfillment Centre Operations Manager"
+    ]
   },
   {
     focus: "Technology & AI/ML",
-    roles: ["CTO", "Tech Lead", "Full Stack Developer", "Data Engineer", "ML Engineer", "DevOps Engineer"]
+    roles: [
+      "Chief Technology Officer (CTO)",
+      "VP Engineering / Head of Product & Technology",
+      "Full Stack Developer",
+      "Backend / Frontend Developer",
+      "Mobile App Developer (iOS / Android)",
+      "Cloud Architect",
+      "DevOps Engineer",
+      "Cybersecurity Specialist",
+      "Blockchain Developer",
+      "Web3 Specialist",
+      "Data Engineer",
+      "Machine Learning Engineer",
+      "Deep Learning Specialist",
+      "NLP Engineer",
+      "Computer Vision Engineer"
+    ]
   },
   {
     focus: "Engineering & Manufacturing",
-    roles: ["Chief Engineer", "Production Manager", "QA Lead", "R&D Head", "Manufacturing Engineer", "Plant Manager"]
+    roles: [
+      "VP Engineering",
+      "Chief Engineer",
+      "Plant Head",
+      "Mechanical Engineer",
+      "Electrical Engineer",
+      "Civil Engineer",
+      "Structural Engineer",
+      "Production Engineer",
+      "Quality Assurance Engineer",
+      "Process Engineer",
+      "R&D Engineer",
+      "Automation Specialist"
+    ]
   },
   {
-    focus: "Analytics & Strategy",
-    roles: ["Chief of Staff", "Strategy Manager", "BI Manager", "Data Analyst", "Business Analyst", "Insights Manager"]
-  },
+    focus: "Analytics, Strategy & Business Advisory",
+    roles: [
+      "Chief of Staff",
+      "VP Strategy",
+      "Head of Business Planning",
+      "Corporate Strategy Manager",
+      "M&A Specialist",
+      "Business Analyst",
+      "Strategy Consultant",
+      "Management Consultant",
+      "Data Scientist",
+      "Data Analyst",
+      "Business Intelligence Manager",
+      "Big Data Analyst",
+      "Product Strategy Manager"
+    ]
+  }
 ];
+
 
 export default function FunctionalHiringPage() {
   return (
     <>
+      <section className='section-padding'>
+
       <HeroSection 
         headline="Building Functional Excellence Across Business Functions."
         subtext="Deep domain expertise in sales, technology, operations, marketing, and specialized functions to build high-performing teams."
-      />
+        />
+      </section>
+
+
+      <MetricsStrip metrics={functionalMetrics} background='blue'/>
 
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,7 +164,24 @@ export default function FunctionalHiringPage() {
         </div>
       </section>
 
-      <MetricsStrip metrics={functionalMetrics} />
+      
+      {/* Closing CTA */}
+      <section className="pt-20 pb-12 bg-blue-900 text-white text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-poppins font-light text-3xl md:text-4xl mb-8 uppercase tracking-wide">
+            REQUEST FUNCTIONAL CONSULTATION
+          </h2>
+          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+            Share your hiring mandate and let our AI-powered intelligence find your next game-changing hire.
+          </p>
+          <Link
+            href="/contact" 
+            className="inline-block bg-teal-600 text-white px-8 py-4 rounded-full font-medium hover:bg-teal-500 transition-colors duration-200 text-lg"
+          >
+            Share Your Hiring Mandate →
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

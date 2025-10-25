@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import HeroSection from '@/components/ui/HeroSection';
 import MetricsStrip from '@/components/ui/MetricsStrip';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "Industry Expertise - StaffAnchor Talent Solutions | Precision Domain Hiring",
@@ -17,39 +18,42 @@ const industryMetrics = [
 
 const industries = [
   {
-    industry: "EdTech & Education",
-    roles: ["EdTech Sales Head", "Curriculum Lead", "Learning Designer", "Academic Director", "Product Manager"]
-  },
-  {
-    industry: "Hospitality & Culinary", 
-    roles: ["Head Chef", "F&B Manager", "Hotel Manager", "Culinary Director", "Restaurant Operations"]
-  },
-  {
-    industry: "Fitness & Wellness",
-    roles: ["Fitness Trainer", "Nutritionist", "Wellness Coach", "Gym Manager", "Sports Therapist"]
+    industry: "Architecture & Design",
+    roles: ["Architects", "Senior Interior Designers", "Landscape Designers"]
   },
   {
     industry: "Finance & Accounting",
-    roles: ["Chartered Accountant", "FP&A Manager", "Controller", "Tax Manager", "Audit Manager"]
+    roles: ["Chartered Accountants (CAs)", "Audit Managers", "Tax Specialists", "FP&A Managers"]
   },
   {
-    industry: "Design & Architecture",
-    roles: ["Architect", "Interior Designer", "Design Consultant", "Urban Planner", "Project Architect"]
+    industry: "Hospitality & Culinary",
+    roles: ["Head Chef", "Sous Chef", "Pastry Chef", "Commis I/II/III"]
   },
   {
-    industry: "Healthcare & Sports Science",
-    roles: ["Physiotherapist", "Sports Scientist", "Medical Director", "Clinical Research", "Dietician"]
+    industry: "Fitness & Wellness",
+    roles: ["Fitness Trainers", "Group Instructors", "Nutritionists", "Wellness Coaches"]
   },
+  {
+    industry: "Legal & Compliance",
+    roles: ["Corporate Lawyer", "Compliance Manager", "Company Secretary (CS)"]
+  },
+  {
+    industry: "Specialist Medical / Health",
+    roles: ["Physiotherapists", "Sports Scientists", "Dieticians"]
+  }
 ];
+
 
 export default function IndustryExpertisePage() {
   return (
     <>
+    <section className='section-padding'>
       <HeroSection 
         headline="Precision Hiring Where Function Meets Domain."
         subtext="Deep industry knowledge across 20+ specialized sectors ensures perfect role-culture-domain alignment."
-      />
-
+        />
+      </section>
+      <MetricsStrip metrics={industryMetrics} background='blue'/>
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -67,7 +71,24 @@ export default function IndustryExpertisePage() {
         </div>
       </section>
 
-      <MetricsStrip metrics={industryMetrics} />
+      
+      {/* Closing CTA */}
+      <section className="pt-20 pb-12 bg-blue-900 text-white text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-poppins font-light text-3xl md:text-4xl mb-8 uppercase tracking-wide">
+            REQUEST INDUSTRY EXPERTISE CONSULTATION
+          </h2>
+          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+            Share your hiring mandate and let our AI-powered intelligence find your next game-changing hire.
+          </p>
+          <Link
+            href="/contact" 
+            className="inline-block bg-teal-600 text-white px-8 py-4 rounded-full font-medium hover:bg-teal-500 transition-colors duration-200 text-lg"
+          >
+            Share Your Hiring Mandate →
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

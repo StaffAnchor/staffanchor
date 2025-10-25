@@ -4,6 +4,7 @@ import HeroSection from '@/components/ui/HeroSection';
 import MetricsStrip from '@/components/ui/MetricsStrip';
 import ContactForm from '@/components/ui/ContactForm';
 import { submitEmployerForm } from '@/utils/googleSheets';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "Executive Search - StaffAnchor Talent Solutions | Hiring Visionary Leaders",
@@ -86,71 +87,20 @@ const searchProcess = [
   }
 ];
 
-const executiveFormFields = [
-  { name: "name", label: "Full Name", type: "text" as const, required: true, placeholder: "Enter your full name" },
-  { name: "company", label: "Company Name", type: "text" as const, required: true, placeholder: "Enter your company name" },
-  { name: "title", label: "Your Title", type: "text" as const, required: true, placeholder: "e.g. CEO, Board Member, Investor" },
-  { name: "email", label: "Email Address", type: "email" as const, required: true, placeholder: "Enter your email" },
-  { name: "phone", label: "Phone Number", type: "tel" as const, placeholder: "Enter your phone number" },
-  { 
-    name: "executiveRole", 
-    label: "Executive Role to Hire", 
-    type: "select" as const, 
-    required: true,
-    options: ["CEO", "COO", "CFO", "CHRO", "CTO", "CMO", "CSO", "CPO", "Business Head", "Country Head", "Other"]
-  },
-  { 
-    name: "industry", 
-    label: "Industry", 
-    type: "select" as const, 
-    required: true,
-    options: ["EdTech & Education", "BFSI", "SaaS & Technology", "Consumer & Retail", "Hospitality & F&B", "Healthcare", "Manufacturing", "Consulting", "Other"]
-  },
-  { name: "timeline", label: "Hiring Timeline", type: "select" as const, options: ["Immediate (1-2 weeks)", "Urgent (2-4 weeks)", "Standard (4-8 weeks)", "Flexible (8+ weeks)"] },
-  { name: "jobDescription", label: "Job Description", type: "file" as const, placeholder: "Upload JD (PDF/DOC)" },
-  { name: "message", label: "Executive Search Requirements", type: "textarea" as const, placeholder: "Please share specific requirements: reporting structure, key challenges, success metrics, cultural expectations, compensation range, etc." },
-];
-
 export default function ExecutiveSearchPage() {
   return (
     <>
       {/* Hero Section */}
+      <section className='section-padding'>
       <HeroSection 
         headline="Hiring Visionary Leaders Who Redefine Success."
-        subtext="Partner with boards, founders, and investors to find transformative leaders who drive organizational excellence and sustainable growth."
-      />
-
-      {/* Executive Leadership Focus */}
-      <section className="section-padding bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-8">Executive Leadership Focus</h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              We specialize in identifying and placing exceptional executives who possess the vision, 
-              capability, and leadership acumen to transform organizations and drive sustainable success 
-              in today&apos;s complex business environment.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
-            {executiveRoles.map((category) => (
-              <div key={category.category} className="bg-gray-50 rounded-xl p-6">
-                <h3 className="font-poppins font-semibold text-lg text-gray-900 mb-6 uppercase tracking-wider">
-                  {category.category}
-                </h3>
-                <div className="space-y-4">
-                  {category.roles.map((role) => (
-                    <div key={role.title}>
-                      <h4 className="font-medium text-gray-900 mb-2">{role.title}</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">{role.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        
+        subtext="We partner with boards, founders, and investors to identify transformative leaders through a
+        research-led & AI-supported search process."
+        />
       </section>
+
+      
 
       {/* Executive Metrics */}
       <MetricsStrip metrics={executiveMetrics} background="blue" />
@@ -289,17 +239,22 @@ export default function ExecutiveSearchPage() {
         </div>
       </section>
 
-      {/* Executive Search Consultation Form */}
-      <section className="section-padding bg-gray-50">
+    
+      {/* Closing CTA */}
+      <section className="pt-20 pb-12 bg-blue-900 text-white text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="heading-lg mb-4">Request Leadership Consultation</h2>
-            <p className="text-xl text-gray-600">
-              Share your executive hiring requirements and let our leadership experts design a customized search strategy.
-            </p>
-          </div>
-
-  
+          <h2 className="font-poppins font-light text-3xl md:text-4xl mb-8 uppercase tracking-wide">
+            Request Leadership Consultation
+          </h2>
+          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+            Share your executive hiring requirements and let our leadership experts design a customized search strategy.
+          </p>
+          <Link
+            href="/contact" 
+            className="inline-block bg-teal-600 text-white px-8 py-4 rounded-full font-medium hover:bg-teal-500 transition-colors duration-200 text-lg"
+          >
+            Request Leadership Consultation →
+          </Link>
         </div>
       </section>
     </>

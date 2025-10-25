@@ -12,8 +12,7 @@ const Footer = () => {
     ],
     company: [
       { name: 'About Us', href: '/about' },
-      { name: 'Our Process', href: '/about#methodology' },
-      { name: 'Leadership', href: '/about#leadership' },
+      
     ],
     resources: [
       { name: 'Blog & Insights', href: '/blog' },
@@ -23,7 +22,7 @@ const Footer = () => {
     connect: [
       { name: 'Contact Us', href: '/contact' },
       { name: 'LinkedIn', href: 'https://linkedin.com/company/staffanchor', external: true },
-      { name: 'Join Our Team', href: '/job-seekers' },
+      { name: 'Get Hired', href: '/job-seekers' },
     ],
   };
 
