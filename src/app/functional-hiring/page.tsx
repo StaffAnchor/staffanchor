@@ -1,13 +1,10 @@
-import { Metadata } from 'next';
+'use client';
+
+import { useState } from 'react';
 import HeroSection from '@/components/ui/HeroSection';
 import MetricsStrip from '@/components/ui/MetricsStrip';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: "Functional Hiring - StaffAnchor Talent Solutions | Building Functional Excellence",
-  description: "Deep expertise across sales, technology, operations, marketing and specialized functions. 250+ roles per year with 72hr shortlisting.",
-  keywords: "Functional Hiring, Sales Hiring, Technology Recruitment, Operations Hiring, Marketing Recruitment",
-};
+import PracticeSidebar from '@/components/layout/PracticeSidebar';
 
 const functionalMetrics = [
   { value: "250+", label: "Roles/Year", description: "Functional positions" },
@@ -130,15 +127,27 @@ const functions = [
 
 
 export default function FunctionalHiringPage() {
-  return (
-    <>
-      <section className='section-padding'>
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
-      <HeroSection 
-        headline="Building Functional Excellence Across Business Functions."
-        subtext="Deep domain expertise in sales, technology, operations, marketing, and specialized functions to build high-performing teams."
-        />
-      </section>
+  return (
+    <div className="flex">
+      {/* Sidebar */}
+      <PracticeSidebar 
+        isOpen={sidebarOpen}
+        onToggle={() => setSidebarOpen(!sidebarOpen)}
+        currentPage="functional-hiring"
+      />
+
+      {/* Main Content */}
+      <div className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}`}>
+        <>
+          <section className='section-padding'>
+
+          <HeroSection 
+            headline="Building Functional Excellence Across Business Functions."
+            subtext="Deep domain expertise in sales, technology, operations, marketing, and specialized functions to build high-performing teams."
+            />
+          </section>
 
 
       <MetricsStrip metrics={functionalMetrics} background='blue'/>
@@ -182,6 +191,8 @@ export default function FunctionalHiringPage() {
           </Link>
         </div>
       </section>
-    </>
+        </>
+      </div>
+    </div>
   );
 }

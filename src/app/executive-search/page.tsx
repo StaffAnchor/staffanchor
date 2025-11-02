@@ -1,16 +1,13 @@
+'use client';
+
 // Executive Search page - no Link import needed currently
-import { Metadata } from 'next';
+import { useState } from 'react';
 import HeroSection from '@/components/ui/HeroSection';
 import MetricsStrip from '@/components/ui/MetricsStrip';
 import ContactForm from '@/components/ui/ContactForm';
 import { submitEmployerForm } from '@/utils/googleSheets';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: "Executive Search - StaffAnchor Talent Solutions | Hiring Visionary Leaders",
-  description: "Partner with boards, founders, and investors to find transformative leaders. CEO, COO, CFO, CHRO, CTO searches with 90% retention rate.",
-  keywords: "Executive Search India, CEO Hiring, C-Suite Recruitment, Leadership Search, Board-level Hiring, Executive Placement",
-};
+import PracticeSidebar from '@/components/layout/PracticeSidebar';
 
 const executiveMetrics = [
   { value: "28 Days", label: "Avg Closure", description: "Executive searches" },
@@ -88,17 +85,29 @@ const searchProcess = [
 ];
 
 export default function ExecutiveSearchPage() {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
   return (
-    <>
-      {/* Hero Section */}
-      <section className='section-padding'>
-      <HeroSection 
-        headline="Hiring Visionary Leaders Who Redefine Success."
-        
-        subtext="We partner with boards, founders, and investors to identify transformative leaders through a
-        research-led & AI-supported search process."
-        />
-      </section>
+    <div className="flex">
+      {/* Sidebar */}
+      <PracticeSidebar 
+        isOpen={sidebarOpen}
+        onToggle={() => setSidebarOpen(!sidebarOpen)}
+        currentPage="executive-search"
+      />
+
+      {/* Main Content */}
+      <div className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}`}>
+        <>
+          {/* Hero Section */}
+          <section className='section-padding'>
+          <HeroSection 
+            headline="Hiring Visionary Leaders Who Redefine Success."
+            
+            subtext="We partner with boards, founders, and investors to identify transformative leaders through a
+            research-led & AI-supported search process."
+            />
+          </section>
 
       
 
@@ -257,6 +266,8 @@ export default function ExecutiveSearchPage() {
           </Link>
         </div>
       </section>
-    </>
+        </>
+      </div>
+    </div>
   );
 }

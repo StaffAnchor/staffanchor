@@ -10,10 +10,10 @@ import TestimonialCard from '@/components/ui/TestimonialCard';
 import AIToolCard from '@/components/ui/AIToolCard';
 
 const homeMetrics = [
-  { value: "500+", label: "Placements", description: "Successful hires" },
-  { value: "30+", label: "CXO Mandates", description: "Executive searches" },
-  { value: "95%", label: "Repeat Clients", description: "Client retention" },
-  { value: "72hr", label: "Avg Shortlisting", description: "Speed to market" },
+  { value: "500+", label: "Placements", description: "Successful Hires" },
+  { value: "30+", label: "CXO Mandates", description: "Executive Searches" },
+  { value: "95%", label: "Repeat Clients", description: "Client Retention Rate" },
+  { value: "72 hrs", label: "Average Shortlisting Time", description: "Speed to Market" },
 ];
 
 const practices = [
@@ -26,7 +26,7 @@ const practices = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
       </svg>
     ),
-    features: ["CEO, COO, CFO, CHRO, etc...", "Business Head", "Board Director"],
+    features: ["CEO, COO, CFO, CHRO,", "Business Head", "Board Director"],
     
   },
   {
@@ -38,7 +38,7 @@ const practices = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
       </svg>
     ),
-    features: ["Sales & BD", "Marketing & Growth", "Operations & Supply Chain", "etc"],
+    features: ["Sales & BD", "Marketing & Growth", "Operations & Supply Chain"],
     
   },
   {
@@ -50,25 +50,25 @@ const practices = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
       </svg>
     ),
-    features: ["Architecture & Design", "Finance & Accounting", "Hospitality & Culinary", "etc"],
+    features: ["Architecture & Design", "Finance & Accounting", "Hospitality & Culinary"],
     
   },
 ];
 
 const aiTools = [
   {
-    title: "Fit Index™",
+    title: "Fit Index",
     description: "Predictive scoring of candidate-role success within six months.",
     
   },
   {
     title: "MarketMap AI",
-    description: "Real-time talent benchmarking across industries & geographies.",
+    description: "Real-time talent benchmarking across industries and locations.",
    
   },
   {
-    title: "Speed + Model",
-    description: "Cuts average hiring cycle from 25 to 12 days.",
+    title: "Speed Model",
+    description: "Cuts average hiring time from 25 days to just 12.",
     
   },
 ];
@@ -280,8 +280,8 @@ export default function Home() {
               viewport={{ margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Our proprietary tools combine machine learning, talent analytics, and fit-scoring models to
-              identify candidates by success probability, not just credentials.
+              Our proprietary tools blend machine learning, talent analytics, and predictive scoring to identify candidates by success probability — not just credentials.
+
             </motion.p>
           </motion.div>
 
@@ -323,7 +323,7 @@ export default function Home() {
               viewport={{ margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Trusted by Leading Brands
+              Trusted by Leading Brands Across Industries
             </motion.h3>
             <motion.div 
               className="flex flex-wrap justify-center items-center gap-4"

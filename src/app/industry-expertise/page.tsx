@@ -1,13 +1,10 @@
-import { Metadata } from 'next';
+'use client';
+
+import { useState } from 'react';
 import HeroSection from '@/components/ui/HeroSection';
 import MetricsStrip from '@/components/ui/MetricsStrip';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: "Industry Expertise - StaffAnchor Talent Solutions | Precision Domain Hiring",
-  description: "Specialized hiring across 20+ industries. EdTech, Hospitality, Healthcare, Finance with 84% closure rate.",
-  keywords: "Industry Expertise, EdTech Hiring, Healthcare Recruitment, Hospitality Jobs, Domain-specific Hiring",
-};
+import PracticeSidebar from '@/components/layout/PracticeSidebar';
 
 const industryMetrics = [
   { value: "84%", label: "Closure Rate", description: "Industry success" },
@@ -45,14 +42,26 @@ const industries = [
 
 
 export default function IndustryExpertisePage() {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
   return (
-    <>
-    <section className='section-padding'>
-      <HeroSection 
-        headline="Precision Hiring Where Function Meets Domain."
-        subtext="Deep industry knowledge across 20+ specialized sectors ensures perfect role-culture-domain alignment."
-        />
-      </section>
+    <div className="flex">
+      {/* Sidebar */}
+      <PracticeSidebar 
+        isOpen={sidebarOpen}
+        onToggle={() => setSidebarOpen(!sidebarOpen)}
+        currentPage="industry-expertise"
+      />
+
+      {/* Main Content */}
+      <div className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}`}>
+        <>
+          <section className='section-padding'>
+            <HeroSection 
+              headline="Precision Hiring Where Function Meets Domain."
+              subtext="Deep industry knowledge across 20+ specialized sectors ensures perfect role-culture-domain alignment."
+              />
+            </section>
       <MetricsStrip metrics={industryMetrics} background='blue'/>
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,6 +98,8 @@ export default function IndustryExpertisePage() {
           </Link>
         </div>
       </section>
-    </>
+        </>
+      </div>
+    </div>
   );
 }

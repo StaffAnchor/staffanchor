@@ -1,7 +1,30 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
-
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 const Footer = () => {
+  const pathname = usePathname();
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  // Pages that have sidebar
+  const sidebarPages = ['/executive-search', '/functional-hiring', '/industry-expertise'];
+  const hasSidebar = sidebarPages.includes(pathname);
+
+  // Listen for sidebar state changes via custom events
+  useEffect(() => {
+    const handleSidebarToggle = (event: CustomEvent) => {
+      setSidebarOpen(event.detail.isOpen);
+    };
+
+    window.addEventListener('sidebarToggle', handleSidebarToggle as EventListener);
+    
+    return () => {
+      window.removeEventListener('sidebarToggle', handleSidebarToggle as EventListener);
+    };
+  }, []);
+
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
@@ -28,7 +51,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 ${hasSidebar && sidebarOpen ? 'lg:ml-64' : ''}`}>
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-start">
           {/* Brand Section */}
