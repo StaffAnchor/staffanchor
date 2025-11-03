@@ -15,28 +15,64 @@ const industryMetrics = [
 
 const industries = [
   {
-    industry: "Architecture & Design",
-    roles: ["Architects", "Senior Interior Designers", "Landscape Designers"]
+    category: "Core Industries",
+    data: [
+      {
+        industry: "Manufacturing & Infrastructure",
+        description: "Building core operational and engineering teams for India's industrial backbone.",
+        roles: ["Plant Heads", "Production Managers", "Project Engineers", "Quality Leads"]
+      },
+      {
+        industry: "Banking, Financial Services & Fintech",
+        description: "Supporting fast-evolving financial and digital ecosystems.",
+        roles: ["Risk Managers", "Credit Analysts", "Product Managers", "Relationship Leads"]
+      },
+      {
+        industry: "Retail, E-commerce & Consumer Internet",
+        description: "Driving hiring for high-growth retail and omni-channel businesses.",
+        roles: ["Category Managers", "Growth Heads", "Merchandisers", "Supply Chain Leads"]
+      },
+      {
+        industry: "Healthcare & Life Sciences",
+        description: "From hospitals to wellness startups, we enable healthcare organizations to scale with quality talent.",
+        roles: ["Clinical Managers", "Medical Sales", "Physiotherapists", "Nutrition Experts"]
+      },
+      {
+        industry: "Hospitality, Fitness & Lifestyle",
+        description: "Serving brands in hospitality, QSR, fitness, and luxury.",
+        roles: ["Chefs", "Trainers", "Operations Managers", "Wellness Coaches"]
+      },
+      {
+        industry: "Architecture & Design",
+        description: "Connecting creative professionals with India's leading design and construction firms.",
+        roles: ["Architects", "Interior Designers", "Landscape Experts"]
+      }
+    ]
   },
   {
-    industry: "Finance & Accounting",
-    roles: ["Chartered Accountants (CAs)", "Audit Managers", "Tax Specialists", "FP&A Managers"]
-  },
-  {
-    industry: "Hospitality & Culinary",
-    roles: ["Head Chef", "Sous Chef", "Pastry Chef", "Commis I/II/III"]
-  },
-  {
-    industry: "Fitness & Wellness",
-    roles: ["Fitness Trainers", "Group Instructors", "Nutritionists", "Wellness Coaches"]
-  },
-  {
-    industry: "Legal & Compliance",
-    roles: ["Corporate Lawyer", "Compliance Manager", "Company Secretary (CS)"]
-  },
-  {
-    industry: "Specialist Medical / Health",
-    roles: ["Physiotherapists", "Sports Scientists", "Dieticians"]
+    category: "Emerging Sectors",
+    data: [
+      {
+        industry: "Renewable Energy & EV Ecosystem",
+        description: "Supporting India's green economy with talent for solar, wind, and EV companies.",
+        roles: ["Project Managers", "Sustainability Analysts", "Electrical Engineers"]
+      },
+      {
+        industry: "GCCs & Shared Services",
+        description: "Building leadership and mid-level teams for global capability centers across Tier-1 & Tier-2 cities.",
+        roles: ["Finance Leads", "Process Managers", "Data Analysts"]
+      },
+      {
+        industry: "AI, Data & Digital Transformation",
+        description: "Bridging the talent gap in data-first organizations.",
+        roles: ["AI Engineers", "BI Analysts", "Data Scientists", "Automation Leads"]
+      },
+      {
+        industry: "Education & Skilling",
+        description: "Powering the next generation of educators, counsellors, and edtech leaders.",
+        roles: ["Academic Heads", "Trainers", "Admission Managers"]
+      }
+    ]
   }
 ];
 
@@ -61,22 +97,42 @@ export default function IndustryExpertisePage() {
               headline="Precision Hiring Where Function Meets Domain."
               subtext="Deep industry knowledge across 20+ specialized sectors ensures perfect role-culture-domain alignment."
               />
-            </section>
+          </section>
+
+          {/* Introduction Section */}
+          <section className="section-padding bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl mx-auto text-center">
+                <p className="text-lg text-gray-700 leading-relaxed mb-8">
+                  Every industry demands a unique talent strategy. At StaffAnchor, we align our hiring processes with the nuances, market cycles, and skill gaps of each domain. From established sectors to emerging industries, our specialists bring real-world understanding and proven networks.
+                </p>
+              </div>
+            </div>
+          </section>
+
       <MetricsStrip metrics={industryMetrics} background='blue'/>
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {industries.map((ind) => (
-              <div key={ind.industry} className="bg-gray-50 rounded-xl p-6">
-                <h3 className="font-poppins font-semibold text-lg text-gray-900 mb-4">{ind.industry}</h3>
-                <div className="space-y-2">
-                  {ind.roles.map((role) => (
-                    <div key={role} className="bg-white px-3 py-2 rounded-lg text-sm text-gray-700">{role}</div>
-                  ))}
-                </div>
+          {industries.map((category) => (
+            <div key={category.category} className="mb-16">
+              <div className="text-center mb-12">
+                <h2 className="heading-lg mb-4">{category.category}</h2>
               </div>
-            ))}
-          </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {category.data.map((ind) => (
+                  <div key={ind.industry} className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ease-in-out cursor-pointer group">
+                    <h3 className="font-poppins font-semibold text-xl text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">{ind.industry}</h3>
+                    <p className="text-gray-600 text-sm mb-4 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">{ind.description}</p>
+                    <div className="space-y-2">
+                      {ind.roles.map((role) => (
+                        <div key={role} className="bg-gray-50 px-3 py-2 rounded-lg text-sm text-gray-700 group-hover:bg-blue-50 transition-colors duration-300">{role}</div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

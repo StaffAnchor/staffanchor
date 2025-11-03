@@ -6,6 +6,38 @@ import MetricsStrip from '@/components/ui/MetricsStrip';
 import Link from 'next/link';
 import PracticeSidebar from '@/components/layout/PracticeSidebar';
 
+const methodology = [
+  {
+    step: "01",
+    title: "Discovery",
+    description: "Deep dive into your organizational culture, role requirements, and strategic objectives to understand the perfect candidate profile.",
+    features: ["Stakeholder interviews", "Role profiling", "Cultural assessment", "Success metrics definition"]
+  },
+  {
+    step: "02", 
+    title: "Intelligence",
+    description: "Leverage AI-powered market mapping and competitive intelligence to identify and analyze the best talent in the market.",
+    features: ["Market mapping", "Competitive analysis", "Talent intelligence", "Compensation benchmarking"]
+  },
+  {
+    step: "03",
+    title: "Shortlisting",
+    description: "Apply our Fit Index™ algorithm combined with human expertise to curate a precise shortlist of qualified candidates.",
+    features: ["AI-powered screening", "Technical evaluation", "Cultural fit assessment", "Reference validation"]
+  },
+  {
+    step: "04",
+    title: "Evaluation",
+    description: "Facilitate comprehensive evaluation through structured interviews, assessments, and stakeholder feedback loops.",
+    features: ["Structured interviews", "Skills assessment", "Leadership evaluation", "Team fit analysis"]
+  },
+  {
+    step: "05",
+    title: "Closure",
+    description: "Guide negotiation and onboarding process to ensure smooth transition and long-term success for both parties.",
+    features: ["Offer negotiation", "Background verification", "Onboarding support", "Follow-up & retention"]
+  },
+];
 const functionalMetrics = [
   { value: "250+", label: "Roles/Year", description: "Functional positions" },
   { value: "72hr", label: "Shortlisting", description: "Speed to market" },
@@ -149,6 +181,68 @@ export default function FunctionalHiringPage() {
             />
           </section>
 
+          {/* Introduction Section */}
+          <section className="section-padding bg-blue-900">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl mx-auto text-center">
+                <p className="text-lg text-white leading-relaxed mb-8">
+                  Our Functional Hiring Practice connects growing businesses with proven professionals who can execute, scale, and lead within specific verticals.
+                  From early-growth startups to established enterprises, StaffAnchor delivers agile hiring solutions.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Hiring Framework Section */}
+          {/* 5-Step Methodology */}
+      <section className="section-padding bg-gray-50" id="methodology">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="heading-lg mb-8">5-Step Methodology</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our proven systematic approach ensures every placement is precise, strategic, and aligned with your long-term success.
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {methodology.map((step, index) => (
+              <div key={step.step} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-16 items-center`}>
+                <div className="flex-1">
+                  <div className="flex items-center mb-6">
+                    <div className="w-16 h-16 bg-blue-900 text-white rounded-full flex items-center justify-center font-poppins font-bold text-xl mr-4">
+                      {step.step}
+                    </div>
+                    <h3 className="heading-md text-2xl">{step.title}</h3>
+                  </div>
+                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                    {step.description}
+                  </p>
+                  <ul className="grid grid-cols-2 gap-3">
+                    {step.features.map((feature) => (
+                      <li key={feature} className="flex items-center space-x-2 text-sm text-gray-600">
+                        <svg className="w-4 h-4 text-teal-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="flex-1">
+                  <div className="bg-white rounded-xl p-8 shadow-lg">
+                    <div className="w-full h-48 bg-linear-to-br from-blue-50 to-teal-50 rounded-lg flex items-center justify-center">
+                      <div className="text-6xl text-blue-200 font-light">
+                        {step.step}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <MetricsStrip metrics={functionalMetrics} background='blue'/>
 
