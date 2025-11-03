@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import HeroSection from '@/components/ui/HeroSection';
 import MetricsStrip from '@/components/ui/MetricsStrip';
-import ContactForm from '@/components/ui/ContactForm';
+import SectionedForm from '@/components/ui/SectionedForm';
 import { submitEmployerForm } from '@/utils/googleSheets';
 import PracticeCard from '@/components/ui/PracticeCard';
 import { motion } from 'framer-motion';
@@ -78,12 +78,56 @@ const practices = [
 ];
 
 const employerFormFields = [
-  { name: "name", label: "Full Name", type: "text" as const, required: true, placeholder: "Enter your full name" },
-  { name: "company", label: "Company Name", type: "text" as const, required: true, placeholder: "Enter your company name" },
-  { name: "name", label: "Designation", type: "text" as const, required: true, placeholder: "HR, CEO, Founder, etc" },
-  { name: "email", label: "Email Address", type: "email" as const, required: true, placeholder: "Enter your email" },
-  { name: "phone", label: "Phone Number", type: "tel" as const, placeholder: "Enter your phone number" },
-  { name: "message", label: "Additional Requirements", type: "textarea" as const, placeholder: "Tell us about your specific requirements, timeline, and expectations..." },
+  {
+    section: "Company Details",
+    fields: [
+      { name: "companyName", label: "Company Name", type: "text" as const, required: true, placeholder: "Enter your company name" },
+      { name: "website", label: "Website", type: "url" as const, required: false, placeholder: "https://yourcompany.com" },
+      { 
+        name: "industry", 
+        label: "Industry", 
+        type: "select" as const, 
+        required: true, 
+        placeholder: "Select your industry",
+        options: [
+          "Technology",
+          "Healthcare",
+          "Finance & Banking",
+          "E-commerce & Retail",
+          "Manufacturing",
+          "Education",
+          "Real Estate",
+          "Hospitality",
+          "Consulting",
+          "Other"
+        ]
+      },
+      { 
+        name: "companySize", 
+        label: "Company Size", 
+        type: "select" as const, 
+        required: false, 
+        placeholder: "Select company size",
+        options: [
+          "1-10 employees",
+          "11-50 employees", 
+          "51-200 employees",
+          "201-1000 employees",
+          "1000+ employees"
+        ]
+      }
+    ]
+  },
+  {
+    section: "Contact Person",
+    fields: [
+      { name: "fullName", label: "Full Name", type: "text" as const, required: true, placeholder: "Enter your full name" },
+      { name: "designation", label: "Designation", type: "text" as const, required: true, placeholder: "HR Manager, CEO, Founder, etc." },
+      { name: "workEmail", label: "Work Email", type: "email" as const, required: true, placeholder: "Enter your work email" },
+      { name: "mobileNumber", label: "Mobile Number", type: "tel" as const, required: true, placeholder: "Enter your mobile number" },
+      { name: "jobDescription", label: "Job Description Upload", type: "file" as const, required: false, placeholder: "Upload job description (PDF, DOC)" }
+    ]
+  }
 ];
 
 export default function EmployersPage() {
@@ -178,10 +222,10 @@ export default function EmployersPage() {
             </p>
           </div>
 
-          <ContactForm
-            title="Hiring Mandate Form"
+          <SectionedForm
+            title="Hiring Request"
             subtitle="Complete this form to start your precision hiring journey with StaffAnchor."
-            fields={employerFormFields}
+            sections={employerFormFields}
             submitText="Submit Mandate →"
             onSubmit={submitEmployerForm}
           />

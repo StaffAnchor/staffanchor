@@ -6,14 +6,59 @@ import HeroSection from '@/components/ui/HeroSection';
 import ContactForm from '@/components/ui/ContactForm';
 import UploadForm from '@/components/ui/UploadForm';
 import { submitEmployerForm, submitJobSeekerForm } from '@/utils/googleSheets';
+import SectionedForm from '@/components/ui/SectionedForm';
 
-const employerContactFields = [
-  { name: "name", label: "Full Name", type: "text" as const, required: true, placeholder: "Enter your full name" },
-  { name: "company", label: "Company Name", type: "text" as const, required: true, placeholder: "Enter your company name" },
-  { name: "name", label: "Designation", type: "text" as const, required: true, placeholder: "HR, CEO, Founder, etc" },
-  { name: "email", label: "Email Address", type: "email" as const, required: true, placeholder: "Enter your email" },
-  { name: "phone", label: "Phone Number", type: "tel" as const, placeholder: "Enter your phone number" },
-  { name: "message", label: "Additional Requirements", type: "textarea" as const, placeholder: "Tell us about your specific requirements, timeline, and expectations..." },
+const employerFormFields = [
+  {
+    section: "Company Details",
+    fields: [
+      { name: "companyName", label: "Company Name", type: "text" as const, required: true, placeholder: "Enter your company name" },
+      { name: "website", label: "Website", type: "url" as const, required: false, placeholder: "https://yourcompany.com" },
+      { 
+        name: "industry", 
+        label: "Industry", 
+        type: "select" as const, 
+        required: true, 
+        placeholder: "Select your industry",
+        options: [
+          "Technology",
+          "Healthcare",
+          "Finance & Banking",
+          "E-commerce & Retail",
+          "Manufacturing",
+          "Education",
+          "Real Estate",
+          "Hospitality",
+          "Consulting",
+          "Other"
+        ]
+      },
+      { 
+        name: "companySize", 
+        label: "Company Size", 
+        type: "select" as const, 
+        required: false, 
+        placeholder: "Select company size",
+        options: [
+          "1-10 employees",
+          "11-50 employees", 
+          "51-200 employees",
+          "201-1000 employees",
+          "1000+ employees"
+        ]
+      }
+    ]
+  },
+  {
+    section: "Contact Person",
+    fields: [
+      { name: "fullName", label: "Full Name", type: "text" as const, required: true, placeholder: "Enter your full name" },
+      { name: "designation", label: "Designation", type: "text" as const, required: true, placeholder: "HR Manager, CEO, Founder, etc." },
+      { name: "workEmail", label: "Work Email", type: "email" as const, required: true, placeholder: "Enter your work email" },
+      { name: "mobileNumber", label: "Mobile Number", type: "tel" as const, required: true, placeholder: "Enter your mobile number" },
+      { name: "jobDescription", label: "Job Description Upload", type: "file" as const, required: false, placeholder: "Upload job description (PDF, DOC)" }
+    ]
+  }
 ];
 
 export default function ContactPage() {
@@ -95,7 +140,7 @@ export default function ContactPage() {
               <div className="flex">
                 <button
                   onClick={() => setActiveForm('employer')}
-                  className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+                  className={`px-8 py-3 hover:cursor-pointer rounded-full font-medium transition-all duration-300 ${
                     activeForm === 'employer'
                       ? 'bg-blue-900 text-white shadow-md'
                       : 'text-gray-600 hover:text-gray-900'
@@ -105,7 +150,7 @@ export default function ContactPage() {
                 </button>
                 <button
                   onClick={() => setActiveForm('jobseeker')}
-                  className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+                  className={`px-8 py-3 hover:cursor-pointer rounded-full font-medium transition-all duration-300 ${
                     activeForm === 'jobseeker'
                       ? 'bg-teal-600 text-white shadow-md'
                       : 'text-gray-600 hover:text-gray-900'
@@ -128,13 +173,13 @@ export default function ContactPage() {
                 transition={{ duration: 0.3 }}
               >
                 {activeForm === 'employer' ? (
-                  <ContactForm
-                    title="For Employers"
-                    subtitle="Share your hiring requirements and let us create a tailored recruitment strategy."
-                    fields={employerContactFields}
-                    submitText="Submit Hiring Request →"
-                    onSubmit={submitEmployerForm}
-                  />
+                  <SectionedForm
+            title="Hiring Request"
+            subtitle="Complete this form to start your precision hiring journey with StaffAnchor."
+            sections={employerFormFields}
+            submitText="Submit Mandate →"
+            onSubmit={submitEmployerForm}
+          />
                 ) : (
                   <UploadForm
                     title="For Job Seekers"

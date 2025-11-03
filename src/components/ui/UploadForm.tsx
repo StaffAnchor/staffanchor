@@ -1,7 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+interface FormField {
+  name: string;
+  label: string;
+  type: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'file' | 'url' | 'number' | 'multiselect';
+  required?: boolean;
+  placeholder?: string;
+  options?: string[];
+}
 
 interface UploadFormProps {
   title: string;
@@ -10,15 +19,183 @@ interface UploadFormProps {
   onSubmit: (formData: FormData) => Promise<void>;
 }
 
+const candidateFormSections = [
+  {
+    section: "Personal Information",
+    fields: [
+      { name: "fullName", label: "Full Name", type: "text" as const, required: true, placeholder: "Enter your full name" },
+      { name: "email", label: "Email ID", type: "email" as const, required: true, placeholder: "Enter your email address" },
+      { name: "mobile", label: "Mobile Number", type: "tel" as const, required: true, placeholder: "Enter your mobile number" },
+      { 
+        name: "currentCity", 
+        label: "Current City / Location", 
+        type: "select" as const, 
+        required: false, 
+        placeholder: "Select your current city",
+        options: [
+          "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai", "Pune", "Kolkata", "Ahmedabad", 
+          "Surat", "Jaipur", "Lucknow", "Kanpur", "Nagpur", "Indore", "Thane", "Bhopal", 
+          "Visakhapatnam", "Pimpri-Chinchwad", "Patna", "Vadodara", "Ghaziabad", "Ludhiana", 
+          "Agra", "Nashik", "Faridabad", "Meerut", "Rajkot", "Kalyan-Dombivali", "Vasai-Virar", 
+          "Varanasi", "Srinagar", "Dhanbad", "Jodhpur", "Amritsar", "Raipur", "Allahabad", 
+          "Coimbatore", "Jabalpur", "Gwalior", "Vijayawada", "Madurai", "Gurgaon", "Navi Mumbai", 
+          "Aurangabad", "Solapur", "Ranchi", "Jalandhar", "Tiruchirappalli", "Chandigarh", "Other"
+        ]
+      },
+      { 
+        name: "preferredJobLocations", 
+        label: "Preferred Job Location(s)", 
+        type: "multiselect" as const, 
+        required: true, 
+        placeholder: "Select preferred job locations",
+        options: [
+          "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai", "Pune", "Kolkata", "Ahmedabad", 
+          "Surat", "Jaipur", "Lucknow", "Kanpur", "Nagpur", "Indore", "Thane", "Bhopal", 
+          "Remote", "Anywhere in India", "International", "Other"
+        ]
+      },
+      { name: "linkedinProfile", label: "LinkedIn Profile", type: "url" as const, required: false, placeholder: "https://linkedin.com/in/yourprofile" },
+      { 
+        name: "employmentStatus", 
+        label: "Current Employment Status", 
+        type: "select" as const, 
+        required: true, 
+        placeholder: "Select employment status",
+        options: ["Employed", "Serving Notice", "Unemployed", "Freelancer"]
+      }
+    ]
+  },
+  {
+    section: "Professional Summary",
+    fields: [
+      { name: "currentCompany", label: "Current Company", type: "text" as const, required: false, placeholder: "Enter your current company name" },
+      { name: "currentDesignation", label: "Current Designation", type: "text" as const, required: true, placeholder: "Enter your current job title" },
+      { 
+        name: "totalExperience", 
+        label: "Total Experience (Years)", 
+        type: "select" as const, 
+        required: true, 
+        placeholder: "Select total experience",
+        options: ["0–2", "2–4", "4–8", "8–12", "12–18", "18+"]
+      },
+      { 
+        name: "functionalExpertise", 
+        label: "Functional Expertise", 
+        type: "select" as const, 
+        required: true, 
+        placeholder: "Select functional area",
+        options: [
+          "Sales & Business Development", "Marketing & Growth", "Operations & Supply Chain", 
+          "Technology & Engineering", "Finance & Accounting", "Human Resources", 
+          "Product Management", "Strategy & Consulting", "Legal & Compliance", 
+          "Customer Success", "Data Science & Analytics", "Design & Creative", "Other"
+        ]
+      },
+      { 
+        name: "industriesWorked", 
+        label: "Industries Worked in", 
+        type: "multiselect" as const, 
+        required: true, 
+        placeholder: "Select industries you've worked in",
+        options: [
+          "Technology", "Healthcare", "Finance & Banking", "E-commerce & Retail", "Manufacturing", 
+          "Education & EdTech", "Real Estate", "Hospitality", "Consulting", "Media & Entertainment", 
+          "Automotive", "Pharmaceuticals", "Energy & Utilities", "Government", "Non-Profit", "Other"
+        ]
+      },
+      { name: "resume", label: "Resume Upload", type: "file" as const, required: true, placeholder: "Upload your resume (PDF, DOC, DOCX)" },
+      { name: "professionalSummary", label: "Professional Summary", type: "textarea" as const, required: false, placeholder: "Brief summary of your professional background (max 300 characters)" }
+    ]
+  },
+  {
+    section: "Education & Certifications",
+    fields: [
+      { 
+        name: "highestQualification", 
+        label: "Highest Qualification", 
+        type: "select" as const, 
+        required: true, 
+        placeholder: "Select highest qualification",
+        options: ["Graduate", "Post-Graduate", "MBA", "BTech", "Diploma", "PhD", "Other"]
+      },
+      { name: "specialization", label: "Specialization", type: "text" as const, required: false, placeholder: "Enter your specialization/major" },
+      { name: "certifications", label: "Certifications", type: "text" as const, required: false, placeholder: "List your relevant certifications" }
+    ]
+  },
+  {
+    section: "Career Preferences",
+    fields: [
+      { 
+        name: "preferredFunctionalArea", 
+        label: "Preferred Functional Area", 
+        type: "select" as const, 
+        required: true, 
+        placeholder: "Select preferred functional area",
+        options: [
+          "Sales & Business Development", "Marketing & Growth", "Operations & Supply Chain", 
+          "Technology & Engineering", "Finance & Accounting", "Human Resources", 
+          "Product Management", "Strategy & Consulting", "Legal & Compliance", 
+          "Customer Success", "Data Science & Analytics", "Design & Creative", "Other"
+        ]
+      },
+      { name: "targetRoles", label: "Target Roles", type: "text" as const, required: false, placeholder: "Specify target job titles or roles" },
+      { 
+        name: "preferredIndustries", 
+        label: "Preferred Industries", 
+        type: "multiselect" as const, 
+        required: false, 
+        placeholder: "Select preferred industries",
+        options: [
+          "Technology", "Healthcare", "Finance & Banking", "E-commerce & Retail", "Manufacturing", 
+          "Education & EdTech", "Real Estate", "Hospitality", "Consulting", "Media & Entertainment", 
+          "Automotive", "Pharmaceuticals", "Energy & Utilities", "Government", "Non-Profit", "Other"
+        ]
+      },
+      { name: "currentCTC", label: "Current CTC (₹ LPA)", type: "number" as const, required: true, placeholder: "Enter current annual salary in lakhs" },
+      { name: "expectedCTC", label: "Expected CTC (₹ LPA)", type: "number" as const, required: true, placeholder: "Enter expected annual salary in lakhs" },
+      { 
+        name: "noticePeriod", 
+        label: "Notice Period", 
+        type: "select" as const, 
+        required: true, 
+        placeholder: "Select notice period",
+        options: ["Immediate", "15 days", "30 days", "60 days", "90 days"]
+      }
+    ]
+  }
+];
+
 const UploadForm = ({ 
   title, 
   subtitle, 
   acceptedFileTypes = ".pdf,.doc,.docx",
   onSubmit 
 }: UploadFormProps) => {
+  const [openSection, setOpenSection] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedOptions, setSelectedOptions] = useState<{[key: string]: string[]}>({});
+  const [openMultiselects, setOpenMultiselects] = useState<{[key: string]: boolean}>({});
+  const multiselectRefs = useRef<{[key: string]: HTMLDivElement | null}>({});
+
+  // Close multiselect when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      Object.keys(openMultiselects).forEach(fieldName => {
+        if (openMultiselects[fieldName] && multiselectRefs.current[fieldName]) {
+          if (!multiselectRefs.current[fieldName]?.contains(event.target as Node)) {
+            setOpenMultiselects(prev => ({ ...prev, [fieldName]: false }));
+          }
+        }
+      });
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [openMultiselects]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,12 +203,18 @@ const UploadForm = ({
     setSubmitStatus('idle');
 
     const formData = new FormData(e.currentTarget);
+    
+    // Add multiselect values to form data
+    Object.entries(selectedOptions).forEach(([fieldName, values]) => {
+      formData.set(fieldName, values.join(', '));
+    });
 
     try {
       await onSubmit(formData);
       setSubmitStatus('success');
       (e.target as HTMLFormElement).reset();
       setSelectedFile(null);
+      setSelectedOptions({});
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
@@ -43,6 +226,174 @@ const UploadForm = ({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
     setSelectedFile(file);
+  };
+
+  const handleMultiSelectChange = (fieldName: string, value: string) => {
+    setSelectedOptions(prev => {
+      const current = prev[fieldName] || [];
+      const updated = current.includes(value) 
+        ? current.filter(item => item !== value)
+        : [...current, value];
+      return { ...prev, [fieldName]: updated };
+    });
+  };
+
+  const renderField = (field: FormField) => {
+    const baseClasses = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200";
+    
+    switch (field.type) {
+      case 'textarea':
+        return (
+          <textarea
+            name={field.name}
+            placeholder={field.placeholder}
+            required={field.required}
+            rows={3}
+            maxLength={300}
+            className={`${baseClasses} resize-none`}
+          />
+        );
+      
+      case 'select':
+        return (
+          <select
+            name={field.name}
+            required={field.required}
+            className={baseClasses}
+          >
+            <option value="">{field.placeholder || `Select ${field.label}`}</option>
+            {field.options?.map((option: string) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        );
+
+      case 'multiselect':
+        return (
+          <div 
+            ref={(el) => { multiselectRefs.current[field.name] = el; }}
+            className="space-y-2"
+          >
+            {/* Dropdown Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setOpenMultiselects(prev => ({ ...prev, [field.name]: !prev[field.name] }))}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white flex items-center justify-between hover:border-gray-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
+            >
+              <span className="text-gray-700">
+                {selectedOptions[field.name]?.length > 0 
+                  ? `${selectedOptions[field.name].length} selected`
+                  : field.placeholder || `Select ${field.label}`
+                }
+              </span>
+              <motion.svg
+                animate={{ rotate: openMultiselects[field.name] ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </motion.svg>
+            </button>
+
+            {/* Dropdown Content */}
+            <AnimatePresence>
+              {openMultiselects[field.name] && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="max-h-40 overflow-y-auto border border-gray-300 rounded-lg p-2 bg-gray-50"
+                >
+                  {field.options?.map((option: string) => (
+                    <label key={option} className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={selectedOptions[field.name]?.includes(option) || false}
+                        onChange={() => handleMultiSelectChange(field.name, option)}
+                        className="w-4 h-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
+                      />
+                      <span className="text-sm text-gray-700">{option}</span>
+                    </label>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Selected Items Display */}
+            {selectedOptions[field.name]?.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {selectedOptions[field.name].map((selected: string) => (
+                  <span key={selected} className="bg-teal-100 text-teal-700 px-2 py-1 rounded-full text-xs flex items-center gap-1">
+                    {selected}
+                    <button
+                      type="button"
+                      onClick={() => handleMultiSelectChange(field.name, selected)}
+                      className="hover:bg-teal-200 rounded-full w-4 h-4 flex items-center justify-center"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      
+      case 'file':
+        return (
+          <div className="relative">
+            <input
+              type="file"
+              name={field.name}
+              required={field.required}
+              accept={acceptedFileTypes}
+              onChange={handleFileChange}
+              className="hidden"
+              id={field.name}
+            />
+            <label
+              htmlFor={field.name}
+              className="w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 hover:border-teal-400 transition-all duration-200"
+            >
+              <svg className="w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+              <div className="text-center">
+                {selectedFile ? (
+                  <div>
+                    <p className="text-teal-600 font-medium">{selectedFile.name}</p>
+                    <p className="text-xs text-gray-500 mt-1">Click to change file</p>
+                  </div>
+                ) : (
+                  <div>
+                    <p className="text-gray-600 font-medium">{field.placeholder}</p>
+                    <p className="text-xs text-gray-500 mt-1">PDF, DOC, or DOCX (max 10MB)</p>
+                  </div>
+                )}
+              </div>
+            </label>
+          </div>
+        );
+      
+      default:
+        return (
+          <input
+            type={field.type}
+            name={field.name}
+            placeholder={field.placeholder}
+            required={field.required}
+            step={field.type === 'number' ? '0.1' : undefined}
+            min={field.type === 'number' ? '0' : undefined}
+            className={baseClasses}
+          />
+        );
+    }
   };
 
   return (
@@ -62,250 +413,52 @@ const UploadForm = ({
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Name Field */}
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-            Full Name <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            name="name"
-            required
-            placeholder="Enter your full name"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          />
-        </div>
-
-        {/* Email Field */}
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-            Email Address <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="Enter your email address"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          />
-        </div>
-
-        {/* Phone Field */}
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-            Phone Number <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="tel"
-            name="phone"
-            required
-            placeholder="Enter your phone number"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          />
-        </div>
-
-        {/* Location Field */}
-        <div>
-          <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
-            Current Location <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            name="location"
-            required
-            placeholder="City, State/Country"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          />
-        </div>
-
-        {/* Experience Field */}
-        <div>
-          <label htmlFor="experience" className="block text-sm font-medium text-gray-700 mb-2">
-            Years of Experience <span className="text-red-500">*</span>
-          </label>
-          <select
-            name="experience"
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          >
-            <option value="">Select experience level</option>
-            <option value="0-1">0-1 years</option>
-            <option value="1-3">1-3 years</option>
-            <option value="3-5">3-5 years</option>
-            <option value="5-8">5-8 years</option>
-            <option value="8-12">8-12 years</option>
-            <option value="12+">12+ years</option>
-          </select>
-        </div>
-
-        {/* Current Company Field */}
-        <div>
-          <label htmlFor="currentCompany" className="block text-sm font-medium text-gray-700 mb-2">
-            Current Company
-          </label>
-          <input
-            type="text"
-            name="currentCompany"
-            placeholder="Enter your current company name"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          />
-        </div>
-
-        {/* Current Role Field */}
-        <div>
-          <label htmlFor="currentRole" className="block text-sm font-medium text-gray-700 mb-2">
-            Current Job Title <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            name="currentRole"
-            required
-            placeholder="Enter your current job title"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          />
-        </div>
-
-        {/* Industry Field */}
-        <div>
-          <label htmlFor="industry" className="block text-sm font-medium text-gray-700 mb-2">
-            Industry <span className="text-red-500">*</span>
-          </label>
-          <select
-            name="industry"
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          >
-            <option value="">Select your industry</option>
-            <option value="technology">Technology</option>
-            <option value="finance">Finance & Banking</option>
-            <option value="healthcare">Healthcare</option>
-            <option value="education">Education & EdTech</option>
-            <option value="retail">Retail & E-commerce</option>
-            <option value="manufacturing">Manufacturing</option>
-            <option value="consulting">Consulting</option>
-            <option value="media">Media & Entertainment</option>
-            <option value="real-estate">Real Estate</option>
-            <option value="hospitality">Hospitality & Tourism</option>
-            <option value="automotive">Automotive</option>
-            <option value="pharma">Pharmaceuticals</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        {/* Current Salary Field */}
-        <div>
-          <label htmlFor="currentSalary" className="block text-sm font-medium text-gray-700 mb-2">
-            Current Annual Salary (LPA)
-          </label>
-          <select
-            name="currentSalary"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          >
-            <option value="">Select salary range</option>
-            <option value="0-3">0-3 LPA</option>
-            <option value="3-5">3-5 LPA</option>
-            <option value="5-8">5-8 LPA</option>
-            <option value="8-12">8-12 LPA</option>
-            <option value="12-18">12-18 LPA</option>
-            <option value="18-25">18-25 LPA</option>
-            <option value="25-40">25-40 LPA</option>
-            <option value="40+">40+ LPA</option>
-          </select>
-        </div>
-
-        {/* Expected Salary Field */}
-        <div>
-          <label htmlFor="expectedSalary" className="block text-sm font-medium text-gray-700 mb-2">
-            Expected Annual Salary (LPA)
-          </label>
-          <select
-            name="expectedSalary"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          >
-            <option value="">Select expected range</option>
-            <option value="0-3">0-3 LPA</option>
-            <option value="3-5">3-5 LPA</option>
-            <option value="5-8">5-8 LPA</option>
-            <option value="8-12">8-12 LPA</option>
-            <option value="12-18">12-18 LPA</option>
-            <option value="18-25">18-25 LPA</option>
-            <option value="25-40">25-40 LPA</option>
-            <option value="40+">40+ LPA</option>
-          </select>
-        </div>
-
-        {/* Notice Period Field */}
-        <div>
-          <label htmlFor="noticePeriod" className="block text-sm font-medium text-gray-700 mb-2">
-            Notice Period <span className="text-red-500">*</span>
-          </label>
-          <select
-            name="noticePeriod"
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
-          >
-            <option value="">Select notice period</option>
-            <option value="immediate">Immediate</option>
-            <option value="15-days">15 Days</option>
-            <option value="1-month">1 Month</option>
-            <option value="2-months">2 Months</option>
-            <option value="3-months">3 Months</option>
-            <option value="more-than-3">More than 3 Months</option>
-          </select>
-        </div>
-
-        {/* Key Skills Field */}
-        <div>
-          <label htmlFor="keySkills" className="block text-sm font-medium text-gray-700 mb-2">
-            Key Skills <span className="text-red-500">*</span>
-          </label>
-          <textarea
-            name="keySkills"
-            required
-            rows={3}
-            placeholder="List your key skills (e.g., React, Node.js, Project Management, etc.)"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200 resize-none"
-          />
-        </div>
-
-        {/* File Upload */}
-        <div>
-          <label htmlFor="resume" className="block text-sm font-medium text-gray-700 mb-2">
-            Upload Resume <span className="text-red-500">*</span>
-          </label>
-          <div className="relative">
-            <input
-              type="file"
-              name="resume"
-              id="resume"
-              required
-              accept={acceptedFileTypes}
-              onChange={handleFileChange}
-              className="hidden"
-            />
-            <label
-              htmlFor="resume"
-              className="w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 hover:border-teal-400 transition-all duration-200"
+        {candidateFormSections.map((section, sectionIndex) => (
+          <div key={section.section} className="border border-gray-200 rounded-lg overflow-hidden">
+            {/* Section Header */}
+            <button
+              type="button"
+              onClick={() => setOpenSection(openSection === sectionIndex ? -1 : sectionIndex)}
+              className="w-full px-6 py-4 hover:cursor-pointer bg-gray-50 hover:bg-gray-100 flex items-center justify-between transition-colors duration-200"
             >
-              <svg className="w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-              </svg>
-              <div className="text-center">
-                {selectedFile ? (
-                  <div>
-                    <p className="text-teal-600 font-medium">{selectedFile.name}</p>
-                    <p className="text-xs text-gray-500 mt-1">Click to change file</p>
-                  </div>
-                ) : (
-                  <div>
-                    <p className="text-gray-600 font-medium">Click to upload your resume</p>
-                    <p className="text-xs text-gray-500 mt-1">PDF, DOC, or DOCX (max 10MB)</p>
-                  </div>
-                )}
-              </div>
-            </label>
+              <span className="font-poppins font-semibold text-lg text-gray-900 uppercase tracking-wide">
+                Section {sectionIndex + 1}: {section.section}
+              </span>
+              <motion.svg
+                animate={{ rotate: openSection === sectionIndex ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-5 h-5 text-gray-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </motion.svg>
+            </button>
+
+            {/* Section Content */}
+            <AnimatePresence>
+              {openSection === sectionIndex && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="px-6 py-4 bg-white space-y-4"
+                >
+                  {section.fields.map((field) => (
+                    <div key={field.name}>
+                      <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-2">
+                        {field.label} {field.required && <span className="text-red-500">*</span>}
+                      </label>
+                      {renderField(field)}
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-        </div>
+        ))}
 
         {/* Submit Button */}
         <motion.button
@@ -323,12 +476,12 @@ const UploadForm = ({
             <div className="flex items-center justify-center space-x-2">
               <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                <path className="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7938l3-2.647z" />
               </svg>
-              <span>Uploading...</span>
+              <span>Submitting...</span>
             </div>
           ) : (
-            'Upload Profile'
+            'Submit Registration'
           )}
         </motion.button>
 
@@ -340,7 +493,7 @@ const UploadForm = ({
             className="p-4 bg-green-50 border border-green-200 rounded-lg"
           >
             <p className="text-green-700 text-sm font-medium">
-              Thank you! Your profile has been uploaded successfully. We&apos;ll review it and get back to you with relevant opportunities.
+              Thank you! Your registration has been submitted successfully. We&apos;ll review your profile and get back to you with relevant opportunities.
             </p>
           </motion.div>
         )}
@@ -352,7 +505,7 @@ const UploadForm = ({
             className="p-4 bg-red-50 border border-red-200 rounded-lg"
           >
             <p className="text-red-700 text-sm font-medium">
-              Something went wrong. Please try again or email us your resume directly at info@staffanchor.com.
+              Something went wrong. Please try again or email us your details directly at info@staffanchor.com.
             </p>
           </motion.div>
         )}
