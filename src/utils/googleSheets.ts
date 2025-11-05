@@ -1,46 +1,93 @@
-// Google Sheets integration utilities
-// Configure these endpoints based on your Google Apps Script deployment
-
 const GOOGLE_SHEETS_ENDPOINTS = {
-  employers: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?sheet=employers',
-  jobSeekers: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?sheet=jobseekers',
+  employers: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_EMPLOYERS_ENDPOINT!,
+  jobSeekers: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_JOBSEEKERS_ENDPOINT!,
+};
+
+// Helper function to convert file to base64
+const convertFileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      if (typeof reader.result === 'string') {
+        // Remove the data URL prefix (e.g., "data:application/pdf;base64,")
+        const base64 = reader.result.split(',')[1];
+        resolve(base64);
+      } else {
+        reject(new Error('Failed to convert file to base64'));
+      }
+    };
+    reader.onerror = error => reject(error);
+  });
 };
 
 export interface EmployerFormData {
-  name: string;
-  company: string;
-  email?: string;
-  phone?: string;
-  roleToHire: string;
+  // Section 1: Company Details
+  companyName: string;
+  website?: string;
   industry: string;
+  companySize?: string;
+  
+  // Section 2: Contact Person
+  fullName: string;
+  designation: string;
+  workEmail: string;
+  mobileNumber: string;
   jobDescription?: File;
-  message?: string;
+  
   timestamp?: string;
 }
 
 export interface JobSeekerFormData {
-  name: string;
-  email?: string;
-  phone?: string;
-  experience: string;
+  // Section 1: Personal Information
+  fullName: string;
+  email: string;
+  mobile: string;
+  currentCity?: string;
+  preferredJobLocations: string;
+  linkedinProfile?: string;
+  employmentStatus: string;
+  
+  // Section 2: Professional Summary
+  currentCompany?: string;
+  currentDesignation: string;
+  totalExperience: string;
+  functionalExpertise: string;
+  industriesWorked: string;
   resume?: File;
+  professionalSummary?: string;
+  
+  // Section 3: Education & Certifications
+  highestQualification: string;
+  specialization?: string;
+  certifications?: string;
+  
+  // Section 4: Career Preferences
+  preferredFunctionalArea: string;
+  targetRoles?: string;
+  preferredIndustries?: string;
+  currentCTC: string;
+  expectedCTC: string;
+  noticePeriod: string;
+  
   timestamp?: string;
 }
 
-export const submitEmployerForm = async (formData: FormData): Promise<void> => {
+export const submitEmployerForm = async (inputFormData: FormData): Promise<void> => {
   try {
-    // Convert FormData to regular object for easier handling
-    const data: Record<string, string | { name: string; size: number; type: string }> = {};
     
-    for (const [key, value] of formData.entries()) {
+    // Convert FormData to regular object for easier handling
+    const data: Record<string, string | { name: string; size: number; type: string; data?: string }> = {};
+    
+    for (const [key, value] of inputFormData.entries()) {
       if (value instanceof File) {
-        // Handle file uploads - convert to base64 or send file info
+        // Convert file to base64 for upload
+        const base64Data = await convertFileToBase64(value);
         data[key] = {
           name: value.name,
           size: value.size,
           type: value.type,
-          // Note: For actual file upload, you'd need to convert to base64
-          // or use a separate file storage service
+          data: base64Data
         };
       } else {
         data[key] = value;
@@ -50,46 +97,60 @@ export const submitEmployerForm = async (formData: FormData): Promise<void> => {
     // Add timestamp
     data.timestamp = new Date().toISOString();
 
-    // Send to Google Sheets
+    // Send to Google Sheets using form data to avoid CORS preflight
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(data)) {
+      if (typeof value === 'object' && value !== null) {
+        formData.append(key, JSON.stringify(value));
+      } else {
+        formData.append(key, String(value));
+      }
+    }
+    
+
     const response = await fetch(GOOGLE_SHEETS_ENDPOINTS.employers, {
       method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
+      body: formData,
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`HTTP error! status: ${response.status}, response: ${errorText}`);
     }
 
-    const result = await response.json();
+    const responseText = await response.text();
+    
+    let result;
+    try {
+      result = JSON.parse(responseText);
+    } catch {
+      throw new Error(`Invalid JSON response: ${responseText}`);
+    }
+    
     if (result.error) {
       throw new Error(result.error);
     }
 
-    console.log('Employer form submitted successfully:', result);
   } catch (error) {
     console.error('Error submitting employer form:', error);
     throw error;
   }
 };
 
-export const submitJobSeekerForm = async (formData: FormData): Promise<void> => {
+export const submitJobSeekerForm = async (inputFormData: FormData): Promise<void> => {
   try {
     // Convert FormData to regular object for easier handling
-    const data: Record<string, string | { name: string; size: number; type: string }> = {};
+    const data: Record<string, string | { name: string; size: number; type: string; data?: string }> = {};
     
-    for (const [key, value] of formData.entries()) {
+    for (const [key, value] of inputFormData.entries()) {
       if (value instanceof File) {
-        // Handle file uploads - convert to base64 or send file info
+        // Convert file to base64 for upload
+        const base64Data = await convertFileToBase64(value);
         data[key] = {
           name: value.name,
           size: value.size,
           type: value.type,
-          // Note: For actual file upload, you'd need to convert to base64
-          // or use a separate file storage service
+          data: base64Data
         };
       } else {
         data[key] = value;
@@ -99,99 +160,42 @@ export const submitJobSeekerForm = async (formData: FormData): Promise<void> => 
     // Add timestamp
     data.timestamp = new Date().toISOString();
 
-    // Send to Google Sheets
+    // Send to Google Sheets using form data to avoid CORS preflight
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(data)) {
+      if (typeof value === 'object' && value !== null) {
+        formData.append(key, JSON.stringify(value));
+      } else {
+        formData.append(key, String(value));
+      }
+    }
+
     const response = await fetch(GOOGLE_SHEETS_ENDPOINTS.jobSeekers, {
       method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
+      body: formData,
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`HTTP error! status: ${response.status}, response: ${errorText}`);
     }
 
-    const result = await response.json();
+    const responseText = await response.text();
+    
+    let result;
+    try {
+      result = JSON.parse(responseText);
+    } catch {
+      throw new Error(`Invalid JSON response: ${responseText}`);
+    }
+    
     if (result.error) {
       throw new Error(result.error);
     }
 
-    console.log('Job seeker form submitted successfully:', result);
   } catch (error) {
     console.error('Error submitting job seeker form:', error);
     throw error;
   }
 };
 
-// Example Google Apps Script code for the backend:
-/*
-function doPost(e) {
-  try {
-    var data = JSON.parse(e.postData.contents);
-    var sheet = e.parameter.sheet;
-    
-    var spreadsheet = SpreadsheetApp.openById('YOUR_SPREADSHEET_ID');
-    var worksheet;
-    
-    if (sheet === 'employers') {
-      worksheet = spreadsheet.getSheetByName('Employers') || spreadsheet.insertSheet('Employers');
-      
-      // Set headers if empty
-      if (worksheet.getLastRow() === 0) {
-        worksheet.getRange(1, 1, 1, 8).setValues([['Timestamp', 'Name', 'Company', 'Email', 'Phone', 'Role to Hire', 'Industry', 'Message']]);
-      }
-      
-      // Add data
-      var row = [
-        data.timestamp,
-        data.name,
-        data.company,
-        data.email,
-        data.phone,
-        data.roleToHire,
-        data.industry,
-        data.message
-      ];
-      
-      worksheet.appendRow(row);
-      
-    } else if (sheet === 'jobseekers') {
-      worksheet = spreadsheet.getSheetByName('JobSeekers') || spreadsheet.insertSheet('JobSeekers');
-      
-      // Set headers if empty
-      if (worksheet.getLastRow() === 0) {
-        worksheet.getRange(1, 1, 1, 6).setValues([['Timestamp', 'Name', 'Email', 'Phone', 'Experience', 'Resume']]);
-      }
-      
-      // Add data
-      var row = [
-        data.timestamp,
-        data.name,
-        data.email,
-        data.phone,
-        data.experience,
-        data.resume ? data.resume.name : ''
-      ];
-      
-      worksheet.appendRow(row);
-    }
-    
-    return ContentService
-      .createTextOutput(JSON.stringify({success: true}))
-      .setMimeType(ContentService.MimeType.JSON);
-      
-  } catch (error) {
-    return ContentService
-      .createTextOutput(JSON.stringify({error: error.toString()}))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}
-
-function doGet(e) {
-  return ContentService
-    .createTextOutput(JSON.stringify({message: 'StaffAnchor Forms API'}))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-*/

@@ -1,51 +1,79 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface FormField {
   name: string;
   label: string;
-  type: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'file' | 'url';
+  type: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'url';
   required?: boolean;
   placeholder?: string;
   options?: string[];
 }
 
-interface FormSection {
-  section: string;
-  fields: FormField[];
-}
-
-interface SectionedFormProps {
+interface EmployerFormProps {
   title: string;
   subtitle?: string;
-  sections: FormSection[];
   submitText?: string;
   onSubmit: (formData: FormData) => Promise<void>;
 }
 
-const SectionedForm = ({ 
+const employerFormFields: FormField[] = [
+  { name: "companyName", label: "Company Name", type: "text", required: true, placeholder: "Enter your company name" },
+  { 
+    name: "industry", 
+    label: "Industry", 
+    type: "select", 
+    required: true, 
+    placeholder: "Select your industry",
+    options: [
+      "Technology",
+      "Healthcare",
+      "Finance & Banking",
+      "E-commerce & Retail",
+      "Manufacturing",
+      "Education",
+      "Real Estate",
+      "Hospitality",
+      "Consulting",
+      "Other"
+    ]
+  },
+  { name: "fullName", label: "Full Name", type: "text", required: true, placeholder: "Enter your full name" },
+  { name: "designation", label: "Designation", type: "text", required: true, placeholder: "HR Manager, CEO, Founder, etc." },
+  { name: "workEmail", label: "Work Email", type: "email", required: true, placeholder: "Enter your work email" },
+  { name: "mobileNumber", label: "Mobile Number", type: "tel", required: true, placeholder: "Enter your mobile number" }
+];
+
+const EmployerForm = ({ 
   title, 
   subtitle, 
-  sections, 
-  submitText = "Submit", 
-  onSubmit 
-}: SectionedFormProps) => {
-  const [openSection, setOpenSection] = useState<number>(0);
+  submitText = "Submit",
+  onSubmit
+}: EmployerFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [formData, setFormData] = useState<{[key: string]: string}>({});
+  const [showCustomIndustry, setShowCustomIndustry] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-
-    const formData = new FormData(e.currentTarget);
-
+    
+    const formDataToSubmit = new FormData();
+    
+    // Add all form field values
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataToSubmit.set(key, value);
+    });
+    
     try {
-      await onSubmit(formData);
+      await onSubmit(formDataToSubmit);
       setSubmitStatus('success');
+      setFormData({});
+      setShowCustomIndustry(false);
       (e.target as HTMLFormElement).reset();
     } catch (error) {
       console.error('Form submission error:', error);
@@ -55,14 +83,72 @@ const SectionedForm = ({
     }
   };
 
+  const handleInputChange = (fieldName: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [fieldName]: value
+    }));
+  };
+
   const renderField = (field: FormField) => {
     const baseClasses = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200";
+    
+    // Special handling for industry field to allow custom input
+    if (field.name === 'industry') {
+      return (
+        <div className="space-y-4">
+          <select
+            name={field.name}
+            value={showCustomIndustry ? 'Other' : (formData[field.name] || '')}
+            onChange={(e) => {
+              if (e.target.value === 'Other') {
+                setShowCustomIndustry(true);
+                handleInputChange(field.name, '');
+              } else {
+                setShowCustomIndustry(false);
+                handleInputChange(field.name, e.target.value);
+              }
+            }}
+            required={field.required && !showCustomIndustry}
+            className={baseClasses}
+          >
+            <option value="">{field.placeholder || `Select ${field.label}`}</option>
+            {field.options?.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          
+          {showCustomIndustry && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <input
+                type="text"
+                name="customIndustry"
+                value={formData[field.name] || ''}
+                onChange={(e) => handleInputChange(field.name, e.target.value)}
+                placeholder="Please specify your industry"
+                required={field.required}
+                className={baseClasses}
+              />
+            </motion.div>
+          )}
+        </div>
+      );
+    }
     
     switch (field.type) {
       case 'textarea':
         return (
           <textarea
             name={field.name}
+            value={formData[field.name] || ''}
+            onChange={(e) => handleInputChange(field.name, e.target.value)}
             placeholder={field.placeholder}
             required={field.required}
             rows={4}
@@ -74,6 +160,8 @@ const SectionedForm = ({
         return (
           <select
             name={field.name}
+            value={formData[field.name] || ''}
+            onChange={(e) => handleInputChange(field.name, e.target.value)}
             required={field.required}
             className={baseClasses}
           >
@@ -86,34 +174,13 @@ const SectionedForm = ({
           </select>
         );
       
-      case 'file':
-        return (
-          <div className="relative">
-            <input
-              type="file"
-              name={field.name}
-              required={field.required}
-              accept=".pdf,.doc,.docx"
-              className="hidden"
-              id={field.name}
-            />
-            <label
-              htmlFor={field.name}
-              className={`${baseClasses} cursor-pointer flex items-center justify-center bg-gray-50 hover:bg-gray-100 text-gray-600`}
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-              </svg>
-              {field.placeholder || `Upload ${field.label}`}
-            </label>
-          </div>
-        );
-      
       default:
         return (
           <input
             type={field.type}
             name={field.name}
+            value={formData[field.name] || ''}
+            onChange={(e) => handleInputChange(field.name, e.target.value)}
             placeholder={field.placeholder}
             required={field.required}
             className={baseClasses}
@@ -139,50 +206,12 @@ const SectionedForm = ({
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {sections.map((section, sectionIndex) => (
-          <div key={section.section} className="border border-gray-200 rounded-lg overflow-hidden">
-            {/* Section Header */}
-            <button
-              type="button"
-              onClick={() => setOpenSection(openSection === sectionIndex ? -1 : sectionIndex)}
-              className="w-full px-6 py-4 hover:cursor-pointer bg-gray-50 hover:bg-gray-100 flex items-center justify-between transition-colors duration-200"
-            >
-              <span className="font-poppins font-semibold text-lg text-gray-900 uppercase tracking-wide">
-                Section {sectionIndex + 1}: {section.section}
-              </span>
-              <motion.svg
-                animate={{ rotate: openSection === sectionIndex ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-                className="w-5 h-5 text-gray-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </motion.svg>
-            </button>
-
-            {/* Section Content */}
-            <AnimatePresence>
-              {openSection === sectionIndex && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="px-6 py-4 bg-white space-y-4"
-                >
-                  {section.fields.map((field) => (
-                    <div key={field.name}>
-                      <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-2">
-                        {field.label} {field.required && <span className="text-red-500">*</span>}
-                      </label>
-                      {renderField(field)}
-                    </div>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+        {employerFormFields.map((field) => (
+          <div key={field.name}>
+            <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-2">
+              {field.label} {field.required && <span className="text-red-500">*</span>}
+            </label>
+            {renderField(field)}
           </div>
         ))}
 
@@ -209,9 +238,7 @@ const SectionedForm = ({
           ) : (
             submitText
           )}
-        </motion.button>
-
-        {/* Status Messages */}
+        </motion.button>        {/* Status Messages */}
         {submitStatus === 'success' && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -240,4 +267,4 @@ const SectionedForm = ({
   );
 };
 
-export default SectionedForm;
+export default EmployerForm;

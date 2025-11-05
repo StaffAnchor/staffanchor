@@ -3,63 +3,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import HeroSection from '@/components/ui/HeroSection';
-import ContactForm from '@/components/ui/ContactForm';
-import UploadForm from '@/components/ui/UploadForm';
+import JobseekerForm from '@/components/ui/JobseekerForm';
+import EmployerForm from '@/components/ui/EmployerForm';
 import { submitEmployerForm, submitJobSeekerForm } from '@/utils/googleSheets';
-import SectionedForm from '@/components/ui/SectionedForm';
-
-const employerFormFields = [
-  {
-    section: "Company Details",
-    fields: [
-      { name: "companyName", label: "Company Name", type: "text" as const, required: true, placeholder: "Enter your company name" },
-      { name: "website", label: "Website", type: "url" as const, required: false, placeholder: "https://yourcompany.com" },
-      { 
-        name: "industry", 
-        label: "Industry", 
-        type: "select" as const, 
-        required: true, 
-        placeholder: "Select your industry",
-        options: [
-          "Technology",
-          "Healthcare",
-          "Finance & Banking",
-          "E-commerce & Retail",
-          "Manufacturing",
-          "Education",
-          "Real Estate",
-          "Hospitality",
-          "Consulting",
-          "Other"
-        ]
-      },
-      { 
-        name: "companySize", 
-        label: "Company Size", 
-        type: "select" as const, 
-        required: false, 
-        placeholder: "Select company size",
-        options: [
-          "1-10 employees",
-          "11-50 employees", 
-          "51-200 employees",
-          "201-1000 employees",
-          "1000+ employees"
-        ]
-      }
-    ]
-  },
-  {
-    section: "Contact Person",
-    fields: [
-      { name: "fullName", label: "Full Name", type: "text" as const, required: true, placeholder: "Enter your full name" },
-      { name: "designation", label: "Designation", type: "text" as const, required: true, placeholder: "HR Manager, CEO, Founder, etc." },
-      { name: "workEmail", label: "Work Email", type: "email" as const, required: true, placeholder: "Enter your work email" },
-      { name: "mobileNumber", label: "Mobile Number", type: "tel" as const, required: true, placeholder: "Enter your mobile number" },
-      { name: "jobDescription", label: "Job Description Upload", type: "file" as const, required: false, placeholder: "Upload job description (PDF, DOC)" }
-    ]
-  }
-];
 
 export default function ContactPage() {
   const [activeForm, setActiveForm] = useState<'employer' | 'jobseeker'>('employer');
@@ -173,15 +119,14 @@ export default function ContactPage() {
                 transition={{ duration: 0.3 }}
               >
                 {activeForm === 'employer' ? (
-                  <SectionedForm
-            title="Hiring Request"
-            subtitle="Complete this form to start your precision hiring journey with StaffAnchor."
-            sections={employerFormFields}
-            submitText="Submit Mandate →"
-            onSubmit={submitEmployerForm}
-          />
+                  <EmployerForm
+                    title="Hiring Request"
+                    subtitle="Complete this form to start your precision hiring journey with StaffAnchor."
+                    submitText="Submit Mandate →"
+                    onSubmit={submitEmployerForm}
+                  />
                 ) : (
-                  <UploadForm
+                  <JobseekerForm
                     title="For Job Seekers"
                     subtitle="Join our talent network and get matched with exclusive opportunities."
                     onSubmit={submitJobSeekerForm}

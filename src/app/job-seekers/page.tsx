@@ -2,7 +2,7 @@
 
 import HeroSection from '@/components/ui/HeroSection';
 import MetricsStrip from '@/components/ui/MetricsStrip';
-import UploadForm from '@/components/ui/UploadForm';
+import JobseekerForm from '@/components/ui/JobseekerForm';
 import { submitJobSeekerForm } from '@/utils/googleSheets';
 
 const jobSeekerMetrics = [
@@ -91,7 +91,7 @@ export default function JobSeekersPage() {
             </p>
           </div>
 
-          <UploadForm
+          <JobseekerForm
             title="Upload Your Professional Profile"
             subtitle="Share your background and let our AI-powered matching find your ideal next role."
             onSubmit={submitJobSeekerForm}

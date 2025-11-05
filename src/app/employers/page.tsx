@@ -1,9 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import HeroSection from '@/components/ui/HeroSection';
 import MetricsStrip from '@/components/ui/MetricsStrip';
-import SectionedForm from '@/components/ui/SectionedForm';
+import EmployerForm from '@/components/ui/EmployerForm';
 import { submitEmployerForm } from '@/utils/googleSheets';
 import PracticeCard from '@/components/ui/PracticeCard';
 import { motion } from 'framer-motion';
@@ -75,59 +74,6 @@ const practices = [
     roles: ["EdTech", "BFSI", "Healthcare", "Hospitality"],
     metrics: ["84% closure rate", "20+ industries", "4.8/5 rating"],
   },
-];
-
-const employerFormFields = [
-  {
-    section: "Company Details",
-    fields: [
-      { name: "companyName", label: "Company Name", type: "text" as const, required: true, placeholder: "Enter your company name" },
-      { name: "website", label: "Website", type: "url" as const, required: false, placeholder: "https://yourcompany.com" },
-      { 
-        name: "industry", 
-        label: "Industry", 
-        type: "select" as const, 
-        required: true, 
-        placeholder: "Select your industry",
-        options: [
-          "Technology",
-          "Healthcare",
-          "Finance & Banking",
-          "E-commerce & Retail",
-          "Manufacturing",
-          "Education",
-          "Real Estate",
-          "Hospitality",
-          "Consulting",
-          "Other"
-        ]
-      },
-      { 
-        name: "companySize", 
-        label: "Company Size", 
-        type: "select" as const, 
-        required: false, 
-        placeholder: "Select company size",
-        options: [
-          "1-10 employees",
-          "11-50 employees", 
-          "51-200 employees",
-          "201-1000 employees",
-          "1000+ employees"
-        ]
-      }
-    ]
-  },
-  {
-    section: "Contact Person",
-    fields: [
-      { name: "fullName", label: "Full Name", type: "text" as const, required: true, placeholder: "Enter your full name" },
-      { name: "designation", label: "Designation", type: "text" as const, required: true, placeholder: "HR Manager, CEO, Founder, etc." },
-      { name: "workEmail", label: "Work Email", type: "email" as const, required: true, placeholder: "Enter your work email" },
-      { name: "mobileNumber", label: "Mobile Number", type: "tel" as const, required: true, placeholder: "Enter your mobile number" },
-      { name: "jobDescription", label: "Job Description Upload", type: "file" as const, required: false, placeholder: "Upload job description (PDF, DOC)" }
-    ]
-  }
 ];
 
 export default function EmployersPage() {
@@ -222,10 +168,9 @@ export default function EmployersPage() {
             </p>
           </div>
 
-          <SectionedForm
+          <EmployerForm
             title="Hiring Request"
             subtitle="Complete this form to start your precision hiring journey with StaffAnchor."
-            sections={employerFormFields}
             submitText="Submit Mandate →"
             onSubmit={submitEmployerForm}
           />

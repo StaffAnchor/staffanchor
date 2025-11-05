@@ -12,7 +12,7 @@ interface FormField {
   options?: string[];
 }
 
-interface UploadFormProps {
+interface JobseekerFormProps {
   title: string;
   subtitle?: string;
   acceptedFileTypes?: string;
@@ -165,19 +165,23 @@ const candidateFormSections = [
   }
 ];
 
-const UploadForm = ({ 
+const JobseekerForm = ({ 
   title, 
   subtitle, 
   acceptedFileTypes = ".pdf,.doc,.docx",
   onSubmit 
-}: UploadFormProps) => {
+}: JobseekerFormProps) => {
   const [openSection, setOpenSection] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedOptions, setSelectedOptions] = useState<{[key: string]: string[]}>({});
   const [openMultiselects, setOpenMultiselects] = useState<{[key: string]: boolean}>({});
+  const [fileError, setFileError] = useState<string>('');
+  const [formData, setFormData] = useState<{[key: string]: string | number}>({});
   const multiselectRefs = useRef<{[key: string]: HTMLDivElement | null}>({});
+
+  const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB in bytes
 
   // Close multiselect when clicking outside
   useEffect(() => {
@@ -202,19 +206,38 @@ const UploadForm = ({
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    const formData = new FormData(e.currentTarget);
+    // Check for file size errors before submission
+    if (fileError) {
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
+
+    const formDataToSubmit = new FormData();
+    
+    // Add all form field values
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataToSubmit.set(key, value.toString());
+    });
     
     // Add multiselect values to form data
     Object.entries(selectedOptions).forEach(([fieldName, values]) => {
-      formData.set(fieldName, values.join(', '));
+      formDataToSubmit.set(fieldName, values.join(', '));
     });
 
+    // Add file if selected
+    if (selectedFile) {
+      formDataToSubmit.set('resume', selectedFile);
+    }
+
     try {
-      await onSubmit(formData);
+      await onSubmit(formDataToSubmit);
       setSubmitStatus('success');
-      (e.target as HTMLFormElement).reset();
+      // Reset all form data
+      setFormData({});
       setSelectedFile(null);
       setSelectedOptions({});
+      setFileError('');
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
@@ -223,9 +246,44 @@ const UploadForm = ({
     }
   };
 
+  const handleInputChange = (fieldName: string, value: string | number) => {
+    setFormData(prev => ({
+      ...prev,
+      [fieldName]: value
+    }));
+  };
+
+  // Check if a section has any filled fields
+  const isSectionFilled = (section: typeof candidateFormSections[0]) => {
+    return section.fields.some(field => {
+      if (field.type === 'multiselect') {
+        return selectedOptions[field.name]?.length > 0;
+      } else if (field.type === 'file') {
+        return selectedFile !== null;
+      } else {
+        return formData[field.name] && formData[field.name] !== '';
+      }
+    });
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    setSelectedFile(file);
+    
+    if (file) {
+      // Check file size
+      if (file.size > MAX_FILE_SIZE) {
+        setFileError(`File size must be less than 2MB. Current file is ${(file.size / (1024 * 1024)).toFixed(2)}MB.`);
+        setSelectedFile(null);
+        // Clear the input
+        e.target.value = '';
+      } else {
+        setFileError('');
+        setSelectedFile(file);
+      }
+    } else {
+      setFileError('');
+      setSelectedFile(null);
+    }
   };
 
   const handleMultiSelectChange = (fieldName: string, value: string) => {
@@ -246,6 +304,8 @@ const UploadForm = ({
         return (
           <textarea
             name={field.name}
+            value={formData[field.name] || ''}
+            onChange={(e) => handleInputChange(field.name, e.target.value)}
             placeholder={field.placeholder}
             required={field.required}
             rows={3}
@@ -258,6 +318,8 @@ const UploadForm = ({
         return (
           <select
             name={field.name}
+            value={formData[field.name] || ''}
+            onChange={(e) => handleInputChange(field.name, e.target.value)}
             required={field.required}
             className={baseClasses}
           >
@@ -373,11 +435,27 @@ const UploadForm = ({
                 ) : (
                   <div>
                     <p className="text-gray-600 font-medium">{field.placeholder}</p>
-                    <p className="text-xs text-gray-500 mt-1">PDF, DOC, or DOCX (max 10MB)</p>
+                    <p className="text-xs text-gray-500 mt-1">PDF, DOC, or DOCX (Max 2MB)</p>
                   </div>
                 )}
               </div>
             </label>
+            {fileError && (
+              <div className="mt-2 text-sm text-red-600 flex items-center">
+                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                {fileError}
+              </div>
+            )}
+            {selectedFile && !fileError && (
+              <div className="mt-2 text-sm text-green-600 flex items-center">
+                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                File selected: {selectedFile.name}
+              </div>
+            )}
           </div>
         );
       
@@ -386,6 +464,8 @@ const UploadForm = ({
           <input
             type={field.type}
             name={field.name}
+            value={formData[field.name] || ''}
+            onChange={(e) => handleInputChange(field.name, field.type === 'number' ? parseFloat(e.target.value) || '' : e.target.value)}
             placeholder={field.placeholder}
             required={field.required}
             step={field.type === 'number' ? '0.1' : undefined}
@@ -421,9 +501,19 @@ const UploadForm = ({
               onClick={() => setOpenSection(openSection === sectionIndex ? -1 : sectionIndex)}
               className="w-full px-6 py-4 hover:cursor-pointer bg-gray-50 hover:bg-gray-100 flex items-center justify-between transition-colors duration-200"
             >
-              <span className="font-poppins font-semibold text-lg text-gray-900 uppercase tracking-wide">
-                Section {sectionIndex + 1}: {section.section}
-              </span>
+              <div className="flex items-center space-x-3">
+                <span className="font-poppins font-semibold text-lg text-gray-900 uppercase tracking-wide">
+                  Section {sectionIndex + 1}: {section.section}
+                </span>
+                {isSectionFilled(section) && (
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    In Progress
+                  </span>
+                )}
+              </div>
               <motion.svg
                 animate={{ rotate: openSection === sectionIndex ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
@@ -514,4 +604,4 @@ const UploadForm = ({
   );
 };
 
-export default UploadForm;
+export default JobseekerForm;
