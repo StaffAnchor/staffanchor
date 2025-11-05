@@ -20,7 +20,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://staffanchor.com'),
+  metadataBase: new URL('https://staffanchor-redesigned.vercel.app/'),
   title: "StaffAnchor Talent Solutions - AI-Driven Executive Search & Recruitment",
   description: "Modern-age, AI-enabled recruitment consultancy offering Executive Search, Functional Hiring, and Industry Expertise. Build teams that build the future.",
   keywords: "Executive Search India, Functional Hiring Experts, Industry-Specific Recruitment, AI-Driven Recruitment Consultancy",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "StaffAnchor Talent Solutions - AI-Driven Executive Search",
     description: "We Build Teams That Build the Future. Leadership • Functional • Industry-Specific Hiring — Powered by AI & Human Intelligence",
-    url: "https://staffanchor.com",
+    url: "https://staffanchor-redesigned.vercel.app/",
     siteName: "StaffAnchor Talent Solutions",
     type: "website",
     images: [
