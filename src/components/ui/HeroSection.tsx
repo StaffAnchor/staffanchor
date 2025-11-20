@@ -6,6 +6,7 @@ import { ReactNode, useRef, useEffect } from 'react';
 interface HeroSectionProps {
   headline: string;
   subtext?: string;
+  specialization?: boolean;
   children?: ReactNode;
   backgroundPattern?: boolean;
   centered?: boolean;
@@ -14,6 +15,7 @@ interface HeroSectionProps {
 const HeroSection = ({ 
   headline, 
   subtext, 
+  specialization,
   children, 
   backgroundPattern = false,
   centered = false 
@@ -260,9 +262,20 @@ const HeroSection = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-6 text-xl md:text-2xl text-gray-600 leading-relaxed"
+              className="mt-3 text-lg md:text-xl text-gray-600 leading-relaxed"
             >
               {subtext}
+            </motion.p>
+          )}
+
+          {specialization && (
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-4 text-lg md:text-xl text-gray-700 leading-relaxed max-w-5xl mx-auto"
+            >
+              Specialised in <span className="font-bold">EV, Renewable Energy, GCC Talent & AI/Data</span> — with strong capability across core industries and critical business functions.
             </motion.p>
           )}
 

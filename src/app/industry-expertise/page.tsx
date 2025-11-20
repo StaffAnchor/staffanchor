@@ -15,6 +15,31 @@ const industryMetrics = [
 
 const industries = [
   {
+    category: "Emerging Sectors",
+    data: [
+      {
+        industry: "Renewable Energy & EV Ecosystem",
+        description: "Supporting India's green economy with talent for solar, wind, and EV companies.",
+        roles: ["Project Managers", "Sustainability Analysts", "Electrical Engineers"]
+      },
+      {
+        industry: "GCCs & Shared Services",
+        description: "Building leadership and mid-level teams for global capability centers across Tier-1 & Tier-2 cities.",
+        roles: ["Finance Leads", "Process Managers", "Data Analysts"]
+      },
+      {
+        industry: "AI, Data & Digital Transformation",
+        description: "Bridging the talent gap in data-first organizations.",
+        roles: ["AI Engineers", "BI Analysts", "Data Scientists", "Automation Leads"]
+      },
+      {
+        industry: "Education & Skilling",
+        description: "Powering the next generation of educators, counsellors, and edtech leaders.",
+        roles: ["Academic Heads", "Trainers", "Admission Managers"]
+      }
+    ]
+  },
+  {
     category: "Core Industries",
     data: [
       {
@@ -48,32 +73,8 @@ const industries = [
         roles: ["Architects", "Interior Designers", "Landscape Experts"]
       }
     ]
-  },
-  {
-    category: "Emerging Sectors",
-    data: [
-      {
-        industry: "Renewable Energy & EV Ecosystem",
-        description: "Supporting India's green economy with talent for solar, wind, and EV companies.",
-        roles: ["Project Managers", "Sustainability Analysts", "Electrical Engineers"]
-      },
-      {
-        industry: "GCCs & Shared Services",
-        description: "Building leadership and mid-level teams for global capability centers across Tier-1 & Tier-2 cities.",
-        roles: ["Finance Leads", "Process Managers", "Data Analysts"]
-      },
-      {
-        industry: "AI, Data & Digital Transformation",
-        description: "Bridging the talent gap in data-first organizations.",
-        roles: ["AI Engineers", "BI Analysts", "Data Scientists", "Automation Leads"]
-      },
-      {
-        industry: "Education & Skilling",
-        description: "Powering the next generation of educators, counsellors, and edtech leaders.",
-        roles: ["Academic Heads", "Trainers", "Admission Managers"]
-      }
-    ]
   }
+  
 ];
 
 

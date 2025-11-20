@@ -10,14 +10,14 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
+    { name: 'About', href: '/about-us' },
     { 
       name: 'For Employers', 
       href: '/employers',
       submenu: [
         { name: 'Executive Search', href: '/executive-search' },
-        { name: 'Functional Hiring', href: '/functional-hiring' },
         { name: 'Industry Expertise', href: '/industry-expertise' },
+        { name: 'Functional Hiring', href: '/functional-hiring' },
       ]
     },
     { name: 'Insights', href: '/blog' },
@@ -89,7 +89,7 @@ const Navbar = () => {
                 Hire Talent
               </Link>
               <Link
-                href="/job-seekers"
+                href="/jobseeker"
                 className="border border-teal-600 text-teal-600 px-5 py-2.5 rounded-full text-sm font-medium hover:bg-teal-50 transition-colors duration-200 whitespace-nowrap"
               >
                 Find Jobs
