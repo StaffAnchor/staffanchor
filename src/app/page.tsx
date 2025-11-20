@@ -142,7 +142,7 @@ const brands = [
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section for home page */}
       <HeroSection 
         headline="We Build Teams That Build the Future."
         subtext="Leadership • Functional • Industry-Specific Hiring — Powered by AI & Human Intelligence"
