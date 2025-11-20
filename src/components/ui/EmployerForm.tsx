@@ -221,7 +221,7 @@ const EmployerForm = ({
           disabled={isSubmitting}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className={`w-full py-4 px-6 rounded-full font-medium text-white transition-all duration-200 ${
+          className={`w-full py-4 cursor-pointer px-6 rounded-full font-medium text-white transition-all duration-200 ${
             isSubmitting 
               ? 'bg-gray-400 cursor-not-allowed' 
               : 'bg-blue-900 hover:bg-blue-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
