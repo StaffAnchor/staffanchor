@@ -69,8 +69,8 @@ export default function AboutPage() {
           <div className="prose prose-lg prose-gray mx-auto text-center">
             <p className="text-xl text-gray-600 leading-relaxed mb-8">
               StaffAnchor Talent Solutions helps organizations hire with intelligence, precision, and empathy. 
-We merge AI technology, analytics, and deep functional understanding to deliver 
-recruitment outcomes that drive measurable business growth. 
+              We merge AI technology, analytics, and deep functional understanding to deliver 
+              recruitment outcomes that drive measurable business growth. 
             </p>
             <p className="text-lg text-gray-600 leading-relaxed mb-8">
               Founded on the principle that exceptional hiring requires both technological precision and human intuition, 
