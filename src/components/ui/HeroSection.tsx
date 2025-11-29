@@ -273,9 +273,9 @@ const HeroSection = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-4 text-lg md:text-xl text-gray-700 leading-relaxed max-w-5xl mx-auto"
+              className="mt-4 text-lg md:text-xl text-gray-700 leading-relaxed max-w-6xl mx-auto lg:whitespace-nowrap"
             >
-              Specialised in <span className="font-bold">EV, Renewable Energy, GCC Talent & AI/Data</span> — with strong capability across core industries and critical business functions.
+              <span className="font-bold">AI • Data • Clean Energy • GCCs • SaaS • Cybersecurity • EV Mobility • Digital Engineering • DeepTech</span>
             </motion.p>
           )}
 
