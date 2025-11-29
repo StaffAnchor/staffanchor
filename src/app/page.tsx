@@ -145,7 +145,7 @@ export default function Home() {
       {/* Hero Section for home page */}
       <HeroSection 
         headline="We Build Teams That Build the Future."
-        subtext="Leadership • Functional • Industry-Specific Hiring — Powered by AI & Human Intelligence"
+        subtext="We specialise in Leadership & Functional hiring across emerging and high-growth sectors."
         specialization={true}
         backgroundPattern={true}
       >

@@ -16,28 +16,90 @@ const industryMetrics = [
 const industries = [
   {
     category: "Emerging Sectors",
-    data: [
-      {
-        industry: "Renewable Energy & EV Ecosystem",
-        description: "Supporting India's green economy with talent for solar, wind, and EV companies.",
-        roles: ["Project Managers", "Sustainability Analysts", "Electrical Engineers"]
-      },
-      {
-        industry: "GCCs & Shared Services",
-        description: "Building leadership and mid-level teams for global capability centers across Tier-1 & Tier-2 cities.",
-        roles: ["Finance Leads", "Process Managers", "Data Analysts"]
-      },
-      {
-        industry: "AI, Data & Digital Transformation",
-        description: "Bridging the talent gap in data-first organizations.",
-        roles: ["AI Engineers", "BI Analysts", "Data Scientists", "Automation Leads"]
-      },
-      {
-        industry: "Education & Skilling",
-        description: "Powering the next generation of educators, counsellors, and edtech leaders.",
-        roles: ["Academic Heads", "Trainers", "Admission Managers"]
-      }
+    data : [
+  {
+    industry: "AI & Data",
+    description:
+      "We help digital-first and tech-driven companies hire AI and data talent that powers products, platforms and decision-making.",
+    roles: [
+      "AI/ML Engineering",
+      "Data Science",
+      "Data Engineering",
+      "BI & Analytics Leadership"
     ]
+  },
+  {
+    industry: "Clean Energy & EV Mobility",
+    description:
+      "We work with organisations driving the green transition across solar, wind, storage, charging and electric mobility.",
+    roles: [
+      "Sustainability & ESG",
+      "Project & Plant Management",
+      "EV Operations",
+      "Battery & Energy Engineering"
+    ]
+  },
+  {
+    industry: "Global Capability Centres (GCCs)",
+    description:
+      "We support global companies in building and scaling their India-based capability centres across technology, operations and corporate functions.",
+    roles: [
+      "Engineering & Digital",
+      "Finance & Shared Services",
+      "Analytics",
+      "HR & People Ops",
+      "Program & Process Management"
+    ]
+  },
+  {
+    industry: "SaaS & Product Companies",
+    description:
+      "We partner with SaaS companies across growth stages to build product, engineering and customer-facing teams that scale reliably.",
+    roles: [
+      "Product Management",
+      "Full-Stack & Backend Engineering",
+      "DevOps/SRE",
+      "Customer Success",
+      "Sales & Solutions Engineering"
+    ]
+  },
+  {
+    industry: "Cybersecurity",
+    description:
+      "We help organisations strengthen their security posture with high-calibre cybersecurity and risk professionals.",
+    roles: [
+      "Security Operations (SOC)",
+      "Cloud & Network Security",
+      "GRC",
+      "IAM",
+      "Security Architecture & Leadership"
+    ]
+  },
+  {
+    industry: "Digital Engineering & Automation",
+    description:
+      "We hire engineering and automation talent for organisations modernising their digital infrastructure, products and processes.",
+    roles: [
+      "Automation Engineering",
+      "Cloud & Platform Engineering",
+      "RPA",
+      "DevOps & CI/CD",
+      "Software Engineering Leadership"
+    ]
+  },
+  {
+    industry: "DeepTech",
+    description:
+      "We work with companies building at the edge of technology — across robotics, semiconductors, advanced computing and other DeepTech domains.",
+    roles: [
+      "Robotics & Hardware",
+      "Embedded Systems",
+      "Semiconductors",
+      "Research & Applied Science",
+      "Advanced Computing"
+    ]
+  }
+]
   },
   {
     category: "Core Industries",
