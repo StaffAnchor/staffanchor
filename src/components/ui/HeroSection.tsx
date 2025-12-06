@@ -7,6 +7,7 @@ interface HeroSectionProps {
   headline: string;
   subtext?: string;
   specialization?: boolean;
+  extra?: boolean;
   children?: ReactNode;
   backgroundPattern?: boolean;
   centered?: boolean;
@@ -16,6 +17,7 @@ const HeroSection = ({
   headline, 
   subtext, 
   specialization,
+  extra,
   children, 
   backgroundPattern = false,
   centered = false 
@@ -276,6 +278,17 @@ const HeroSection = ({
               className="mt-4 text-lg md:text-xl text-gray-700 leading-relaxed max-w-6xl mx-auto lg:whitespace-nowrap"
             >
               <span className="font-bold">AI • Data • Clean Energy • GCCs • SaaS • Cybersecurity • EV Mobility • Digital Engineering • DeepTech</span>
+            </motion.p>
+          )}
+
+          {extra && (
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-3 text-lg md:text-xl text-gray-600 leading-relaxed"
+            >
+              We blend market intelligence, technology and human judgment to help companies hire leaders who drive outcomes.
             </motion.p>
           )}
 
