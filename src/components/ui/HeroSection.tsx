@@ -277,7 +277,7 @@ const HeroSection = ({
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-4 text-lg md:text-xl text-gray-700 leading-relaxed max-w-6xl mx-auto lg:whitespace-nowrap"
             >
-              <span className="font-bold">AI • Data • Clean Energy • GCCs • SaaS • Cybersecurity • EV Mobility • Digital Engineering • DeepTech</span>
+              <span className="font-bold">Mid–senior and leadership hiring delivered with context, speed and precision.</span>
             </motion.p>
           )}
 

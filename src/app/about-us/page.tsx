@@ -23,31 +23,36 @@ const methodology = [
     step: "01",
     title: "Discovery",
     description: "Deep dive into your organizational culture, role requirements, and strategic objectives to understand the perfect candidate profile.",
-    features: ["Stakeholder interviews", "Role profiling", "Cultural assessment", "Success metrics definition"]
+    features: ["Stakeholder interviews", "Role profiling", "Cultural assessment", "Success metrics definition"],
+    image: "/methodology/1.png" // Add image path
   },
   {
     step: "02", 
     title: "Intelligence",
     description: "Leverage AI-powered market mapping and competitive intelligence to identify and analyze the best talent in the market.",
-    features: ["Market mapping", "Competitive analysis", "Talent intelligence", "Compensation benchmarking"]
+    features: ["Market mapping", "Competitive analysis", "Talent intelligence", "Compensation benchmarking"],
+    image: "/methodology/2.png" // Add image path
   },
   {
     step: "03",
     title: "Shortlisting",
     description: "Apply our Fit Index™ algorithm combined with human expertise to curate a precise shortlist of qualified candidates.",
-    features: ["AI-powered screening", "Technical evaluation", "Cultural fit assessment", "Reference validation"]
+    features: ["AI-powered screening", "Technical evaluation", "Cultural fit assessment", "Reference validation"],
+    image: "/methodology/3.png" // Add image path
   },
   {
     step: "04",
     title: "Evaluation",
     description: "Facilitate comprehensive evaluation through structured interviews, assessments, and stakeholder feedback loops.",
-    features: ["Structured interviews", "Skills assessment", "Leadership evaluation", "Team fit analysis"]
+    features: ["Structured interviews", "Skills assessment", "Leadership evaluation", "Team fit analysis"],
+    image: "/methodology/4.png" // Add image path
   },
   {
     step: "05",
     title: "Closure",
     description: "Guide negotiation and onboarding process to ensure smooth transition and long-term success for both parties.",
-    features: ["Offer negotiation", "Background verification", "Onboarding support", "Follow-up & retention"]
+    features: ["Offer negotiation", "Background verification", "Onboarding support", "Follow-up & retention"],
+    image: "/methodology/5.png" // Add image path
   },
 ];
 
@@ -253,10 +258,14 @@ export default function AboutPage() {
                 
                 <div className="flex-1">
                   <div className="bg-white rounded-xl p-8 shadow-lg">
-                    <div className="w-full h-48 bg-linear-to-br from-blue-50 to-teal-50 rounded-lg flex items-center justify-center">
-                      <div className="text-6xl text-blue-200 font-light">
-                        {step.step}
-                      </div>
+                    <div className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center">
+                      <Image
+                        src={step.image}
+                        alt={`${step.title} methodology step`}
+                        width={600}
+                        height={450}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                   </div>
                 </div>
@@ -276,7 +285,6 @@ export default function AboutPage() {
               {/* Profile Image */}
               <div className="shrink-0">
                 <div className="w-32 h-32 lg:w-40 lg:h-40 bg-linear-to-br from-blue-900 to-teal-600 rounded-full flex items-center justify-center overflow-hidden">
-                  {/* Replace with actual image */}
                   <Image
                     src="/gagan_sir_profile_pic.jpg" 
                     alt="Gagan Sharma" 
@@ -290,7 +298,7 @@ export default function AboutPage() {
 
               {/* Content */}
               <div className="flex-1">
-                <blockquote className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-6">
+                <blockquote className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-6 italic">
                   &ldquo;With 16 years of leadership experience at Naukri, UpGrad, BharatMatrimony and Bijak, I built StaffAnchor to bring a business lens to recruitment. Our role is not just to fill positions, but to help clients hire leaders who can move the needle on growth, execution and culture.&rdquo;
                 </blockquote>
                 
