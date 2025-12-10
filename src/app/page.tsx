@@ -8,6 +8,7 @@ import MetricsStrip from '@/components/ui/MetricsStrip';
 import PracticeCard from '@/components/ui/PracticeCard';
 import TestimonialCard from '@/components/ui/TestimonialCard';
 import AIToolCard from '@/components/ui/AIToolCard';
+import CorePracticesSection from '@/components/ui/CorePracticesSection';
 
 const homeMetrics = [
   { value: "500+", label: "Placements", description: "Successful Hires" },
@@ -171,6 +172,9 @@ export default function Home() {
         </div>
       </HeroSection>
 
+      {/* Our Core Practices */}
+      <CorePracticesSection />
+      
       {/* Metrics Strip */}
       <MetricsStrip metrics={homeMetrics} />
 
@@ -186,74 +190,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Our Core Practices */}
-      <section className="bg-gray-50 py-16 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.h2 
-              className="heading-lg mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Our Core Practices
-            </motion.h2>
-            <motion.p 
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              Three specialized practices designed to meet your unique hiring needs with precision and expertise.
-            </motion.p>
-          </motion.div>
-
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ margin: "-50px" }}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.2
-                }
-              }
-            }}
-          >
-            {practices.map((practice) => (
-              <motion.div
-                key={practice.title}
-                variants={{
-                  hidden: { opacity: 0, y: 50, scale: 0.9 },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0, 
-                    scale: 1,
-                    transition: {
-                      duration: 0.7,
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 15
-                    }
-                  }
-                }}
-              >
-                <PracticeCard {...practice} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* AI + Human Intelligence */}
       <section className="section-padding bg-white overflow-hidden">

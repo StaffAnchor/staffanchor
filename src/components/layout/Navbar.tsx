@@ -11,13 +11,17 @@ const Navbar = () => {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'Hiring Approach', href: '/about-us' },
+    { name: 'Services', href: '/services' },
     { 
       name: 'For Employers', 
       href: '/employers',
       submenu: [
         { name: 'Executive Search', href: '/executive-search' },
-        { name: 'Industry Expertise', href: '/industry-expertise' },
-        { name: 'Functional Hiring', href: '/functional-hiring' },
+        { name: 'Technology Practice', href: '/technology-practice' },
+        { name: 'Consumer & Services Practice', href: '/consumer-services-practice' },
+        { name: 'Coming Soon', href: '/coming-soon' },
+        // { name: 'Industry Expertise', href: '/industry-expertise' },
+        // { name: 'Functional Hiring', href: '/functional-hiring' },
       ]
     },
     { name: 'Insights', href: '/blog' },

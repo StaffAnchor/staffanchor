@@ -46,7 +46,7 @@ const HeroSection = ({
   };
 
   return (
-    <section ref={ref} className={`relative py-20 lg:py-32 overflow-hidden ${backgroundPattern ? 'bg-linear-to-br from-slate-50 via-blue-50 to-teal-50' : 'bg-white'}`}>
+    <section ref={ref} className={`relative min-h-screen py-20 lg:py-32 overflow-hidden ${backgroundPattern ? 'bg-linear-to-br from-slate-50 via-blue-50 to-teal-50' : 'bg-white'}`}>
       {/* Subtle Gradient Overlay */}
       {backgroundPattern && (
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-white/20 to-transparent" />

@@ -25,11 +25,13 @@ const PracticeCard = ({ title, description, href, icon, features }: PracticeCard
         boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
         transition: { type: "spring", stiffness: 300, damping: 25 }
       }}
-      className="bg-white rounded-xl shadow-lg border border-gray-100 pe-8 pl-8 pb-8 transition-all duration-300 group cursor-pointer overflow-hidden relative"
+      className="bg-white rounded-xl shadow-lg border border-gray-100 p-6
+             transition-all duration-300 group cursor-pointer
+             relative h-full flex flex-col"
     >
       {/* Hover gradient overlay */}
       <motion.div
-        className="absolute inset-0 bg-linear-to-br from-blue-50/50 via-transparent to-teal-50/50 opacity-0"
+        className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-teal-50/50 opacity-0 rounded-xl"
         whileHover={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       />
@@ -37,7 +39,7 @@ const PracticeCard = ({ title, description, href, icon, features }: PracticeCard
       {/* Icon */}
       {icon && (
         <motion.div 
-          className="w-12 h-12 bg-linear-to-br from-blue-900 to-teal-600 rounded-lg flex items-center justify-center mb-6 relative z-10"
+          className="w-10 h-10 bg-gradient-to-br from-blue-900 to-teal-600 rounded-lg flex items-center justify-center mb-4 relative z-10"
           whileHover={{ 
             scale: 1.1,
             rotate: [0, -5, 5, 0],
@@ -60,7 +62,7 @@ const PracticeCard = ({ title, description, href, icon, features }: PracticeCard
 
       {/* Title */}
       <motion.h3 
-        className="font-poppins font-semibold text-xl text-gray-900 mb-4 uppercase tracking-wide relative z-10"
+        className="font-poppins font-semibold text-lg text-gray-900 mb-3 uppercase tracking-wide relative z-10"
         whileHover={{ scale: 1.02, color: "#1e40af" }}
         transition={{ duration: 0.2 }}
       >
@@ -69,7 +71,7 @@ const PracticeCard = ({ title, description, href, icon, features }: PracticeCard
 
       {/* Description */}
       <motion.p 
-        className="text-gray-600 leading-relaxed mb-6 relative z-10"
+        className="text-gray-600 text-sm leading-relaxed mb-4 relative z-10"
         whileHover={{ color: "#374151" }}
         transition={{ duration: 0.2 }}
       >
@@ -78,7 +80,7 @@ const PracticeCard = ({ title, description, href, icon, features }: PracticeCard
 
       {/* Features */}
       {features && features.length > 0 && (
-        <div className="space-y-2 mb-6 relative z-10">
+        <div className="space-y-1.5 mb-4 relative z-10">
           {features.map((feature, index) => (
             <motion.div 
               key={index} 
@@ -105,13 +107,11 @@ const PracticeCard = ({ title, description, href, icon, features }: PracticeCard
         </div>
       )}
 
-      
-
       {/* CTA */}
-      <div className="mt-auto pt-4 relative z-10">
+      <div className="mt-auto pt-3 relative z-10">
         <Link href={href}>
           <motion.div
-            className="inline-flex items-center justify-between w-full bg-linear-to-r from-blue-900 to-blue-800 hover:from-blue-700 hover:to-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-md overflow-hidden relative"
+            className="inline-flex items-center justify-between w-full bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-700 hover:to-blue-600 text-white font-medium px-5 py-2.5 rounded-lg shadow-md overflow-hidden relative"
             whileHover={{ 
               scale: 1.02,
               boxShadow: "0 8px 25px rgba(59, 130, 246, 0.3)"
@@ -121,7 +121,7 @@ const PracticeCard = ({ title, description, href, icon, features }: PracticeCard
           >
             {/* Button shine effect */}
             <motion.div
-              className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full"
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full"
               whileHover={{ translateX: "200%" }}
               transition={{ duration: 0.6 }}
             />
@@ -130,7 +130,7 @@ const PracticeCard = ({ title, description, href, icon, features }: PracticeCard
               whileHover={{ x: 2 }}
               transition={{ duration: 0.2 }}
             >
-              Explore {title}
+              Explore 
             </motion.span>
             
             <motion.svg 

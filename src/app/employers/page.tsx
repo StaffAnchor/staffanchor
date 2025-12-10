@@ -4,8 +4,7 @@ import HeroSection from '@/components/ui/HeroSection';
 import MetricsStrip from '@/components/ui/MetricsStrip';
 import EmployerForm from '@/components/ui/EmployerForm';
 import { submitEmployerForm } from '@/utils/googleSheets';
-import PracticeCard from '@/components/ui/PracticeCard';
-import { motion } from 'framer-motion';
+import CorePracticesSection from '@/components/ui/CorePracticesSection';
 
 const employerMetrics = [
   { value: "12 Days", label: "Time to Hire", description: "Average speed" },
@@ -47,8 +46,7 @@ const practices = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
       </svg>
     ),
-    roles: ["CEO", "COO", "CFO", "CHRO", "CTO"],
-    metrics: ["28 Days Avg Closure", "90% Retention", "30+ CXO Mandates"],
+    features: ["CEO", "COO", "CFO", "CHRO", "CTO"],
   },
   {
     title: "Functional Hiring", 
@@ -59,8 +57,7 @@ const practices = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
       </svg>
     ),
-    roles: ["Sales & BD", "Technology", "Operations", "Marketing"],
-    metrics: ["250+ roles/year", "72 hr shortlisting", "Pan-India reach"],
+    features: ["Sales & BD", "Technology", "Operations", "Marketing"],
   },
   {
     title: "Industry Expertise",
@@ -71,8 +68,7 @@ const practices = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
       </svg>
     ),
-    roles: ["EdTech", "BFSI", "Healthcare", "Hospitality"],
-    metrics: ["84% closure rate", "20+ industries", "4.8/5 rating"],
+    features: ["EdTech", "BFSI", "Healthcare", "Hospitality"],
   },
 ];
 
@@ -120,40 +116,11 @@ export default function EmployersPage() {
       </section>
 
       {/* Our Practices */}
-      <section className="section-padding bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-8">Our Practices</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Three specialized practices designed to address every level of your hiring needs.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {practices.map((practice) => (
-              <motion.div
-                key={practice.title}
-                variants={{
-                  hidden: { opacity: 0, y: 50, scale: 0.9 },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0, 
-                    scale: 1,
-                    transition: {
-                      duration: 0.7,
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 15
-                    }
-                  }
-                }}
-              >
-                <PracticeCard {...practice} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CorePracticesSection 
+        title="Our Practices"
+        subtitle="Three specialized practices designed to address every level of your hiring needs."
+        backgroundColor="bg-gray-50"
+      />
 
       {/* Key Metrics */}
       <MetricsStrip metrics={employerMetrics} />
