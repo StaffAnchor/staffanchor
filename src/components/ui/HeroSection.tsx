@@ -7,6 +7,7 @@ interface HeroSectionProps {
   headline: string;
   subtext?: string;
   specialization?: boolean;
+  extra?: boolean;
   children?: ReactNode;
   backgroundPattern?: boolean;
   centered?: boolean;
@@ -16,6 +17,7 @@ const HeroSection = ({
   headline, 
   subtext, 
   specialization,
+  extra,
   children, 
   backgroundPattern = false,
   centered = false 
@@ -44,7 +46,7 @@ const HeroSection = ({
   };
 
   return (
-    <section ref={ref} className={`relative py-20 lg:py-32 overflow-hidden ${backgroundPattern ? 'bg-linear-to-br from-slate-50 via-blue-50 to-teal-50' : 'bg-white'}`}>
+    <section ref={ref} className={`relative min-h-screen py-20 lg:py-32 overflow-hidden ${backgroundPattern ? 'bg-linear-to-br from-slate-50 via-blue-50 to-teal-50' : 'bg-white'}`}>
       {/* Subtle Gradient Overlay */}
       {backgroundPattern && (
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-white/20 to-transparent" />
@@ -268,14 +270,15 @@ const HeroSection = ({
             </motion.p>
           )}
 
-          {specialization && (
+
+          {extra && (
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-4 text-lg md:text-xl text-gray-700 leading-relaxed max-w-6xl mx-auto lg:whitespace-nowrap"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-3 text-lg md:text-xl text-gray-600 leading-relaxed"
             >
-              <span className="font-bold">AI • Data • Clean Energy • GCCs • SaaS • Cybersecurity • EV Mobility • Digital Engineering • DeepTech</span>
+              We blend market intelligence, technology and human judgment to help companies hire leaders who drive outcomes.
             </motion.p>
           )}
 
