@@ -52,15 +52,23 @@ export function useLoadingState({
     const checks: Promise<void>[] = [];
     const resourcesProgress = 80; // Start from 80% when resources start loading
 
-    // Check DOM ready state
+    // Check DOM ready state with timeout
     checks.push(
       new Promise<void>((resolve) => {
+        const timeout = setTimeout(() => {
+          updateProgress(resourcesProgress + 5);
+          resolve();
+        }, 3000); // 3 second timeout
+        
         if (document.readyState === 'complete') {
+          clearTimeout(timeout);
           updateProgress(resourcesProgress + 5);
           resolve();
         } else {
           const handler = () => {
             if (document.readyState === 'complete') {
+              clearTimeout(timeout);
+              document.removeEventListener('readystatechange', handler);
               updateProgress(resourcesProgress + 5);
               resolve();
             }
@@ -70,12 +78,18 @@ export function useLoadingState({
       })
     );
 
-    // Check images if enabled
+    // Check images if enabled with timeout
     if (checkImages) {
       checks.push(
         new Promise<void>((resolve) => {
+          const timeout = setTimeout(() => {
+            updateProgress(resourcesProgress + 10);
+            resolve();
+          }, 3000); // 3 second timeout
+          
           const images = Array.from(document.images);
           if (images.length === 0) {
+            clearTimeout(timeout);
             updateProgress(resourcesProgress + 10);
             resolve();
             return;
@@ -88,6 +102,7 @@ export function useLoadingState({
             updateProgress(imageProgress);
             
             if (loadedImages === images.length) {
+              clearTimeout(timeout);
               resolve();
             }
           };
@@ -104,12 +119,20 @@ export function useLoadingState({
       );
     }
 
-    // Check fonts if enabled
+    // Check fonts if enabled with timeout
     if (checkFonts && 'fonts' in document) {
       checks.push(
-        document.fonts.ready.then(() => {
-          updateProgress(resourcesProgress + 15);
-        }).catch(() => {
+        Promise.race([
+          document.fonts.ready.then(() => {
+            updateProgress(resourcesProgress + 15);
+          }),
+          new Promise<void>((resolve) => {
+            setTimeout(() => {
+              updateProgress(resourcesProgress + 15);
+              resolve();
+            }, 2000); // 2 second timeout for fonts
+          })
+        ]).catch(() => {
           updateProgress(resourcesProgress + 15);
         })
       );

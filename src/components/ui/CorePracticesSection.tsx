@@ -73,7 +73,7 @@ export default function CorePracticesSection({
 }: CorePracticesSectionProps) {
   return (
     <section className={`${backgroundColor} py-16 overflow-hidden`}>
-      <div className="max-w-[1600px] mx-auto px-2 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -102,7 +102,7 @@ export default function CorePracticesSection({
         </motion.div>
 
         <motion.div
-  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
   initial="hidden"
   whileInView="visible"
   viewport={{ margin: "-50px" }}

@@ -270,16 +270,6 @@ const HeroSection = ({
             </motion.p>
           )}
 
-          {specialization && (
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-4 text-lg md:text-xl text-gray-700 leading-relaxed max-w-6xl mx-auto lg:whitespace-nowrap"
-            >
-              <span className="font-bold">Mid–senior and leadership hiring delivered with context, speed and precision.</span>
-            </motion.p>
-          )}
 
           {extra && (
             <motion.p 

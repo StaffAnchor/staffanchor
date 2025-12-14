@@ -19,10 +19,21 @@ interface PracticeSidebarProps {
 
 const practicePages: PracticePage[] = [
   {
-    id: 'executive-search',
-    title: 'Executive Search',
-    description: 'CXO & Board-level mandates',
-    href: '/executive-search',
+    id: 'sales-hiring',
+    title: 'Sales Hiring',
+    description: 'Mid–Senior Sales Roles',
+    href: '/sales-hiring',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+    )
+  },
+  {
+    id: 'leadership-hiring',
+    title: 'Leadership Hiring',
+    description: 'Revenue Leadership Roles',
+    href: '/leadership-hiring',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -30,35 +41,35 @@ const practicePages: PracticePage[] = [
     )
   },
   {
-    id: 'technology-practice',
-    title: 'Technology Practice',
-    description: 'Engineering, Cloud, AI & Product',
-    href: '/technology-practice',
+    id: 'volume-hiring',
+    title: 'Volume Hiring',
+    description: 'Scale-Up & Expansion',
+    href: '/volume-hiring',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     )
   },
   {
-    id: 'consumer-services-practice',
-    title: 'Consumer & Services Practice',
-    description: 'Operations, Retail & Hospitality',
-    href: '/consumer-services-practice',
+    id: 'sales-talent-intelligence',
+    title: 'Sales Talent Intelligence',
+    description: 'Market Insights & Strategy',
+    href: '/sales-talent-intelligence',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
     )
   },
   {
-    id: 'coming-soon',
-    title: 'Coming Soon',
-    description: 'Clean Energy & Mobility',
-    href: '/coming-soon',
+    id: 'interim',
+    title: 'Interim & Contract Hiring',
+    description: 'Time-Sensitive Roles',
+    href: '/interim',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     )
   }

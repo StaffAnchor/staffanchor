@@ -10,18 +10,17 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Hiring Approach', href: '/about-us' },
-    { name: 'Services', href: '/services' },
+    { name: 'Our Approach', href: '/about-us' },
     { 
       name: 'For Employers', 
       href: '/employers',
       submenu: [
-        { name: 'Executive Search', href: '/executive-search' },
-        { name: 'Technology Practice', href: '/technology-practice' },
-        { name: 'Consumer & Services Practice', href: '/consumer-services-practice' },
-        { name: 'Coming Soon', href: '/coming-soon' },
-        // { name: 'Industry Expertise', href: '/industry-expertise' },
-        // { name: 'Functional Hiring', href: '/functional-hiring' },
+        { name: 'Sales Hiring ', href: '/sales-hiring' },
+        { name: 'Leadership Hiring ', href: '/leadership-hiring' },
+        { name: 'Volume Hiring ', href: '/volume-hiring' },
+        { name: 'Sales Talent Intelligence', href: '/sales-talent-intelligence' },
+        { name: 'Interim & Contract Hiring', href: '/interim' },
+      
       ]
     },
     { name: 'Insights', href: '/blog' },
