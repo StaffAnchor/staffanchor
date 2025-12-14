@@ -278,7 +278,7 @@ const HeroSection = ({
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-3 text-lg md:text-xl text-gray-600 leading-relaxed"
             >
-              We blend market intelligence, technology and human judgment to help companies hire leaders who drive outcomes.
+              We blend market intelligence, technology and human judgement to help companies hire leaders who drive outcomes.
             </motion.p>
           )}
 
