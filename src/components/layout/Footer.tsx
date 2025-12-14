@@ -29,12 +29,14 @@ const Footer = () => {
 
   const footerLinks = {
     services: [
-      { name: 'Executive Search', href: '/executive-search' },
-      { name: 'Functional Hiring', href: '/functional-hiring' },
-      { name: 'Industry Expertise', href: '/industry-expertise' },
+      { name: 'Sales Hiring', href: '/sales-hiring' },
+      { name: 'Leadership Hiring', href: '/leadership-hiring' },
+      { name: 'Volume Hiring', href: '/volume-hiring' },
+      { name: 'Sales Talent Intelligence', href: '/sales-talent-intelligence' },
+      { name: 'Interim & Contract Hiring', href: '/interim' },
     ],
     company: [
-      { name: 'About Us', href: '/about' },
+      { name: 'Our Approach', href: '/about-us' },
       
     ],
     resources: [
@@ -66,7 +68,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-gray-300 mb-3 max-w-md text-sm leading-relaxed">
-              Modern-age, AI-enabled recruitment consultancy blending human insight with data-driven intelligence.
+              A sales-first talent partner helping companies build high-performance revenue teams — from frontline sellers to business leaders.
             </p>
             
             {/* Contact Info */}

@@ -23,6 +23,7 @@ const Navbar = () => {
       
       ]
     },
+    { name: 'Jobseeker Career Services', href: '/jobseeker' },
     { name: 'Insights', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
@@ -46,7 +47,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation Items */}
           <div className="hidden lg:flex items-center justify-center flex-1">
-            <nav className="flex items-center space-x-8">
+            <nav className="flex items-center space-x-4">
               {navItems.map((item) => (
                 <div key={item.name} className="relative group">
                   <Link
