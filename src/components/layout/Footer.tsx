@@ -9,7 +9,7 @@ const Footer = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   // Pages that have sidebar
-  const sidebarPages = ['/executive-search', '/functional-hiring', '/industry-expertise'];
+  const sidebarPages = ['/sales-hiring', '/leadership-hiring', '/volume-hiring', '/sales-talent-intelligence', '/interim'];
   const hasSidebar = sidebarPages.includes(pathname);
 
   // Listen for sidebar state changes via custom events
