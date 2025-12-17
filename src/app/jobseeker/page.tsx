@@ -1,216 +1,434 @@
 'use client';
 
-import HeroSection from '@/components/ui/HeroSection';
 import JobseekerForm from '@/components/ui/JobseekerForm';
 import { submitJobSeekerForm } from '@/utils/googleSheets';
 
 export default function JobSeekersPage() {
   return (
     <>
-      <HeroSection 
-        headline="Build a Stronger, Faster Sales Career."
-        subtext="Access the training, guidance, and opportunities that accelerate your growth in sales."
-      />
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50 -mt-16">
+        <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] opacity-30" />
+        
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center">
+            <h1 className="font-poppins font-light text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight mb-4">
+              Build a Stronger, Faster Sales Career.
+            </h1>
+            
+            <p className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto mb-8">
+              Structured guidance, real hiring insight, and selective opportunities—designed exclusively for sales professionals.
+            </p>
+
+            <div className="max-w-5xl mx-auto mt-6">
+              <div className="space-y-5">
+                <h2 className="font-poppins font-semibold text-3xl md:text-4xl text-gray-900 mb-4">
+                  Sales careers don't fail due to lack of effort.
+                </h2>
+                
+                <p className="text-xl text-gray-700 leading-relaxed">
+                  They fail due to poor positioning, unclear direction, and weak execution at critical moments.
+                </p>
+
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 mt-6 shadow-lg border border-gray-200">
+                  <p className="text-lg text-gray-800 leading-relaxed mb-4">
+                    At StaffAnchor, we help sales professionals at every stage — from freshers entering sales to leaders preparing for senior roles. We help Candidates make smarter career decisions with clarity, structure, and real market insight.
+                  </p>
+                  
+                  <p className="text-lg text-gray-900 font-semibold">
+                    Our services are delivered through personalised, paid engagements, designed around your career stage and goals.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who This Is For Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-poppins font-semibold text-3xl md:text-4xl text-gray-900 mb-8">
+              WHO THIS IS FOR
+            </h2>
+          </div>
+
+          <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl p-8 md:p-12">
+            <p className="text-xl text-gray-900 font-semibold mb-8 text-center">
+              This page is for you if you are:
+            </p>
+
+            <ul className="space-y-4 mb-8 max-w-3xl mx-auto">
+              <li className="flex items-start">
+                <div className="w-2 h-2 bg-blue-600 rounded-full mr-4 mt-2.5 shrink-0"></div>
+                <p className="text-lg text-gray-700 leading-relaxed">Trying to break into sales and want a strong foundation</p>
+              </li>
+              <li className="flex items-start">
+                <div className="w-2 h-2 bg-teal-600 rounded-full mr-4 mt-2.5 shrink-0"></div>
+                <p className="text-lg text-gray-700 leading-relaxed">Actively interviewing but not converting offers</p>
+              </li>
+              <li className="flex items-start">
+                <div className="w-2 h-2 bg-blue-600 rounded-full mr-4 mt-2.5 shrink-0"></div>
+                <p className="text-lg text-gray-700 leading-relaxed">In sales but stuck at the same level or compensation</p>
+              </li>
+              <li className="flex items-start">
+                <div className="w-2 h-2 bg-teal-600 rounded-full mr-4 mt-2.5 shrink-0"></div>
+                <p className="text-lg text-gray-700 leading-relaxed">A top performer aiming for leadership or high-growth roles</p>
+              </li>
+              <li className="flex items-start">
+                <div className="w-2 h-2 bg-blue-600 rounded-full mr-4 mt-2.5 shrink-0"></div>
+                <p className="text-lg text-gray-700 leading-relaxed">Unsure which industry, role, or company type suits you best</p>
+              </li>
+            </ul>
+
+            <div className="bg-white rounded-lg p-6 border-l-4 border-blue-600">
+              <p className="text-lg text-gray-800 leading-relaxed">
+                If you're looking for shortcuts or free advice, this isn't it. <span className="font-semibold">If you're serious about your sales career, you're in the right place.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Career Services */}
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="heading-lg mb-4">Career Services</h2>
-            <p className="text-xl text-gray-600">Comprehensive support to help you excel in sales</p>
+            <h2 className="heading-lg mb-4">OUR CORE CAREER SERVICES</h2>
           </div>
 
           <div className="space-y-16">
-            {/* Interview Preparation */}
-            <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl p-8 md:p-12">
+            {/* 1. Interview Readiness & Hiring Confidence */}
+            <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200">
               <div className="max-w-4xl">
                 <div className="flex items-start mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-6 shrink-0">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                    </svg>
+                  <div className="w-12 h-12 bg-blue-600 rounded flex items-center justify-center mr-4 shrink-0">
+                    <span className="text-white font-bold text-lg">1</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Interview Preparation</h3>
-                    <p className="text-lg text-gray-700 mb-4">Get ready to crack even the toughest sales interviews.</p>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Interview Readiness & Hiring Confidence</h3>
                   </div>
                 </div>
                 
-                <div className="ml-20">
-                  <p className="text-gray-700 mb-4 font-medium">We prepare you through:</p>
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">•</span>
-                      <span className="text-gray-700">Real interview simulations</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">•</span>
-                      <span className="text-gray-700">Objection-handling practice</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">•</span>
-                      <span className="text-gray-700">Pitch development & storytelling</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">•</span>
-                      <span className="text-gray-700">Communication clarity coaching</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">•</span>
-                      <span className="text-gray-700">Mock Q&A based on actual hiring patterns</span>
-                    </li>
-                  </ul>
-                  <div className="bg-white rounded-lg p-4 border-l-4 border-blue-600">
-                    <p className="text-gray-800"><span className="font-semibold">Benefit to you:</span> You walk into interviews with confidence, structure, and the ability to impress hiring managers from the first minute.</p>
-                  </div>
+                <p className="text-xl font-semibold text-gray-900 mb-6">Crack interviews with structure, clarity, and confidence.</p>
+                
+                <p className="text-lg text-gray-700 mb-6">
+                  We prepare you for <span className="font-semibold">real hiring situations</span>, not generic mock questions.
+                </p>
+
+                <p className="text-lg font-semibold text-gray-900 mb-4">What we work on:</p>
+                <ul className="space-y-3 mb-6 ml-6">
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Role-specific interview simulations</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Objection handling & situational questions</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Pitching your experience clearly and convincingly</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Communicating impact, numbers, and ownership</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Mock Q&A based on current hiring patterns in India</span>
+                  </li>
+                </ul>
+
+                <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-600">
+                  <p className="text-lg text-gray-800"><span className="font-semibold">Outcome for you:</span></p>
+                  <p className="text-lg text-gray-700">You walk into interviews <span className="font-semibold">knowing exactly what to say, how to say it, and why it works.</span></p>
                 </div>
               </div>
             </div>
 
-            {/* Sales Skill Development */}
-            <div className="bg-gradient-to-br from-teal-50 to-blue-50 rounded-2xl p-8 md:p-12">
+            {/* 2. Sales Skill & On-the-Job Performance Development */}
+            <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200">
               <div className="max-w-4xl">
                 <div className="flex items-start mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mr-6 shrink-0">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
+                  <div className="w-12 h-12 bg-blue-600 rounded flex items-center justify-center mr-4 shrink-0">
+                    <span className="text-white font-bold text-lg">2</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Sales Skill Development</h3>
-                    <p className="text-lg text-gray-700 mb-4">Master the skills top-performing sales professionals use daily.</p>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Sales Skill & On-the-Job Performance Development</h3>
                   </div>
                 </div>
                 
-                <div className="ml-20">
-                  <p className="text-gray-700 mb-4 font-medium">We help you strengthen:</p>
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
-                      <span className="text-gray-700">Cold calling & opening lines</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
-                      <span className="text-gray-700">Discovery questioning</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
-                      <span className="text-gray-700">Demo flow & product articulation</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
-                      <span className="text-gray-700">Negotiation strategies</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
-                      <span className="text-gray-700">Pipeline discipline</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
-                      <span className="text-gray-700">Closing techniques</span>
-                    </li>
-                  </ul>
-                  <div className="bg-white rounded-lg p-4 border-l-4 border-teal-600">
-                    <p className="text-gray-800"><span className="font-semibold">Benefit to you:</span> You perform better on the job, hit your targets faster, and stand out as a high-potential sales professional.</p>
-                  </div>
+                <p className="text-xl font-semibold text-gray-900 mb-6">Become the kind of salesperson companies want to retain and promote.</p>
+                
+                <p className="text-lg text-gray-700 mb-6">
+                  This is for professionals already in sales who want to <span className="font-semibold">perform better, faster</span>.
+                </p>
+
+                <p className="text-lg font-semibold text-gray-900 mb-4">We help you strengthen:</p>
+                <ul className="space-y-3 mb-6 ml-6">
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Cold calling & opening conversations</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Discovery questioning & qualification</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Demo flow & product articulation</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Negotiation and deal control</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Pipeline discipline & forecasting</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Closing techniques</span>
+                  </li>
+                </ul>
+
+                <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-600">
+                  <p className="text-lg text-gray-800"><span className="font-semibold">Outcome for you:</span></p>
+                  <p className="text-lg text-gray-700">You hit targets more consistently, build credibility internally, and stand out as high-potential talent.</p>
                 </div>
               </div>
             </div>
 
-            {/* Job Matching & Opportunities */}
-            <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl p-8 md:p-12">
+            {/* 3. Resume & Profile Positioning */}
+            <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200">
               <div className="max-w-4xl">
                 <div className="flex items-start mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-6 shrink-0">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+                  <div className="w-12 h-12 bg-blue-600 rounded flex items-center justify-center mr-4 shrink-0">
+                    <span className="text-white font-bold text-lg">3</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Job Matching & Opportunities</h3>
-                    <p className="text-lg text-gray-700 mb-4">Access exclusive roles with companies actively looking for strong sales talent.</p>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Resume & Profile Positioning (Sales-Specific)</h3>
                   </div>
                 </div>
                 
-                <div className="ml-20">
-                  <p className="text-gray-700 mb-6">We feature top candidates to hiring managers across SaaS, Fintech, Real Estate, BFSI, D2C and more.</p>
-                  <div className="bg-white rounded-lg p-4 border-l-4 border-blue-600">
-                    <p className="text-gray-800"><span className="font-semibold">Benefit to you:</span> You get visibility where it matters — increasing your chances of landing the right role, not just any role.</p>
-                  </div>
+                <p className="text-xl font-semibold text-gray-900 mb-6">Your resume should sell you—most don't.</p>
+                
+                <p className="text-lg text-gray-700 mb-6">
+                  We build <span className="font-semibold">achievement-driven sales resumes</span>, not generic profiles.
+                </p>
+
+                <p className="text-lg font-semibold text-gray-900 mb-4">We highlight:</p>
+                <ul className="space-y-3 mb-6 ml-6">
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Targets achieved and % performance</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Revenue and deal impact</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Pipeline ownership</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Key accounts handled</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Growth trajectory</span>
+                  </li>
+                </ul>
+
+                <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-600">
+                  <p className="text-lg text-gray-800"><span className="font-semibold">Outcome for you:</span></p>
+                  <p className="text-lg text-gray-700">Higher shortlisting rates and <span className="font-semibold">serious recruiter attention</span>, not mass rejection.</p>
                 </div>
               </div>
             </div>
 
-            {/* Career Road Mapping */}
-            <div className="bg-gradient-to-br from-teal-50 to-blue-50 rounded-2xl p-8 md:p-12">
+            {/* 4. Career Roadmapping */}
+            <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200">
               <div className="max-w-4xl">
                 <div className="flex items-start mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mr-6 shrink-0">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                    </svg>
+                  <div className="w-12 h-12 bg-blue-600 rounded flex items-center justify-center mr-4 shrink-0">
+                    <span className="text-white font-bold text-lg">4</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Career Road Mapping</h3>
-                    <p className="text-lg text-gray-700 mb-4">Know exactly how to grow from your current level to leadership roles.</p>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Career Roadmapping & Long-Term Growth Planning</h3>
                   </div>
                 </div>
                 
-                <div className="ml-20">
-                  <p className="text-gray-700 mb-4">We guide you on the skills, behaviours and milestones required to progress:</p>
-                  <div className="bg-white rounded-lg p-4 mb-6">
-                    <p className="text-gray-800 font-medium text-center">SDR → AE → Senior AE → Manager → Director → VP Sales → CRO</p>
-                  </div>
-                  <div className="bg-white rounded-lg p-4 border-l-4 border-teal-600">
-                    <p className="text-gray-800"><span className="font-semibold">Benefit to you:</span> You gain clarity and direction, making your growth predictable and achievable.</p>
-                  </div>
+                <p className="text-xl font-semibold text-gray-900 mb-6">Know exactly how to move from where you are to where you want to be.</p>
+                
+                <p className="text-lg text-gray-700 mb-6">
+                  We help you design a <span className="font-semibold">realistic, market-aligned growth path</span>.
+                </p>
+
+                <p className="text-lg font-semibold text-gray-900 mb-4">Typical paths we structure:</p>
+                <div className="bg-gray-100 rounded-lg p-4 mb-6 border-l-4 border-gray-400">
+                  <p className="text-lg text-gray-800 font-medium">SDR → AE → Senior AE → Manager → Director → VP Sales → CRO</p>
+                </div>
+
+                <p className="text-lg font-semibold text-gray-900 mb-4">What we cover:</p>
+                <ul className="space-y-3 mb-6 ml-6">
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Skill gaps at each level</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Timing and readiness signals</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Industry switches (SaaS, Fintech, BFSI, D2C, etc.)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Leadership transition preparation</span>
+                  </li>
+                </ul>
+
+                <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-600">
+                  <p className="text-lg text-gray-800"><span className="font-semibold">Outcome for you:</span></p>
+                  <p className="text-lg text-gray-700">Clear direction, fewer wrong moves, and a <span className="font-semibold">predictable growth plan</span>.</p>
                 </div>
               </div>
             </div>
 
-            {/* Resume Enhancement */}
-            <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl p-8 md:p-12">
+            {/* 5. Job Matching & Selective Opportunity Access */}
+            <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200">
               <div className="max-w-4xl">
                 <div className="flex items-start mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-6 shrink-0">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                  <div className="w-12 h-12 bg-blue-600 rounded flex items-center justify-center mr-4 shrink-0">
+                    <span className="text-white font-bold text-lg">5</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Resume Enhancement</h3>
-                    <p className="text-lg text-gray-700 mb-4">A strong resume designed specifically for sales roles.</p>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Job Matching & Selective Opportunity Access</h3>
                   </div>
                 </div>
                 
-                <div className="ml-20">
-                  <p className="text-gray-700 mb-4 font-medium">We create achievement-driven resumes that highlight:</p>
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">•</span>
-                      <span className="text-gray-700">Targets achieved</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">•</span>
-                      <span className="text-gray-700">Revenue generated</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">•</span>
-                      <span className="text-gray-700">Pipeline managed</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">•</span>
-                      <span className="text-gray-700">Key deals closed</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">•</span>
-                      <span className="text-gray-700">Result-oriented impact</span>
-                    </li>
-                  </ul>
-                  <div className="bg-white rounded-lg p-4 border-l-4 border-blue-600">
-                    <p className="text-gray-800"><span className="font-semibold">Benefit to you:</span> Your resume stands out instantly — increasing shortlisting chances significantly.</p>
-                  </div>
+                <p className="text-xl font-semibold text-gray-900 mb-6">Visibility where it actually matters.</p>
+                
+                <p className="text-lg text-gray-700 mb-6">
+                  We selectively feature strong candidates to <span className="font-semibold">companies actively hiring quality sales talent</span>.
+                </p>
+
+                <p className="text-lg font-semibold text-gray-900 mb-4">Industries include:</p>
+                <ul className="space-y-3 mb-6 ml-6">
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">SaaS & Technology</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Fintech & BFSI</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">Real Estate & Consumer Businesses</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-900 mr-3">•</span>
+                    <span className="text-lg text-gray-700">D2C & Emerging Startups</span>
+                  </li>
+                </ul>
+
+                <p className="text-lg font-semibold text-gray-900 mb-4">Important note:</p>
+                <p className="text-lg text-gray-700 mb-6">
+                  This is <span className="font-semibold">not a job guarantee</span> or mass placement service.
+                </p>
+
+                <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-600">
+                  <p className="text-lg text-gray-800"><span className="font-semibold">Outcome for you:</span></p>
+                  <p className="text-lg text-gray-700">Higher-quality conversations with employers who value your profile.</p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Freshers & Engagements Section */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* For Freshers Box */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                FOR FRESHERS & EARLY-CAREER PROFESSIONALS
+              </h3>
+              
+              <p className="text-lg text-gray-700 mb-6">
+                Starting your sales career the right way matters more than speed.
+              </p>
+
+              <p className="text-lg font-semibold text-gray-900 mb-4">
+                We support freshers with:
+              </p>
+
+              <ul className="space-y-3 mb-8 ml-6">
+                <li className="flex items-start">
+                  <span className="text-gray-900 mr-3">•</span>
+                  <span className="text-lg text-gray-700">Sales role orientation & expectations</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-900 mr-3">•</span>
+                  <span className="text-lg text-gray-700">Resume & interview fundamentals</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-900 mr-3">•</span>
+                  <span className="text-lg text-gray-700">Industry selection guidance</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-900 mr-3">•</span>
+                  <span className="text-lg text-gray-700">First-90-days performance readiness</span>
+                </li>
+              </ul>
+
+              <div className="border-t border-gray-200 pt-6">
+                <p className="text-lg font-semibold text-gray-900 mb-2">
+                  Outcome for you:
+                </p>
+                <p className="text-lg text-gray-700">
+                  A strong entry into sales—with confidence, clarity, and fewer early mistakes.
+                </p>
+              </div>
+            </div>
+
+            {/* How Our Engagements Work Box */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                HOW OUR ENGAGEMENTS WORK
+              </h3>
+
+              <div className="space-y-5 mb-8">
+                <div className="flex items-start">
+                  <span className="text-lg font-bold text-gray-900 mr-3">1.</span>
+                  <p className="text-lg text-gray-700">You share your background, goals, and challenges</p>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-lg font-bold text-gray-900 mr-3">2.</span>
+                  <p className="text-lg text-gray-700">We assess your career stage and market readiness</p>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-lg font-bold text-gray-900 mr-3">3.</span>
+                  <p className="text-lg text-gray-700">We recommend the <span className="font-semibold">right level of structured support</span></p>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-lg font-bold text-gray-900 mr-3">4.</span>
+                  <p className="text-lg text-gray-700">You engage through a <span className="font-semibold">clearly defined, paid program</span></p>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 rounded-lg p-6 border-l-4 border-gray-300">
+                <p className="text-lg text-gray-800 mb-2">No generic coaching.</p>
+                <p className="text-lg text-gray-800 mb-2">No motivational fluff.</p>
+                <p className="text-lg text-gray-800">Only practical, sales-first guidance.</p>
               </div>
             </div>
           </div>
@@ -231,7 +449,7 @@ export default function JobSeekersPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <p className="text-gray-700 leading-relaxed">We specialise only in sales — so our guidance is sharper and more relevant</p>
+              <p className="text-gray-700 leading-relaxed">We specialise only in sales</p>
             </div>
 
             <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
@@ -240,7 +458,7 @@ export default function JobSeekersPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
               </div>
-              <p className="text-gray-700 leading-relaxed">Our frameworks are built from real sales leadership, not generic coaching</p>
+              <p className="text-gray-700 leading-relaxed">Our frameworks come from real hiring and leadership experience</p>
             </div>
 
             <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
@@ -249,7 +467,7 @@ export default function JobSeekersPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <p className="text-gray-700 leading-relaxed">We know exactly what employers look for in top-tier sales talent</p>
+              <p className="text-gray-700 leading-relaxed">We understand what Indian employers actually look for</p>
             </div>
 
             <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
@@ -258,7 +476,7 @@ export default function JobSeekersPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <p className="text-gray-700 leading-relaxed">You gain clarity, confidence and a strong competitive edge</p>
+              <p className="text-gray-700 leading-relaxed">We focus on outcomes, not theory — our guidance aligns with how companies hire today</p>
             </div>
           </div>
         </div>
@@ -268,7 +486,7 @@ export default function JobSeekersPage() {
       <section className="section-padding bg-gradient-to-br from-blue-900 to-blue-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="heading-lg mb-4 text-white">Submit & Get Support</h2>
+            <h2 className="heading-lg mb-4 text-blue-100">READY TO TAKE YOUR SALES CAREER SERIOUSLY?</h2>
             <p className="text-xl text-blue-100">
               Share your profile and we'll help you accelerate your sales career.
             </p>
