@@ -60,13 +60,7 @@ const methodology = [
 export default function AboutPage() {
   return (
     <>
-      {/* Hero Section */}
-      <HeroSection 
-        headline="The Sales Hiring Framework Behind High-Performing Teams"
-        subtext="A structured, behaviour-based, motion-aligned recruitment methodology."
-        extra={true}
-        centered={true}
-      />
+      
 
       
 

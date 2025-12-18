@@ -17,18 +17,32 @@ export default function LeadershipHiringPage() {
 
       <div className={`transition-all duration-300 ${isSidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}`}>
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
+        <section className="relative py-14 lg:py-16 overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
           <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] opacity-30" />
           
-          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className="text-center">
-              <h1 className="font-poppins font-light text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight mb-6">
-                Leadership Hiring for Revenue-Critical Roles
+          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl">
+              <h1 className="font-poppins font-light text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight mb-16">
+               Sales leaders who shape GTM strategy, build culture, and drive predictable revenue.
               </h1>
-              
-              <p className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
-                Sales leaders who shape GTM strategy, culture and predictable growth.
-              </p>
+
+              <h2 className="text-xs font-bold tracking-widest text-blue-900 uppercase mb-4 letter-spacing-wide">
+                Why Leadership Hiring Requires A Different Approach
+              </h2>
+
+              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+                <p>
+                  Leadership roles don't just execute strategy — they define it.
+                </p>
+
+                <p>
+                  Revenue leaders influence hiring quality, forecasting discipline, team behaviour, and how growth decisions are made. A mis-hire at this level compounds risk across quarters, teams, and markets.
+                </p>
+
+                <p className="font-medium text-gray-900">
+                  That's why leadership hiring demands deeper evaluation, higher context, and judgement shaped by real revenue experience — not resumes or standard interviews.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -40,9 +54,12 @@ export default function LeadershipHiringPage() {
               <h2 className="font-poppins font-light text-3xl md:text-4xl text-gray-900 mb-4">
                 Roles We Hire
               </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Common leadership mandates we support across growth, scale, and enterprise environments.
+              </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
               {[
                 'Regional / Zonal Heads',
                 'National Sales Leads',
@@ -62,6 +79,10 @@ export default function LeadershipHiringPage() {
                 </div>
               ))}
             </div>
+
+            <p className="text-center text-lg text-gray-600 max-w-3xl mx-auto">
+              We also partner on custom leadership mandates where scope, titles, or structures are still evolving.
+            </p>
           </div>
         </section>
 
@@ -72,6 +93,9 @@ export default function LeadershipHiringPage() {
               <h2 className="font-poppins font-light text-3xl md:text-4xl text-gray-900 mb-4">
                 Leadership Evaluation Framework
               </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Our leadership assessments focus on decision-making quality, execution discipline, and long-term revenue impact.
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -123,7 +147,7 @@ export default function LeadershipHiringPage() {
                 </p>
               </div>
 
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 md:col-span-2">
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
                   <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -143,8 +167,11 @@ export default function LeadershipHiringPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="font-poppins font-light text-3xl md:text-4xl text-gray-900 mb-4">
-                Search Process
+                Our Leadership Search Process
               </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                A structured, discreet, and insight-led approach designed for senior revenue roles.
+              </p>
             </div>
             
             <div className="space-y-6">
@@ -169,14 +196,45 @@ export default function LeadershipHiringPage() {
           </div>
         </section>
 
+        {/* What You Receive Section */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="font-poppins font-light text-3xl md:text-4xl text-gray-900 mb-4">
+                What You Receive
+              </h2>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                { title: 'A tightly curated shortlist of leadership-ready candidates', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
+                { title: 'Contextual evaluation notes covering strengths, risks, and fit', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4' },
+                { title: 'Market and compensation insights to support decision-making', icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z' },
+                { title: 'Ongoing alignment through offer, transition, and onboarding', icon: 'M13 10V3L4 14h7v7l9-11h-7z' }
+              ].map((item, index) => (
+                <div key={index} className="relative pl-16">
+                  <div className="absolute left-0 top-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    {item.title}
+                  </h3>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-poppins font-light text-3xl md:text-4xl mb-6">
-              Ready to Hire Revenue Leaders?
+              Ready to Hire Revenue Leadership That Scales?
             </h2>
             <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-              Let's find the leadership talent that will drive your growth strategy.
+             Let’s identify leaders who can shape strategy, execution, and long-term growth.
             </p>
             <Link
               href="/contact"

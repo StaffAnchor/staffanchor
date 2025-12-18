@@ -24,7 +24,7 @@ const Navbar = () => {
       ]
     },
     { name: 'Jobseeker Career Services', href: '/jobseeker' },
-    { name: 'Insights', href: '/blog' },
+    { name: 'Articles', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
 

@@ -17,18 +17,40 @@ export default function SalesHiringPage() {
 
       <div className={`transition-all duration-300 ${isSidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}`}>
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
+        <section className="relative py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
           <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] opacity-30" />
           
-          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className="text-center">
+          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl">
               <h1 className="font-poppins font-light text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight mb-6">
-                Mid–Senior Sales Hiring
+                Sales Hiring
               </h1>
               
-              <p className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
-                Accurate, motion-aligned hiring for SDRs, AEs, Field Sales & KAMs.
+              <p className="text-xl text-gray-700 leading-relaxed mb-16">
+                Precision hiring for frontline and core sales roles that directly impact revenue.
               </p>
+
+              <h2 className="text-xs font-bold tracking-widest text-blue-900 uppercase mb-4 letter-spacing-wide">
+                The Most Critical Sales Hiring Layer
+              </h2>
+
+              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+                <p>
+                  Mid–senior sales roles sit at the centre of execution and outcomes.
+                </p>
+
+                <p>
+                  They own targets, manage key accounts, influence forecasting, and represent your brand in the market.
+                </p>
+
+                <p>
+                  A wrong hire here doesn't just miss numbers — it disrupts momentum, morale, and manager bandwidth.
+                </p>
+
+                <p className="font-medium text-gray-900">
+                  That's why we approach mid–senior sales hiring with structure, context, and on-ground sales judgement — not resumes and rushed interviews.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -41,7 +63,7 @@ export default function SalesHiringPage() {
                 Our Sales Hiring Capabilities
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-                We hire for:
+                We typically hire for roles across the sales execution layer:
               </p>
             </div>
 
@@ -75,7 +97,9 @@ export default function SalesHiringPage() {
                 Evaluation Model
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Candidates are assessed for:
+                Hiring mid–senior sales talent requires more than role matching.
+
+We evaluate candidates across behaviour, competencies, personal drivers, and sales motion fit — ensuring performance alignment before a hire is made.
               </p>
             </div>
 
@@ -183,9 +207,9 @@ export default function SalesHiringPage() {
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="font-poppins font-light text-3xl md:text-4xl text-gray-900 mb-4">
-                What You Receive
-              </h2>
+              <blockquote className="font-poppins font-light text-3xl md:text-4xl text-gray-900 mb-4 italic">
+               &ldquo;Every engagement is designed to reduce hiring risk and decision fatigue.&rdquo;
+              </blockquote>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -215,16 +239,17 @@ export default function SalesHiringPage() {
         <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-poppins font-light text-3xl md:text-4xl mb-6">
-              Ready to Build Your Sales Team?
+              Hiring Sales Talent is a High-Stakes Decision.
+
             </h2>
             <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-              Let's find the right sales talent for your organization.
+              We help you make it with confidence.
             </p>
             <Link
               href="/contact"
               className="inline-block bg-teal-600 text-white px-8 py-4 rounded-full font-medium hover:bg-teal-500 transition-all duration-200 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              Start Hiring →
+              Talk to a Sales Hiring Expert →
             </Link>
           </div>
         </section>

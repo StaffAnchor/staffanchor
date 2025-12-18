@@ -1,6 +1,7 @@
 'use client';
 
-import HeroSection from '@/components/ui/HeroSection';
+import { motion, useAnimation, useInView } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 import MetricsStrip from '@/components/ui/MetricsStrip';
 import EmployerForm from '@/components/ui/EmployerForm';
 import { submitEmployerForm } from '@/utils/googleSheets';
@@ -131,14 +132,83 @@ const practices = [
 ];
 
 export default function EmployersPage() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [isInView, controls]);
+
+  const pathVariants = {
+    hidden: { 
+      pathLength: 0, 
+      opacity: 0 
+    },
+    visible: { 
+      pathLength: 1, 
+      opacity: 1
+    }
+  };
+
   return (
     <>
       {/* Hero Section */}
-      <HeroSection 
-        headline="Hire Sales Talent with Confidence"
-        subtext="From entry-level sales roles to senior revenue leaders — we help build high-performing teams."
-        centered={true}
-      />
+      <section className="relative py-20 lg:py-24 overflow-hidden bg-white">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="font-poppins font-light text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight mb-12"
+            >
+              Sales hiring challenges change with scale.
+            </motion.h1>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-6 mb-10"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0" />
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                  <span className="font-semibold text-gray-900">Early teams</span> need strong execution.
+                </p>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 rounded-full bg-teal-600 mt-2 flex-shrink-0" />
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                  <span className="font-semibold text-gray-900">Growing teams</span> need structure and speed.
+                </p>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-2 h-2 rounded-full bg-violet-600 mt-2 flex-shrink-0" />
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                  <span className="font-semibold text-gray-900">Mature teams</span> need leaders who can shape strategy and outcomes.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-lg md:text-xl text-gray-600 leading-relaxed"
+            >
+              Our hiring solutions are designed to support companies at every stage of their sales journey — from building core teams to scaling fast, hiring leadership, and making informed talent decisions.
+            </motion.p>
+          </div>
+        </div>
+      </section>
 
       {/* Our Hiring Solutions */}
       <CorePracticesSection 
