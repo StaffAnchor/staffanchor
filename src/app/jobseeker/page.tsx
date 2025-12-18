@@ -12,34 +12,37 @@ export default function JobSeekersPage() {
         
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
-            <h1 className="font-poppins font-light text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight mb-4">
+            <h1 className="font-poppins font-light text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight mb-6">
               Build a Stronger, Faster Sales Career.
             </h1>
             
-            <p className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto mb-8">
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
               Structured guidance, real hiring insight, and selective opportunities—designed exclusively for sales professionals.
             </p>
+          </div>
+        </div>
+      </section>
 
-            <div className="max-w-5xl mx-auto mt-6">
-              <div className="space-y-5">
-                <h2 className="font-poppins font-semibold text-3xl md:text-4xl text-gray-900 mb-4">
-                  Sales careers don't fail due to lack of effort.
-                </h2>
-                
-                <p className="text-xl text-gray-700 leading-relaxed">
-                  They fail due to poor positioning, unclear direction, and weak execution at critical moments.
-                </p>
+      {/* Why Careers Fail Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-poppins font-semibold text-3xl md:text-4xl text-gray-900 mb-6">
+              Sales careers don't fail due to lack of effort.
+            </h2>
+            
+            <p className="text-xl text-gray-700 leading-relaxed mb-10">
+              They fail due to poor positioning, unclear direction, and weak execution at critical moments.
+            </p>
 
-                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 mt-6 shadow-lg border border-gray-200">
-                  <p className="text-lg text-gray-800 leading-relaxed mb-4">
-                    At StaffAnchor, we help sales professionals at every stage — from freshers entering sales to leaders preparing for senior roles. We help Candidates make smarter career decisions with clarity, structure, and real market insight.
-                  </p>
-                  
-                  <p className="text-lg text-gray-900 font-semibold">
-                    Our services are delivered through personalised, paid engagements, designed around your career stage and goals.
-                  </p>
-                </div>
-              </div>
+            <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl p-8 md:p-12 shadow-lg border border-gray-200">
+              <p className="text-lg text-gray-800 leading-relaxed mb-6">
+                At StaffAnchor, we help sales professionals at every stage — from freshers entering sales to leaders preparing for senior roles. We help Candidates make smarter career decisions with clarity, structure, and real market insight.
+              </p>
+              
+              <p className="text-lg text-gray-900 font-semibold">
+                Our services are delivered through personalised, paid engagements, designed around your career stage and goals.
+              </p>
             </div>
           </div>
         </div>

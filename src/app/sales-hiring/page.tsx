@@ -23,7 +23,7 @@ export default function SalesHiringPage() {
           <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl">
               <h1 className="font-poppins font-light text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight mb-6">
-                Mid–Senior Sales Hiring
+                Sales Hiring
               </h1>
               
               <p className="text-xl text-gray-700 leading-relaxed mb-16">
@@ -239,7 +239,7 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
         <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-poppins font-light text-3xl md:text-4xl mb-6">
-              Hiring mid–senior sales talent is a high-stakes decision.
+              Hiring Sales Talent is a High-Stakes Decision.
 
             </h2>
             <p className="text-xl text-blue-100 mb-8 leading-relaxed">
