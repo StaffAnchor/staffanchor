@@ -16,15 +16,27 @@ export default function JobSeekersPage() {
               Build a Stronger, Faster Sales Career.
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-4xl mx-auto mb-8">
               Structured guidance, real hiring insight, and selective opportunities—designed exclusively for sales professionals.
             </p>
+
+            <div className="flex flex-col items-center gap-3">
+              <a href="https://rzp.io/rzp/Y8GVOwco" target="_blank" rel="noopener noreferrer" className="bg-[#1e3a8a] hover:bg-[#1e40af] cursor-pointer text-white font-semibold px-10 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-3 group">
+                Book Sales Career Strategy Call
+                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <p className="text-sm text-gray-500">
+                Paid · 1:1 · Not job placement.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Why Careers Fail Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 pb-8 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-poppins font-semibold text-3xl md:text-4xl text-gray-900 mb-6">
@@ -44,6 +56,23 @@ export default function JobSeekersPage() {
                 Our services are delivered through personalised, paid engagements, designed around your career stage and goals.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Slim CTA Bar */}
+      <section className="py-6 bg-white border-gray-200">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-lg text-gray-800">
+              If you're unclear what's holding your sales career back, don't guess.
+            </p>
+            <a href="https://rzp.io/rzp/Y8GVOwco" target="_blank" rel="noopener noreferrer" className="bg-[#1e3a8a] hover:bg-[#1e40af] text-white font-semibold px-8 py-3 rounded-full text-base transition-all duration-200 shadow-md hover:shadow-lg flex items-center gap-2 group whitespace-nowrap">
+              Book Sales Career Strategy Call
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>
@@ -85,6 +114,15 @@ export default function JobSeekersPage() {
               </li>
             </ul>
 
+            <div className="flex justify-center my-8">
+              <a href="https://rzp.io/rzp/Y8GVOwco" target="_blank" rel="noopener noreferrer" className="bg-[#1e3a8a] hover:bg-[#1e40af] text-white font-semibold px-8 py-4 rounded-full text-base transition-all duration-200 shadow-md hover:shadow-lg flex items-center gap-2 group">
+                This sounds like me - Book Sales Career Strategy Call
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+
             <div className="bg-white rounded-lg p-6 border-l-4 border-blue-600">
               <p className="text-lg text-gray-800 leading-relaxed">
                 If you're looking for shortcuts or free advice, this isn't it. <span className="font-semibold">If you're serious about your sales career, you're in the right place.</span>
@@ -100,6 +138,8 @@ export default function JobSeekersPage() {
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-4">OUR CORE CAREER SERVICES</h2>
           </div>
+
+          
 
           <div className="space-y-16">
             {/* 1. Interview Readiness & Hiring Confidence */}
@@ -355,88 +395,25 @@ export default function JobSeekersPage() {
           </div>
         </div>
       </section>
-
-      {/* Freshers & Engagements Section */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* For Freshers Box */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                FOR FRESHERS & EARLY-CAREER PROFESSIONALS
+        {/* Transition Block */}
+          <div className="max-w-3xl mx-auto mb-16 text-center">
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-8 border border-gray-200">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                Not sure which of these you need right now?
               </h3>
-              
               <p className="text-lg text-gray-700 mb-6">
-                Starting your sales career the right way matters more than speed.
+                Start with a strategy call. We'll diagnose before recommending anything.
               </p>
-
-              <p className="text-lg font-semibold text-gray-900 mb-4">
-                We support freshers with:
-              </p>
-
-              <ul className="space-y-3 mb-8 ml-6">
-                <li className="flex items-start">
-                  <span className="text-gray-900 mr-3">•</span>
-                  <span className="text-lg text-gray-700">Sales role orientation & expectations</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-gray-900 mr-3">•</span>
-                  <span className="text-lg text-gray-700">Resume & interview fundamentals</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-gray-900 mr-3">•</span>
-                  <span className="text-lg text-gray-700">Industry selection guidance</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-gray-900 mr-3">•</span>
-                  <span className="text-lg text-gray-700">First-90-days performance readiness</span>
-                </li>
-              </ul>
-
-              <div className="border-t border-gray-200 pt-6">
-                <p className="text-lg font-semibold text-gray-900 mb-2">
-                  Outcome for you:
-                </p>
-                <p className="text-lg text-gray-700">
-                  A strong entry into sales—with confidence, clarity, and fewer early mistakes.
-                </p>
-              </div>
-            </div>
-
-            {/* How Our Engagements Work Box */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                HOW OUR ENGAGEMENTS WORK
-              </h3>
-
-              <div className="space-y-5 mb-8">
-                <div className="flex items-start">
-                  <span className="text-lg font-bold text-gray-900 mr-3">1.</span>
-                  <p className="text-lg text-gray-700">You share your background, goals, and challenges</p>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-lg font-bold text-gray-900 mr-3">2.</span>
-                  <p className="text-lg text-gray-700">We assess your career stage and market readiness</p>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-lg font-bold text-gray-900 mr-3">3.</span>
-                  <p className="text-lg text-gray-700">We recommend the <span className="font-semibold">right level of structured support</span></p>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-lg font-bold text-gray-900 mr-3">4.</span>
-                  <p className="text-lg text-gray-700">You engage through a <span className="font-semibold">clearly defined, paid program</span></p>
-                </div>
-              </div>
-
-              <div className="bg-gray-50 rounded-lg p-6 border-l-4 border-gray-300">
-                <p className="text-lg text-gray-800 mb-2">No generic coaching.</p>
-                <p className="text-lg text-gray-800 mb-2">No motivational fluff.</p>
-                <p className="text-lg text-gray-800">Only practical, sales-first guidance.</p>
-              </div>
+              <a href="https://rzp.io/rzp/Y8GVOwco" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#1e3a8a] hover:bg-[#1e40af] text-white font-semibold px-8 py-3 rounded-full text-base transition-all duration-200 shadow-md hover:shadow-lg group">
+                Book Sales Career Strategy Call
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
             </div>
           </div>
-        </div>
-      </section>
+
+      
 
       {/* Why Jobseekers Trust StaffAnchor */}
       <section className="section-padding bg-slate-50">
