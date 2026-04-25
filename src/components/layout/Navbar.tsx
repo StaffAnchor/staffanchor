@@ -5,10 +5,22 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
+type NavSubItem = {
+  name: string;
+  href: string;
+  targetBlank?: boolean;
+};
+
+type NavItem = {
+  name: string;
+  href: string;
+  submenu?: NavSubItem[];
+};
+
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { name: 'Home', href: '/' },
     { name: 'Our Approach', href: '/about-us' },
     { 
