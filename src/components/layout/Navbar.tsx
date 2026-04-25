@@ -23,8 +23,14 @@ const Navbar = () => {
       
       ]
     },
-    { name: 'Jobseeker Career Services', href: '/jobseeker' },
-    { name: 'Articles', href: '/blog' },
+    { 
+      name: 'For Jobseekers', 
+      href: '/jobseekers',
+      submenu: [
+        { name: 'Submit Profile', href: 'https://jobs.staffanchor.com/register', targetBlank: true },
+      ]
+    },
+    // { name: 'Articles', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -70,6 +76,8 @@ const Navbar = () => {
                           <Link
                             key={subItem.name}
                             href={subItem.href}
+                            target={subItem.targetBlank ? '_blank' : undefined}
+                            rel={subItem.targetBlank ? 'noopener noreferrer' : undefined}
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-900 transition-colors duration-200"
                           >
                             {subItem.name}
@@ -93,7 +101,7 @@ const Navbar = () => {
                 Hire Talent
               </Link>
               <Link
-                href="/jobseeker"
+                href="/jobseekers"
                 className="border border-teal-600 text-teal-600 px-5 py-2.5 rounded-full text-sm font-medium hover:bg-teal-50 transition-colors duration-200 whitespace-nowrap"
               >
                 Find Jobs
@@ -147,6 +155,8 @@ const Navbar = () => {
                           <Link
                             key={subItem.name}
                             href={subItem.href}
+                            target={subItem.targetBlank ? '_blank' : undefined}
+                            rel={subItem.targetBlank ? 'noopener noreferrer' : undefined}
                             className="block px-4 py-2 text-sm text-gray-600 hover:text-blue-900 hover:bg-gray-50 rounded-lg transition-colors duration-200"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >

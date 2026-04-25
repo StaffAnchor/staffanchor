@@ -9,12 +9,12 @@ const StickyConsultationButton = () => {
   const pathname = usePathname();
   
   // Check if we're on the jobseeker page
-  const isJobseekerPage = pathname === '/jobseeker';
+  const isJobseekerPage = pathname === '/resume-writing';
   
   // Conditional text based on page
-  const buttonText = isJobseekerPage ? 'Book Sales Strategy Call' : 'Book Consultation';
-  const subText = isJobseekerPage ? 'Paid · 1:1 · Not job placement' : 'Get Expert Guidance';
-  const buttonLink = isJobseekerPage ? 'https://rzp.io/rzp/Y8GVOwco' : '/contact';
+  const buttonText =  'Find Jobs';
+  const subText =  'Submit profile to get jobs';
+  const buttonLink = 'jobseekers';
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
