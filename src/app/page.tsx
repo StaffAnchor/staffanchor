@@ -251,7 +251,79 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
+      {/* Beyond the Resume */}
+      <section className="section-padding bg-[var(--color-ink)] text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="max-w-2xl mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">Not another resume database</span>
+            <h2 className="font-poppins font-semibold text-3xl md:text-4xl text-white tracking-tight mb-4">
+              A resume says &ldquo;5 years in sales.&rdquo; We capture a lot more.
+            </h2>
+            <p className="text-lg text-white/70 leading-relaxed">
+              Every candidate in our database is structured, verified, and reusable — not a PDF that gets skimmed once and archived.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ margin: "-50px" }}
+              transition={{ duration: 0.6 }}
+              className="bg-white/5 border border-white/10 rounded-2xl p-8"
+            >
+              <span className="text-xs font-mono text-white/40 mb-4 block">A resume tells you</span>
+              <p className="text-xl text-white/60 leading-relaxed">
+                &ldquo;5 years in enterprise sales.&rdquo;
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-white rounded-2xl p-8 text-[var(--color-ink)]"
+            >
+              <span className="text-xs font-mono text-[var(--color-accent)] mb-4 block">StaffAnchor tells you</span>
+              <p className="text-xl leading-relaxed">
+                Hit <strong>120% of a ₹2 crore quota</strong> selling enterprise software to CFOs on 6-month cycles, currently on ₹28L fixed with ESOPs, serving a 30-day notice — and independently assessed by a recruiter as a strong communicator with stable tenure.
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-50px" }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+          >
+            {[
+              { n: "01", t: "Self-reported", d: "Quota, deal size, sales cycle, comp and notice period — captured directly from the candidate, not inferred from a PDF." },
+              { n: "02", t: "Recruiter-verified", d: "A real call, scored on a standard scorecard: communication, stability, coachability, verified relocation and comp." },
+              { n: "03", t: "Permanently reusable", d: "Never tied to one mandate. Every verified profile stays searchable for every relevant role that comes after." },
+            ].map((item) => (
+              <motion.div
+                key={item.n}
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                className="border-t border-white/15 pt-5"
+              >
+                <span className="text-xs font-mono text-white/40 mb-2 block">{item.n}</span>
+                <h3 className="font-poppins font-semibold text-lg text-white mb-2">{item.t}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{item.d}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* Metrics Strip */}
       <MetricsStrip metrics={homeMetrics} />
 
@@ -308,9 +380,9 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">Sales-Only Specialists</h3>
+              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">Verified, not just self-reported</h3>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                A deep, singular focus on sales hiring enables sharper evaluation, faster delivery and more precise matches.
+                Every candidate is assessed on a call against a standard scorecard — communication, stability, coachability, verified compensation and notice period — so a &ldquo;strong fit&rdquo; means the same thing across every recruiter.
               </p>
             </motion.div>
 
@@ -327,9 +399,9 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                 </svg>
               </div>
-              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">Performance-Based Assessments</h3>
+              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">Motion-aligned matching</h3>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                We evaluate behaviour, communication, commercial judgement, objection handling, discovery ability, execution discipline and role alignment.
+                We capture deal size, sales cycle, quota attainment across three years, and whether someone is a hunter, farmer or hybrid — so the person we shortlist has actually sold the way your team sells.
               </p>
             </motion.div>
 
@@ -346,9 +418,9 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">Motion-Aligned Hiring Model</h3>
+              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">A living database, not a one-time search</h3>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                Inside sales ≠ field sales ≠ enterprise ≠ channel. Each motion requires different competencies — and we hire accordingly.
+                A candidate is never &ldquo;used up&rdquo; by one mandate. Every verified profile stays searchable — so your second and third hires often move faster than your first.
               </p>
             </motion.div>
 
@@ -365,9 +437,9 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">Structured & Predictable Delivery</h3>
+              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">Fast, structured triage</h3>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                Clear milestones, disciplined communication and curated shortlists.
+                Compensation, notice period and quota attainment are captured upfront for every candidate, so we can tell you within minutes whether someone is realistically in range for your mandate.
               </p>
             </motion.div>
           </motion.div>

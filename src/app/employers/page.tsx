@@ -235,9 +235,9 @@ export default function EmployersPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Sales-Only Expertise</h3>
+              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Sales-only expertise</h3>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                A single-function specialisation that drives accuracy, speed and quality.
+                A single-function specialisation across B2B and B2C motions — SaaS, enterprise, government, BFSI, retail and more — drives sharper evaluation than a generalist agency can offer.
               </p>
             </div>
 
@@ -248,9 +248,9 @@ export default function EmployersPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">High-Quality Shortlists</h3>
+              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">High-quality shortlists</h3>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                No bulk CVs. Only curated, motion-fit, assessment-backed candidates.
+                No bulk CVs. Every name you receive has been verified on a call and scored against a standard scorecard — quota attainment, deal size, comp and notice period already confirmed.
               </p>
             </div>
 
@@ -261,9 +261,9 @@ export default function EmployersPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                 </svg>
               </div>
-              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Industry-Agnostic Coverage</h3>
+              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Industry-agnostic coverage</h3>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                SaaS, Fintech, BFSI, Automotive, Real Estate, D2C, Manufacturing & more.
+                SaaS, Fintech, BFSI, Automotive, Real Estate, D2C, Manufacturing & more — each mapped to its own sales motion, not treated as interchangeable.
               </p>
             </div>
 
@@ -274,9 +274,9 @@ export default function EmployersPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Predictable, Transparent Delivery</h3>
+              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Predictable, transparent delivery</h3>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                Clear timelines, structured weekly updates and milestone-based execution.
+                Clear timelines, structured weekly updates, and a shortlist you can act on the same day it lands — never a black box.
               </p>
             </div>
           </div>
@@ -285,6 +285,64 @@ export default function EmployersPage() {
 
       {/* Key Metrics */}
       <MetricsStrip metrics={employerMetrics} />
+
+      {/* What's in your shortlist */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div className="max-w-xl">
+              <span className="eyebrow mb-3 block">What you receive</span>
+              <h2 className="heading-lg mb-4">A shortlist you can trust, not a pile of resumes</h2>
+              <p className="text-lg text-[var(--color-muted)] leading-relaxed mb-6">
+                Every name on your shortlist has already been verified on a call. You see what matters for your decision — never our internal notes.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Quota attainment and deal-size experience",
+                  "Verified relocation and notice period",
+                  "Our recruiter's overall recommendation",
+                  "Expected compensation, shown where it matters most",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[var(--color-ink)]">
+                    <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-[var(--color-mist)] rounded-2xl border border-[var(--color-line)] p-8">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-[var(--color-line)]">
+                <div>
+                  <p className="text-xs font-mono text-[var(--color-muted)]">Sample shortlist</p>
+                  <p className="font-poppins font-semibold text-[var(--color-ink)]">VP Sales — Enterprise SaaS</p>
+                </div>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[var(--color-accent-soft)] text-[var(--color-accent)]">3 candidates</span>
+              </div>
+
+              <div className="space-y-4">
+                <div className="bg-white rounded-xl p-5 border border-[var(--color-accent)]">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="font-semibold text-[var(--color-ink)]">Candidate A — Senior AE, SaaS Sales</p>
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[var(--color-accent)] text-white">Recommended</span>
+                  </div>
+                  <p className="text-sm text-[var(--color-muted)]">Consistent 100%+ quota, enterprise CFO-level deals, verified stable tenure, 30-day notice.</p>
+                </div>
+                <div className="bg-white rounded-xl p-5 border border-[var(--color-line)]">
+                  <p className="font-semibold text-[var(--color-ink)] mb-1">Candidate B — Director, Sales</p>
+                  <p className="text-sm text-[var(--color-muted)]">Verified relocation, strong communication score.</p>
+                </div>
+                <div className="bg-white rounded-xl p-5 border border-[var(--color-line)]">
+                  <p className="font-semibold text-[var(--color-ink)] mb-1">Candidate C — Enterprise AE</p>
+                  <p className="text-sm text-[var(--color-muted)]">Immediate joiner, strong deal-size match.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Submit Mandate Form */}
       <section className="section-padding bg-white">
