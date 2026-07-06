@@ -1,208 +1,84 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
 import HeroSection from '@/components/ui/HeroSection';
-import JobseekerForm from '@/components/ui/JobseekerForm';
-import EmployerForm from '@/components/ui/EmployerForm';
-import { submitEmployerForm, submitJobSeekerForm } from '@/utils/googleSheets';
+import ContactForm from '@/components/ui/ContactForm';
+import { submitContactForm } from '@/utils/googleSheets';
+
+const faqs = [
+  {
+    q: 'How fast will I hear back?',
+    a: 'Within one business day. Employer mandates and candidate profile questions both go straight to our recruiting team.',
+  },
+  {
+    q: 'Do I need to submit a full profile or mandate before contacting you?',
+    a: 'No — this form is for general questions. If you’re ready to submit a hiring mandate or build your profile, use the dedicated pages linked in the nav.',
+  },
+  {
+    q: 'Is my information shared with anyone?',
+    a: 'No. Messages sent here go only to StaffAnchor’s internal team, never to a third party or employer without your knowledge.',
+  },
+];
 
 export default function ContactPage() {
-  const [activeForm, setActiveForm] = useState<'employer' | 'jobseeker'>('employer');
-
   return (
     <>
-    <section className="section-padding">
-
-      <HeroSection 
-        headline="Let's Build Your Next Great Team."
-        subtext="Ready to transform your hiring? Connect with our intelligence partners and discover the StaffAnchor advantage."
+      <HeroSection
+        eyebrow="Get in touch"
+        headline="Let's Talk."
+        subtext="Questions about hiring, your profile, or anything else — reach out directly."
         centered={true}
-        />
-    </section>
+      />
 
-      {/* Contact Information */}
       <section className="section-padding bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-8">Get In Touch</h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Whether you&apos;re looking to hire exceptional talent or seeking your next career opportunity, 
-              our team of intelligence partners is here to help you succeed.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[var(--color-ink)] rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+            {/* Contact details */}
+            <div className="lg:col-span-2 space-y-8">
+              <div className="anchor-line">
+                <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-1">Email</p>
+                <a href="mailto:info@staffanchor.com" className="text-lg font-semibold text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors">
+                  info@staffanchor.com
+                </a>
               </div>
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">Email Us</h3>
-              <a href="mailto:info@staffanchor.com" className="text-[var(--color-accent)] hover:text-teal-700">
-                info@staffanchor.com
-              </a>
+              <div className="anchor-line">
+                <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-1">Phone</p>
+                <a href="tel:+917273000088" className="text-lg font-semibold text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors">
+                  +91 7273000088
+                </a>
+              </div>
+              <div className="anchor-line">
+                <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-1">Connect</p>
+                <a
+                  href="https://linkedin.com/company/staffanchor"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg font-semibold text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  LinkedIn
+                </a>
+              </div>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[var(--color-ink)] rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">Call Us</h3>
-              <a href="tel:+917273000088" className="text-[var(--color-accent)] hover:text-teal-700">
-                +91 7273000088
-              </a>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[var(--color-ink)] rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">Connect</h3>
-              <a 
-                href="https://linkedin.com/company/staffanchor" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-[var(--color-accent)] hover:text-teal-700"
-              >
-                LinkedIn
-              </a>
+            {/* Form */}
+            <div className="lg:col-span-3">
+              <ContactForm onSubmit={submitContactForm} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Forms */}
-      <section className="section-padding bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Toggle Buttons */}
-          <div className="flex justify-center mb-12">
-            <div className="bg-white p-2 rounded-full shadow-lg border border-gray-200">
-              <div className="flex">
-                <button
-                  onClick={() => setActiveForm('employer')}
-                  className={`px-8 py-3 hover:cursor-pointer rounded-full font-medium transition-all duration-300 ${
-                    activeForm === 'employer'
-                      ? 'bg-[var(--color-ink)] text-white shadow-md'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  For Employers
-                </button>
-                <button
-                  onClick={() => setActiveForm('jobseeker')}
-                  className={`px-8 py-3 hover:cursor-pointer rounded-full font-medium transition-all duration-300 ${
-                    activeForm === 'jobseeker'
-                      ? 'bg-[var(--color-accent)] text-white shadow-md'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  For Job Seekers
-                </button>
+      {/* FAQ */}
+      <section className="section-padding bg-[var(--color-mist)]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="eyebrow mb-3 block">FAQ</span>
+          <h2 className="heading-lg mb-10">A few common questions</h2>
+          <div className="space-y-6">
+            {faqs.map((f) => (
+              <div key={f.q} className="bg-white rounded-2xl border border-[var(--color-line)] p-6">
+                <h3 className="font-poppins font-semibold text-[var(--color-ink)] mb-2">{f.q}</h3>
+                <p className="text-[var(--color-muted)] leading-relaxed">{f.a}</p>
               </div>
-            </div>
-          </div>
-
-          {/* Form Container */}
-          <div className="flex justify-center">
-            <div className="w-full max-w-2xl">
-              <motion.div
-                key={activeForm}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                {activeForm === 'employer' ? (
-                  <EmployerForm
-                    title="Hiring Request"
-                    subtitle="Complete this form to start your precision hiring journey with StaffAnchor."
-                    submitText="Submit Mandate →"
-                    onSubmit={submitEmployerForm}
-                  />
-                ) : (
-                  <JobseekerForm
-                    title="For Job Seekers"
-                    subtitle="Join our talent network and get matched with exclusive opportunities."
-                    onSubmit={submitJobSeekerForm}
-                  />
-                )}
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose StaffAnchor */}
-      <section className="section-padding bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="heading-lg mb-12">Why Choose StaffAnchor?</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 rounded-xl p-8">
-              <h3 className="font-semibold text-lg text-gray-900 mb-4">For Employers</h3>
-              <ul className="space-y-3 text-left">
-                <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">12-day average time to hire</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">95% retention rate</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">AI-powered precision matching</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">Real-time talent analytics</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-50 rounded-xl p-8">
-              <h3 className="font-semibold text-lg text-gray-900 mb-4">For Job Seekers</h3>
-              <ul className="space-y-3 text-left">
-                <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">Curated exclusive opportunities</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">Career consultation and guidance</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">Market intelligence insights</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">Long-term career partnership</span>
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </section>

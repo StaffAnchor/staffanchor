@@ -2,17 +2,23 @@
 
 :root {
   --font-inter: 'Inter', sans-serif;
-  --font-poppins: 'Poppins', sans-serif;
+  --font-poppins: 'Space Grotesk', sans-serif;
 
-  /* New brand tokens — modern, high-contrast, single-accent system */
-  --color-ink: #0A0A0B;
-  --color-paper: #FFFFFF;
-  --color-mist: #F5F5F3;
-  --color-line: #E7E7E4;
-  --color-muted: #63635E;
-  --color-accent: #3B4CF0;
-  --color-accent-dark: #2C39C7;
-  --color-accent-soft: #EEF0FE;
+  /* StaffAnchor brand tokens */
+  --color-ink: #12131A;
+  --color-ink-soft: #1E1F29;
+  --color-paper: #F7F7F4;
+  --color-mist: #F7F7F4;
+  --color-line: #E7E7E0;
+  --color-muted: #6B6B76;
+  --color-muted-soft: #9A9AA4;
+  --color-accent: #4F46E5;
+  --color-accent-dark: #3730B3;
+  --color-accent-soft: #EEF0FF;
+  --color-success: #0F9B6C;
+  --color-success-soft: #E4F5EE;
+  --color-amber: #B5730F;
+  --color-amber-soft: #FBF0DC;
 }
 
 * {
@@ -21,7 +27,7 @@
 
 body {
   font-family: var(--font-inter);
-  background: var(--color-paper);
+  background: #FFFFFF;
   color: var(--color-ink);
 }
 
@@ -132,6 +138,18 @@ body {
   border-radius: 999px;
   background: var(--color-accent);
   display: inline-block;
+}
+
+/* Signature "anchor line" motif — 3px left-border accent, used on
+   pull-quotes, stat callouts, and section labels throughout the site. */
+.anchor-line {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1rem;
+}
+
+.anchor-line-tight {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 0.75rem;
 }
 
 /* Custom text styles */

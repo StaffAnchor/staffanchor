@@ -29,25 +29,19 @@ const Footer = () => {
 
   const footerLinks = {
     services: [
-      { name: 'Sales Hiring', href: '/sales-hiring' },
-      { name: 'Leadership Hiring', href: '/leadership-hiring' },
-      { name: 'Volume Hiring', href: '/volume-hiring' },
-      { name: 'Sales Talent Intelligence', href: '/sales-talent-intelligence' },
-      { name: 'Interim & Contract Hiring', href: '/interim' },
+      { name: 'For Employers', href: '/employers' },
+      { name: 'For Jobseekers', href: '/jobseekers' },
     ],
     company: [
-      { name: 'Our Approach', href: '/about-us' },
-      
+      { name: 'About Us', href: '/about-us' },
     ],
     resources: [
       { name: 'Blog & Insights', href: '/blog' },
-      { name: 'Career Resources', href: '/job-seekers#resources' },
-      { name: 'Industry Reports', href: '/blog#reports' },
     ],
     connect: [
       { name: 'Contact Us', href: '/contact' },
       { name: 'LinkedIn', href: 'https://linkedin.com/company/staffanchor', external: true },
-      { name: 'Get Hired', href: '/job-seekers' },
+      { name: 'Submit Profile', href: 'https://jobs.staffanchor.com/register', external: true },
     ],
   };
 
@@ -95,7 +89,7 @@ const Footer = () => {
           {/* Services Links */}
           <div>
             <h3 className="font-poppins font-semibold text-white mb-2 uppercase tracking-wider text-sm">
-              Services
+              Explore
             </h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (

@@ -1,150 +1,168 @@
-import { Metadata } from 'next';
-import Image from 'next/image';
-import HeroSection from '@/components/ui/HeroSection';
-import MetricsStrip from '@/components/ui/MetricsStrip';
+'use client';
+
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import HeroSection from '@/components/ui/HeroSection';
 
-export const metadata: Metadata = {
-  title: "About Us - StaffAnchor Talent Solutions | Our Vision & Philosophy",
-  description: "Learn about StaffAnchor's vision, philosophy, and 5-step methodology. We're intelligence partners blending tech, data, and human insight for precision hiring.",
-  keywords: "About StaffAnchor, Recruitment Philosophy, Talent Intelligence, AI-driven hiring methodology, Executive Search Company",
-};
-
-const impactMetrics = [
-  { value: "72hrs", label: "Time-to-Shortlist", description: "Average speed" },
-  { value: "82%", label: "Retention Rate", description: "Client success" },
-  { value: "95%", label: "Repeat Rate", description: "Client loyalty" },
-  { value: "500+", label: "Mandates", description: "Successfully completed" },
-  { value: "30+", label: "CXO Placements", description: "Leadership hires" },
+const values = [
+  { title: 'Specialization over generalism', description: 'Sales hiring is a discipline, not a category on a job board. We do one thing — sales and commercial roles — and go deep.' },
+  { title: 'Evidence over guesswork', description: 'Quota attainment, deal size, and sales cycle are measurable. We measure them, verify them, and hire on them.' },
+  { title: 'Respect for candidates’ time', description: 'No wall of irrelevant questions, no black-hole applications. A real conversation, every time.' },
+  { title: 'Speed for employers', description: 'A shortlist arrives pre-qualified — verified before you ever see it, not after you’ve wasted a week on it.' },
 ];
 
-const methodology = [
-  {
-    step: "01",
-    title: "Sales Motion & GTM Discovery",
-    description: "We map your sales cycle, ICP, funnel stages, quotas, channel mix and skill expectations. This ensures we hire for your motion, not the generic market.",
-    features: ["Sales cycle mapping", "ICP definition", "Quota & funnel analysis", "Channel mix strategy"],
-  },
-  {
-    step: "02", 
-    title: "Role & Persona Definition",
-    description: "We define the exact persona needed: Hunter | Farmer | Hybrid | Enterprise Seller | Channel Specialist | Relationship Builder | Consultative AE. Each persona requires different behavioural signatures — and we evaluate accordingly.",
-    features: ["Persona identification", "Behavioural signatures", "Motion alignment", "Role-specific traits"],
-  },
-  {
-    step: "03",
-    title: "Behavioural & Competency Evaluation",
-    description: "Our proprietary competency model measures Sales IQ, Discovery excellence, Articulation & clarity, Objection handling, Emotional intelligence, Resilience & coachability, Commercial judgement, Market understanding, Execution discipline, and Role adaptability.",
-    features: ["Sales IQ assessment", "Discovery excellence", "Objection handling", "Emotional intelligence", "Commercial judgement", "Execution discipline"],
-  },
-  {
-    step: "04",
-    title: "Sales Simulation Rounds",
-    description: "Candidates are evaluated with realistic scenarios: Cold-call simulation, Product pitch, Customer objection, Pricing challenge, Email-writing diagnostic, Case-based commercial reasoning. This reveals the real performer.",
-    features: ["Cold-call simulation", "Product pitch", "Objection handling", "Pricing negotiation", "Email diagnostics", "Commercial reasoning"],
-  },
-  {
-    step: "05",
-    title: "Curated Shortlisting",
-    description: "You receive 3–5 high-quality candidates with Behavioural summaries, Strengths & red flags, Motion-fit score, Communication evaluation, and Simulation notes.",
-    features: ["Behavioural summaries", "Strengths & red flags", "Motion-fit scoring", "Communication analysis"],
-  },
-  {
-    step: "06",
-    title: "Offer, Closing & Onboarding Alignment",
-    description: "We reduce offer drops, smoothen transitions, and ensure expectation alignment for early performance.",
-    features: ["Offer negotiation", "Expectation alignment", "Transition support", "Onboarding coordination"],
-  },
+const teamPlaceholders = [
+  { role: 'Founder', note: 'Bio placeholder — to be added.' },
+  { role: 'Lead Recruiter, B2B Sales', note: 'Bio placeholder — to be added.' },
+  { role: 'Lead Recruiter, B2C Sales', note: 'Bio placeholder — to be added.' },
 ];
 
-export default function AboutPage() {
+export default function AboutUsPage() {
   return (
     <>
-      
+      <HeroSection
+        eyebrow="Our approach"
+        headline="Sales Performance Is Measurable. Most Hiring Ignores That."
+        subtext="Generic recruitment agencies treat a sales hire like any other hire. It isn't. Sales performance is comparable in a way most roles aren't — quota, deal size, sales cycle — and StaffAnchor exists to actually capture that."
+        specialization={true}
+        backgroundPattern={true}
+      />
 
-      
-
-      {/* Our Philosophy*/}
-      <section className="section-padding bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="heading-lg mb-8">Our Philosophy</h2>
-          <div className="bg-white rounded-xl p-8 lg:p-12 shadow-lg">
-            <p className="text-xl text-gray-700 leading-relaxed mb-6">
-              Sales roles are not operational — they are <span className="font-semibold text-[var(--color-ink)]">behavioural</span>.
+      {/* Founding story */}
+      <section className="section-padding bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="eyebrow mb-3 block">Why we exist</span>
+          <h2 className="heading-lg mb-8">The problem with treating sales hiring like any other hiring</h2>
+          <div className="space-y-5 text-lg text-[var(--color-muted)] leading-relaxed">
+            <p>
+              Most recruitment agencies run every mandate through the same process, whether they're filling a finance role or a sales role. That works reasonably well for a lot of hiring — but sales is different.
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
-              The ability to question well, listen deeply, handle objections, manage pressure, and influence customers cannot be derived from resumes.
+            <p>
+              A sales career leaves a trail of comparable, measurable facts: quota attainment, deal size, sales cycle length, whether someone hunts new logos or grows existing accounts. Most agencies never ask for any of it, and forward a resume instead — leaving the client to re-discover all of this themselves, deal by deal, interview by interview.
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
-              <span className="font-semibold text-gray-900">It must be observed, decoded, and evaluated.</span>
-            </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Our approach isolates these behaviours through structured evaluation, simulations and motion-specific competency models.
+            <p>
+              StaffAnchor exists because that gap is fixable. We built our entire process — the intake, the verification call, the shortlist — around actually capturing sales performance data, not around a generic hiring pipeline retrofitted for sales.
             </p>
           </div>
         </div>
       </section>
 
-
-      {/* Impact Metrics */}
-      <MetricsStrip metrics={impactMetrics} background="blue" />
-
-      {/* 6-Stage Performance Hiring Framework */}
-      <section className="section-padding bg-white" id="methodology">
+      {/* Our approach */}
+      <section className="section-padding bg-[var(--color-mist)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-8">6-Stage Performance Hiring Framework</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A structured, behaviour-driven process that identifies real sales performers.
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            {methodology.map((step) => (
-              <div key={step.step} className="bg-gray-50 rounded-xl p-8 lg:p-10">
-                <div className="flex items-start gap-6">
-                  <div className="w-14 h-14 bg-[var(--color-ink)] text-white rounded-full flex items-center justify-center font-poppins font-bold text-xl shrink-0">
-                    {step.step}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="heading-md text-2xl mb-4">{step.title}</h3>
-                    <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                      {step.description}
-                    </p>
-                    <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {step.features.map((feature) => (
-                        <li key={feature} className="flex items-center space-x-2 text-sm text-gray-600">
-                          <svg className="w-4 h-4 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div className="max-w-xl">
+              <span className="eyebrow mb-3 block">Our approach</span>
+              <h2 className="heading-lg mb-4">Verified, not just self-reported</h2>
+              <p className="text-lg text-[var(--color-muted)] leading-relaxed">
+                A candidate shares their performance data — quota, deal size, comp, notice period. A StaffAnchor recruiter then independently verifies it in a real conversation. Only after that call does a profile reach a client.
+              </p>
+            </div>
+            <div className="space-y-4">
+              {[
+                { n: '01', t: 'Candidate self-reports', d: 'Structured, specific questions tailored to their sales sub-domain — not a generic form.' },
+                { n: '02', t: 'Recruiter verifies', d: 'A real call, scored on a standard scorecard, so the assessment means the same thing across every candidate.' },
+                { n: '03', t: 'Client receives a shortlist', d: 'Clean, evidence-backed, and fast to say yes to.' },
+              ].map((s) => (
+                <div key={s.n} className="anchor-line bg-white rounded-r-xl py-3 pr-4">
+                  <span className="text-xs font-mono text-[var(--color-muted)]">{s.n}</span>
+                  <h3 className="font-poppins font-semibold text-[var(--color-ink)]">{s.t}</h3>
+                  <p className="text-sm text-[var(--color-muted)]">{s.d}</p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who we serve */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-[var(--color-mist)] rounded-2xl p-8 border border-[var(--color-line)]">
+              <span className="eyebrow mb-3 block">Who we serve</span>
+              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">Companies hiring sales teams</h3>
+              <p className="text-[var(--color-muted)] leading-relaxed">From SDR to VP Sales — fast-growth companies building or scaling a revenue organisation.</p>
+            </div>
+            <div className="bg-[var(--color-mist)] rounded-2xl p-8 border border-[var(--color-line)]">
+              <span className="eyebrow mb-3 block">Who we serve</span>
+              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">Sales professionals</h3>
+              <p className="text-[var(--color-muted)] leading-relaxed">Across B2B and B2C — from early-career SDRs to CXO-level revenue leaders.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="section-padding bg-[var(--color-mist)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-16 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">Principles</span>
+            <h2 className="heading-lg">What we hold ourselves to</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {values.map((v, i) => (
+              <motion.div
+                key={v.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: '-50px' }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="bg-white rounded-2xl p-8 border border-[var(--color-line)]"
+              >
+                <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="font-poppins font-semibold text-lg text-[var(--color-ink)] mb-2 tracking-tight">{v.title}</h3>
+                <p className="text-[var(--color-muted)] leading-relaxed">{v.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team placeholder */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-12 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">Team</span>
+            <h2 className="heading-lg">Who you'll work with</h2>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {teamPlaceholders.map((t) => (
+              <div key={t.role} className="rounded-2xl border border-dashed border-[var(--color-line)] p-8 text-center">
+                <div className="w-16 h-16 rounded-full bg-[var(--color-mist)] mx-auto mb-4" />
+                <h3 className="font-poppins font-semibold text-[var(--color-ink)] mb-1">{t.role}</h3>
+                <p className="text-xs text-[var(--color-muted-soft)] uppercase tracking-wider">{t.note}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-     
-      {/* Closing CTA */}
-      <section className="pt-20 pb-12 bg-[var(--color-ink)] text-white text-center">
+      {/* CTA */}
+      <section className="section-padding bg-[var(--color-ink)] text-white text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-poppins font-light text-3xl md:text-4xl mb-8 uppercase tracking-wide">
-            Ready to hire
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-            If you are building your mid–senior or leadership team, we’d be glad to share a calibrated shortlist or walk you through our approach. 
-          </p>
-          <Link
-            href="/contact" 
-            className="inline-block bg-[var(--color-accent)] text-white px-8 py-4 rounded-full font-medium hover:bg-[var(--color-accent-dark)] transition-colors duration-200 text-lg"
-          >
-            Share Your Hiring Mandate →
-          </Link>
+          <h2 className="font-poppins font-semibold text-3xl md:text-5xl mb-8 tracking-tight">Ready to work with specialists?</h2>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/employers" className="inline-flex items-center justify-center px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-white hover:text-[var(--color-ink)] transition-colors duration-300">
+              I&apos;m hiring →
+            </Link>
+            <Link href="/jobseekers" className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-[var(--color-ink)] font-semibold rounded-xl hover:bg-[var(--color-accent)] hover:text-white transition-colors duration-300">
+              I&apos;m looking for a role →
+            </Link>
+          </div>
         </div>
       </section>
     </>

@@ -1,363 +1,249 @@
 'use client';
 
-import { motion, useAnimation, useInView } from 'framer-motion';
-import { useRef, useEffect } from 'react';
-import MetricsStrip from '@/components/ui/MetricsStrip';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 import EmployerForm from '@/components/ui/EmployerForm';
 import { submitEmployerForm } from '@/utils/googleSheets';
-import CorePracticesSection from '@/components/ui/CorePracticesSection';
+import SalesDomainsGrid from '@/components/ui/SalesDomainsGrid';
 
-const employerMetrics = [
-  { value: "12 Days", label: "Time to Hire", description: "Average speed" },
-  { value: "3:1", label: "CV:Interview", description: "Precision ratio" },
-  { value: "95%", label: "Retention", description: "Long-term success" },
-  { value: "88%", label: "Closure Rate", description: "Success rate" },
-];
-
-const hiringSolutions = [
+const howItWorks = [
   {
-    title: "Sales Hiring (Mid–Senior)",
-    description: "High-quality hiring across SDRs, Inside Sales, AEs, Field Sales, and KAM positions. Aligned to your motion, evaluated through behavioural and competency-based screenings.",
-    href: "/sales-hiring",
-    icon: (
-      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-      </svg>
-    ),
-    features: [],
+    step: '01',
+    title: 'Share your mandate',
+    description: 'Role, sales category, city, and budget range — takes minutes, not a lengthy intake call.',
   },
   {
-    title: "Leadership Hiring (Executive Search)",
-    description: "Confidential hiring for revenue leadership roles — Sales Managers, Regional Heads, VP Sales, CRO, Business Heads. Leaders who influence GTM, forecasting, culture and performance.",
-    href: "/leadership-hiring",
-    icon: (
-      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-      </svg>
-    ),
-    features: [],
+    step: '02',
+    title: 'We source and verify',
+    description: 'Candidates are matched against real sales performance data, then verified on a call using a standard scorecard.',
   },
   {
-    title: "Volume Hiring (Scale-Up)",
-    description: "Rapid multi-city or multi-role hiring for expansion phases. Structured sprints, pipeline visibility, timeline guarantees and quality control.",
-    href: "/volume-hiring",
-    icon: (
-      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-      </svg>
-    ),
-    features: [],
+    step: '03',
+    title: 'You receive a shortlist',
+    description: 'Quota history, deal size, verified notice period, and our recruiter’s recommendation — not a pile of resumes.',
   },
   {
-    title: "Sales Talent Intelligence",
-    description: "Compensation benchmarks, org design, hiring diagnostics and talent mapping. Insights that help leaders make strategic decisions.",
-    href: "/sales-talent-intelligence",
-    icon: (
-      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
-    features: [],
-  },
-  {
-    title: "Interim & Contract Hiring",
-    description: "Flexible sales talent for pilot teams, transition periods or contract-to-hire validation.",
-    href: "/interim",
-    icon: (
-      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    features: [],
+    step: '04',
+    title: 'You interview qualified candidates',
+    description: 'Every name you meet has already cleared the bar. No re-screening a stack of unqualified applications.',
   },
 ];
 
-const ourEdge = [
+const whatMakesDifferent = [
   {
-    approach: "AI-Driven Search",
-    impact: "2× faster shortlisting",
-    description: "Machine learning algorithms identify and rank candidates based on role requirements and cultural fit."
+    title: 'Real quota attainment, not a claim',
+    description: 'We capture quota attainment across three years, deal size, and sales cycle — the specifics a resume glosses over.',
   },
   {
-    approach: "Functional Specialists",
-    impact: "Deep role understanding", 
-    description: "Consultants with domain expertise in specific functions and industries ensure precise matches."
+    title: 'Sales-cycle and motion fit',
+    description: 'Hunter, farmer, or hybrid; inbound or outbound; SMB, mid-market or enterprise — matched to how your team actually sells.',
   },
   {
-    approach: "Talent Analytics Dashboard",
-    impact: "Live visibility",
-    description: "Real-time insights into search progress, market dynamics, and competitive intelligence."
+    title: 'Verified relocation and notice period',
+    description: 'Confirmed on a call, not just self-reported on a form — so a candidate’s timeline is never a surprise late in your process.',
   },
   {
-    approach: "Consultative Methodology",
-    impact: "Evidence-based decisions",
-    description: "Data-driven recommendations backed by market research and predictive analytics."
+    title: 'A structured recruiter recommendation',
+    description: 'Every candidate carries an independent assessment — communication, stability, coachability — scored the same way, every time.',
   },
 ];
 
-const practices = [
-  {
-    title: "Executive Search",
-    description: "Find visionary leaders who redefine success. Partner with boards, founders, and investors to identify transformative executives.",
-    href: "/executive-search",
-    icon: (
-      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-      </svg>
-    ),
-    features: ["CEO", "COO", "CFO", "CHRO", "CTO"],
-  },
-  {
-    title: "Functional Hiring", 
-    description: "Build functional excellence across business functions. Deep expertise in sales, technology, operations, and specialized roles.",
-    href: "/functional-hiring",
-    icon: (
-      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    ),
-    features: ["Sales & BD", "Technology", "Operations", "Marketing"],
-  },
-  {
-    title: "Industry Expertise",
-    description: "Precision hiring where function meets domain. Specialized knowledge across 20+ industries for perfect role-culture alignment.",
-    href: "/industry-expertise", 
-    icon: (
-      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-      </svg>
-    ),
-    features: ["EdTech", "BFSI", "Healthcare", "Hospitality"],
-  },
+const rolesWePlace = [
+  { level: 'Individual Contributor', roles: 'SDR / BDR, Inside Sales Executive, Account Executive, Key Account Manager' },
+  { level: 'Management', roles: 'Sales Manager, Regional / City Head, Team Lead' },
+  { level: 'Leadership', roles: 'Director of Sales, VP Sales, Country Head, CRO / Business Head (P&L)' },
 ];
 
 export default function EmployersPage() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.3 });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    } else {
-      controls.start("hidden");
-    }
-  }, [isInView, controls]);
-
-  const pathVariants = {
-    hidden: { 
-      pathLength: 0, 
-      opacity: 0 
-    },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1
-    }
-  };
-
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-24 overflow-hidden bg-white">
+      {/* Hero */}
+      <section className="relative py-24 lg:py-28 overflow-hidden bg-white">
+        <div className="absolute inset-0 opacity-[0.4]" style={{
+          backgroundImage: `radial-gradient(var(--color-line) 1px, transparent 1px)`,
+          backgroundSize: '28px 28px',
+          maskImage: 'linear-gradient(to bottom, black, transparent 85%)',
+        }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl">
+          <div className="max-w-3xl">
             <span className="eyebrow mb-6 block">For employers</span>
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="font-poppins font-semibold text-4xl md:text-5xl lg:text-6xl text-[var(--color-ink)] leading-tight tracking-tight mb-12"
+              className="heading-xl mb-6"
             >
-              B2B sales hiring challenges change with scale.
+              A Shortlist You Can Say Yes To, Fast.
             </motion.h1>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-6 mb-10"
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-2 h-2 rounded-full bg-[var(--color-accent)] mt-2 flex-shrink-0" />
-                <p className="text-lg md:text-xl text-[var(--color-ink)]/80 leading-relaxed">
-                  <span className="font-semibold text-gray-900">Early teams</span> need strong execution.
-                </p>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-2 h-2 rounded-full bg-[var(--color-accent)] mt-2 flex-shrink-0" />
-                <p className="text-lg md:text-xl text-[var(--color-ink)]/80 leading-relaxed">
-                  <span className="font-semibold text-gray-900">Growing teams</span> need structure and speed.
-                </p>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-2 h-2 rounded-full bg-violet-600 mt-2 flex-shrink-0" />
-                <p className="text-lg md:text-xl text-[var(--color-ink)]/80 leading-relaxed">
-                  <span className="font-semibold text-gray-900">Mature teams</span> need leaders who can shape strategy and outcomes.
-                </p>
-              </div>
-            </motion.div>
-
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
               className="text-lg md:text-xl text-[var(--color-muted)] leading-relaxed"
             >
-              Our hiring solutions are designed to support B2B companies at every stage of their revenue journey — from building core teams to scaling fast, hiring leadership, and making informed talent decisions. (We also support B2C sales hiring where needed.)
+              Sales hiring is high-stakes, and a generalist agency's unqualified shortlist wastes weeks you don't have. StaffAnchor verifies real sales performance data before a candidate ever reaches you.
             </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-8"
+            >
+              <a href="#mandate-form" className="inline-flex items-center justify-center px-7 py-3.5 bg-[var(--color-ink)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent)] transition-colors duration-300">
+                Submit a hiring mandate →
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Our Hiring Solutions */}
-      <CorePracticesSection 
-        practices={hiringSolutions}
-        title="Our Hiring Solutions"
-        subtitle=""
-        backgroundColor="bg-white"
-      />
-
-      {/* Why Employers Trust StaffAnchor */}
+      {/* How it works */}
       <section className="section-padding bg-[var(--color-mist)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 max-w-2xl">
-            <span className="eyebrow mb-3 block">Why us</span>
-            <h2 className="heading-lg">Why employers trust StaffAnchor</h2>
-          </div>
+          <motion.div
+            className="mb-16 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">How it works</span>
+            <h2 className="heading-lg">From mandate to shortlist</h2>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-2xl p-8 border border-[var(--color-line)] hover:border-[var(--color-ink)] transition-colors duration-300">
-              <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">01</span>
-              <div className="w-11 h-11 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Sales-only expertise</h3>
-              <p className="text-[var(--color-muted)] leading-relaxed">
-                A single-function specialisation across B2B and B2C motions — SaaS, enterprise, government, BFSI, retail and more — drives sharper evaluation than a generalist agency can offer.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 border border-[var(--color-line)] hover:border-[var(--color-ink)] transition-colors duration-300">
-              <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">02</span>
-              <div className="w-11 h-11 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">High-quality shortlists</h3>
-              <p className="text-[var(--color-muted)] leading-relaxed">
-                No bulk CVs. Every name you receive has been verified on a call and scored against a standard scorecard — quota attainment, deal size, comp and notice period already confirmed.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 border border-[var(--color-line)] hover:border-[var(--color-ink)] transition-colors duration-300">
-              <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">03</span>
-              <div className="w-11 h-11 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Industry-agnostic coverage</h3>
-              <p className="text-[var(--color-muted)] leading-relaxed">
-                SaaS, Fintech, BFSI, Automotive, Real Estate, D2C, Manufacturing & more — each mapped to its own sales motion, not treated as interchangeable.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 border border-[var(--color-line)] hover:border-[var(--color-ink)] transition-colors duration-300">
-              <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">04</span>
-              <div className="w-11 h-11 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Predictable, transparent delivery</h3>
-              <p className="text-[var(--color-muted)] leading-relaxed">
-                Clear timelines, structured weekly updates, and a shortlist you can act on the same day it lands — never a black box.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {howItWorks.map((item, i) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: '-50px' }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="bg-white rounded-2xl p-7 border border-[var(--color-line)] h-full"
+              >
+                <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">{item.step}</span>
+                <h3 className="font-poppins font-semibold text-lg text-[var(--color-ink)] mb-2 tracking-tight">{item.title}</h3>
+                <p className="text-sm text-[var(--color-muted)] leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Key Metrics */}
-      <MetricsStrip metrics={employerMetrics} />
-
-      {/* What's in your shortlist */}
+      {/* What makes our candidates different */}
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div className="max-w-xl">
-              <span className="eyebrow mb-3 block">What you receive</span>
-              <h2 className="heading-lg mb-4">A shortlist you can trust, not a pile of resumes</h2>
-              <p className="text-lg text-[var(--color-muted)] leading-relaxed mb-6">
-                Every name on your shortlist has already been verified on a call. You see what matters for your decision — never our internal notes.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Quota attainment and deal-size experience",
-                  "Verified relocation and notice period",
-                  "Our recruiter's overall recommendation",
-                  "Expected compensation, shown where it matters most",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[var(--color-ink)]">
-                    <svg className="w-5 h-5 mt-0.5 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <motion.div
+            className="mb-16 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">The difference</span>
+            <h2 className="heading-lg">What makes our candidates different</h2>
+          </motion.div>
 
-            <div className="bg-[var(--color-mist)] rounded-2xl border border-[var(--color-line)] p-8">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-[var(--color-line)]">
-                <div>
-                  <p className="text-xs font-mono text-[var(--color-muted)]">Sample shortlist</p>
-                  <p className="font-poppins font-semibold text-[var(--color-ink)]">VP Sales — Enterprise SaaS</p>
-                </div>
-                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[var(--color-accent-soft)] text-[var(--color-accent)]">3 candidates</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {whatMakesDifferent.map((item) => (
+              <div key={item.title} className="anchor-line py-1">
+                <h3 className="font-poppins font-semibold text-lg text-[var(--color-ink)] mb-2">{item.title}</h3>
+                <p className="text-[var(--color-muted)] leading-relaxed">{item.description}</p>
               </div>
-
-              <div className="space-y-4">
-                <div className="bg-white rounded-xl p-5 border border-[var(--color-accent)]">
-                  <div className="flex items-center justify-between mb-2">
-                    <p className="font-semibold text-[var(--color-ink)]">Candidate A — Senior AE, SaaS Sales</p>
-                    <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[var(--color-accent)] text-white">Recommended</span>
-                  </div>
-                  <p className="text-sm text-[var(--color-muted)]">Consistent 100%+ quota, enterprise CFO-level deals, verified stable tenure, 30-day notice.</p>
-                </div>
-                <div className="bg-white rounded-xl p-5 border border-[var(--color-line)]">
-                  <p className="font-semibold text-[var(--color-ink)] mb-1">Candidate B — Director, Sales</p>
-                  <p className="text-sm text-[var(--color-muted)]">Verified relocation, strong communication score.</p>
-                </div>
-                <div className="bg-white rounded-xl p-5 border border-[var(--color-line)]">
-                  <p className="font-semibold text-[var(--color-ink)] mb-1">Candidate C — Enterprise AE</p>
-                  <p className="text-sm text-[var(--color-muted)]">Immediate joiner, strong deal-size match.</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Submit Mandate Form */}
-      <section className="section-padding bg-white">
+      {/* Mid-page mandate form */}
+      <section id="mandate-form" className="section-padding bg-[var(--color-mist)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="eyebrow mb-3 block justify-center">Get started</span>
-            <h2 className="heading-lg mb-4">Submit hiring mandate</h2>
+            <h2 className="heading-lg mb-4">Submit a hiring mandate</h2>
             <p className="text-xl text-[var(--color-muted)]">
-              Share your sales hiring requirements and we'll deliver curated, motion-aligned candidates.
+              Company, role, sales category, city, and budget range — that's all we need to start sourcing.
             </p>
           </div>
 
           <EmployerForm
-            title="Hiring Request"
-            subtitle="Complete this form to start your precision hiring journey with StaffAnchor."
+            title="Hiring Mandate"
+            subtitle="Complete this form and a StaffAnchor recruiter will follow up within one business day."
+            submitText="Submit Mandate →"
+            onSubmit={submitEmployerForm}
+          />
+        </div>
+      </section>
+
+      {/* Roles we place */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-16 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">Coverage</span>
+            <h2 className="heading-lg">Roles we place — IC to leadership</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {rolesWePlace.map((r) => (
+              <div key={r.level} className="bg-[var(--color-mist)] rounded-2xl p-7 border border-[var(--color-line)]">
+                <h3 className="font-poppins font-semibold text-lg text-[var(--color-ink)] mb-2">{r.level}</h3>
+                <p className="text-[var(--color-muted)] leading-relaxed text-sm">{r.roles}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries / domains */}
+      <SalesDomainsGrid
+        eyebrow="Whatever your motion"
+        title="We've placed for it"
+        subtitle="B2B or B2C, whatever your sales motion, we've built shortlists for it."
+      />
+
+      {/* Social proof placeholder */}
+      <section className="section-padding bg-[var(--color-mist)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-12 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">Trusted by</span>
+            <h2 className="heading-lg">Companies we've placed for</h2>
+          </motion.div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="bg-white rounded-xl border border-dashed border-[var(--color-line)] h-20 flex items-center justify-center text-xs text-[var(--color-muted-soft)] font-medium uppercase tracking-wider">
+                Client logo placeholder
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-[var(--color-muted-soft)] mt-4">Client logos and testimonials to be added — placeholder until supplied.</p>
+        </div>
+      </section>
+
+      {/* Closing mandate form */}
+      <section className="section-padding bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="heading-lg mb-4">Ready for a shortlist you can say yes to?</h2>
+            <p className="text-xl text-[var(--color-muted)]">
+              Tell us about the role — we'll start sourcing against verified sales performance data right away.
+            </p>
+          </div>
+
+          <EmployerForm
+            title="Hiring Mandate"
+            subtitle="Complete this form and a StaffAnchor recruiter will follow up within one business day."
             submitText="Submit Mandate →"
             onSubmit={submitEmployerForm}
           />

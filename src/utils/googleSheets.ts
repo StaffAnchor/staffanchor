@@ -199,3 +199,43 @@ export const submitJobSeekerForm = async (inputFormData: FormData): Promise<void
   }
 };
 
+
+export interface ContactFormData {
+  name: string;
+  email: string;
+  phone?: string;
+  audience: string; // "Employer" | "Jobseeker" | "Other"
+  message: string;
+  timestamp?: string;
+}
+
+// Reuses the employers sheet endpoint as a general inbox until a dedicated
+// contact-form endpoint is provisioned.
+export const submitContactForm = async (inputFormData: FormData): Promise<void> => {
+  try {
+    const data: Record<string, string> = {};
+    for (const [key, value] of inputFormData.entries()) {
+      data[key] = String(value);
+    }
+    data.timestamp = new Date().toISOString();
+    data.formType = 'contact';
+
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(data)) {
+      formData.append(key, value);
+    }
+
+    const response = await fetch(GOOGLE_SHEETS_ENDPOINTS.employers, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`HTTP error! status: ${response.status}, response: ${errorText}`);
+    }
+  } catch (error) {
+    console.error('Error submitting contact form:', error);
+    throw error;
+  }
+};

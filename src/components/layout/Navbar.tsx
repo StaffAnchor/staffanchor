@@ -22,26 +22,10 @@ const Navbar = () => {
 
   const navItems: NavItem[] = [
     { name: 'Home', href: '/' },
-    { name: 'Our Approach', href: '/about-us' },
-    {
-      name: 'For Employers',
-      href: '/employers',
-      submenu: [
-        { name: 'Sales Hiring ', href: '/sales-hiring' },
-        { name: 'Leadership Hiring ', href: '/leadership-hiring' },
-        { name: 'Volume Hiring ', href: '/volume-hiring' },
-        { name: 'Sales Talent Intelligence', href: '/sales-talent-intelligence' },
-        { name: 'Interim & Contract Hiring', href: '/interim' },
-      ]
-    },
-    {
-      name: 'For Jobseekers',
-      href: '/jobseekers',
-      submenu: [
-        { name: 'Submit Profile', href: 'https://jobs.staffanchor.com/register', targetBlank: true },
-      ]
-    },
-    { name: 'Contact', href: '/contact' },
+    { name: 'About Us', href: '/about-us' },
+    { name: 'Employers', href: '/employers' },
+    { name: 'Jobseekers', href: '/jobseekers' },
+    { name: 'Contact Us', href: '/contact' },
   ];
 
   return (

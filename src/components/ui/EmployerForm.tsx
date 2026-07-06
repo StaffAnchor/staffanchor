@@ -21,25 +21,25 @@ interface EmployerFormProps {
 
 const employerFormFields: FormField[] = [
   { name: "companyName", label: "Company Name", type: "text", required: true, placeholder: "Enter your company name" },
-  { 
-    name: "industry", 
-    label: "Industry", 
-    type: "select", 
-    required: true, 
-    placeholder: "Select your industry",
-    options: [
-      "Technology",
-      "Healthcare",
-      "Finance & Banking",
-      "E-commerce & Retail",
-      "Manufacturing",
-      "Education",
-      "Real Estate",
-      "Hospitality",
-      "Consulting",
-      "Other"
-    ]
+  { name: "roleTitle", label: "Role Title", type: "text", required: true, placeholder: "e.g. Enterprise Account Executive" },
+  {
+    name: "salesCategory",
+    label: "Sales Category",
+    type: "select",
+    required: true,
+    placeholder: "Select category",
+    options: ["B2B Sales", "B2C Sales", "Non-Sales / Other"]
   },
+  { name: "city", label: "City", type: "text", required: true, placeholder: "e.g. Bengaluru, Mumbai, Delhi NCR" },
+  {
+    name: "budgetRange",
+    label: "Budget Range (Fixed CTC, ₹ LPA)",
+    type: "select",
+    required: true,
+    placeholder: "Select budget range",
+    options: ["Under 10L", "10-20L", "20-40L", "40-75L", "75L+"]
+  },
+  { name: "description", label: "Brief Description", type: "textarea", required: true, placeholder: "What does this role need to get done? Motion, team, mandate context." },
   { name: "fullName", label: "Full Name", type: "text", required: true, placeholder: "Enter your full name" },
   { name: "designation", label: "Designation", type: "text", required: true, placeholder: "HR Manager, CEO, Founder, etc." },
   { name: "workEmail", label: "Work Email", type: "email", required: true, placeholder: "Enter your work email" },
