@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import EmployerForm from '@/components/ui/EmployerForm';
-import { submitEmployerForm } from '@/utils/googleSheets';
+import { submitEmployerForm } from '@/utils/mandates';
 import SalesDomainsGrid from '@/components/ui/SalesDomainsGrid';
 
 const howItWorks = [
