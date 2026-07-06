@@ -78,16 +78,16 @@ const aiTools = [
 
 const testimonials = [
   {
+    quote: "Our leadership role was closed in 3 weeks — flawless process.",
+    // author: "Rajesh Kumar",
+    title: "Founder",
+    company: "B2B FinTech Startup",
+  },
+  {
     quote: "They think like consultants, not recruiters. Every shortlist was spot-on.",
     // author: "Priya Sharma",
     title: "CHRO",
     company: "D2C Brand",
-  },
-  {
-    quote: "Our leadership role was closed in 3 weeks — flawless process.",
-    // author: "Rajesh Kumar",
-    title: "Founder",
-    company: "FinTech Startup",
   },
 ];
 
@@ -147,8 +147,8 @@ export default function Home() {
     <>
       {/* Hero Section for home page */}
       <HeroSection 
-        headline="We Build the Sales Teams That Build Your Business."
-        subtext="Specialised Sales Hiring, Leadership Search, and Scale-up support for fast-growth companies across industries."
+        headline="We Build the B2B Sales Teams That Drive Your Revenue."
+        subtext="Specialised B2B Sales Hiring, Leadership Search, and Scale-up support for fast-growth B2B & enterprise companies (with B2C hiring support available too)."
         specialization={true}
         backgroundPattern={true}
       >

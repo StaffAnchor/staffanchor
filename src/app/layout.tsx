@@ -21,13 +21,13 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://staffanchor.com'),
-  title: "StaffAnchor Talent Solutions - AI-Driven Sales Hiring",
-  description: "We help companies hire top-performing Sales Leaders & Revenue Teams. B2B & B2C Sales · Leadership · GTM Roles — Powered by AI + Sales Expertise",
+  title: "StaffAnchor Talent Solutions - AI-Driven B2B Sales Hiring",
+  description: "We help companies build high-performing B2B Sales & Revenue teams — Sales Leaders, GTM Roles & Leadership hiring (with B2C expertise too) — Powered by AI + Sales Expertise",
   keywords: "sales hiring, sales recruitment, executive search, sales leaders, revenue team hiring, B2B sales recruitment, B2C sales hiring, GTM roles, go-to-market hiring, sales talent acquisition, AI recruitment, sales headhunter, business development hiring, account executive recruitment, sales manager hiring, CRO recruitment, VP sales hiring, regional sales manager, sales director recruitment, inside sales hiring, field sales recruitment, sales operations hiring, pre-sales hiring, sales enablement recruitment, channel sales hiring, enterprise sales recruitment, startup sales hiring, volume hiring, leadership hiring, interim hiring, sales talent intelligence, India recruitment, executive recruitment India, talent solutions, recruitment consultancy",
   authors: [{ name: "StaffAnchor Talent Solutions" }],
   openGraph: {
     title: "StaffAnchor Talent Solutions",
-    description: "We help companies hire top-performing Sales Leaders & Revenue Teams. B2B & B2C Sales · Leadership · GTM Roles — Powered by AI + Sales Expertise",
+    description: "We help companies build high-performing B2B Sales & Revenue teams — Sales Leaders, GTM Roles & Leadership hiring (with B2C expertise too) — Powered by AI + Sales Expertise",
     url: "https://staffanchor.com",
     siteName: "StaffAnchor Talent Solutions",
     type: "website",
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "StaffAnchor Talent Solutions - AI-Driven Sales Hiring",
-    description: "We help companies hire top-performing Sales Leaders & Revenue Teams. B2B & B2C Sales · Leadership · GTM Roles — Powered by AI + Sales Expertise",
+    title: "StaffAnchor Talent Solutions - AI-Driven B2B Sales Hiring",
+    description: "We help companies build high-performing B2B Sales & Revenue teams — Sales Leaders, GTM Roles & Leadership hiring (with B2C expertise too) — Powered by AI + Sales Expertise",
     images: ["/favicon.ico"],
   },
 };

@@ -167,7 +167,7 @@ export default function EmployersPage() {
               transition={{ duration: 0.6 }}
               className="font-poppins font-light text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight mb-12"
             >
-              Sales hiring challenges change with scale.
+              B2B sales hiring challenges change with scale.
             </motion.h1>
             
             <motion.div
@@ -204,7 +204,7 @@ export default function EmployersPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-lg md:text-xl text-gray-600 leading-relaxed"
             >
-              Our hiring solutions are designed to support companies at every stage of their sales journey — from building core teams to scaling fast, hiring leadership, and making informed talent decisions.
+              Our hiring solutions are designed to support B2B companies at every stage of their revenue journey — from building core teams to scaling fast, hiring leadership, and making informed talent decisions. (We also support B2C sales hiring where needed.)
             </motion.p>
           </div>
         </div>
