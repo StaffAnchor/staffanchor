@@ -161,11 +161,12 @@ export default function EmployersPage() {
       <section className="relative py-20 lg:py-24 overflow-hidden bg-white">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
+            <span className="eyebrow mb-6 block">For employers</span>
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="font-poppins font-light text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight mb-12"
+              className="font-poppins font-semibold text-4xl md:text-5xl lg:text-6xl text-[var(--color-ink)] leading-tight tracking-tight mb-12"
             >
               B2B sales hiring challenges change with scale.
             </motion.h1>
@@ -177,22 +178,22 @@ export default function EmployersPage() {
               className="space-y-6 mb-10"
             >
               <div className="flex items-start gap-4">
-                <div className="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0" />
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                <div className="w-2 h-2 rounded-full bg-[var(--color-accent)] mt-2 flex-shrink-0" />
+                <p className="text-lg md:text-xl text-[var(--color-ink)]/80 leading-relaxed">
                   <span className="font-semibold text-gray-900">Early teams</span> need strong execution.
                 </p>
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-2 h-2 rounded-full bg-teal-600 mt-2 flex-shrink-0" />
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                <div className="w-2 h-2 rounded-full bg-[var(--color-accent)] mt-2 flex-shrink-0" />
+                <p className="text-lg md:text-xl text-[var(--color-ink)]/80 leading-relaxed">
                   <span className="font-semibold text-gray-900">Growing teams</span> need structure and speed.
                 </p>
               </div>
               
               <div className="flex items-start gap-4">
                 <div className="w-2 h-2 rounded-full bg-violet-600 mt-2 flex-shrink-0" />
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                <p className="text-lg md:text-xl text-[var(--color-ink)]/80 leading-relaxed">
                   <span className="font-semibold text-gray-900">Mature teams</span> need leaders who can shape strategy and outcomes.
                 </p>
               </div>
@@ -202,7 +203,7 @@ export default function EmployersPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg md:text-xl text-gray-600 leading-relaxed"
+              className="text-lg md:text-xl text-[var(--color-muted)] leading-relaxed"
             >
               Our hiring solutions are designed to support B2B companies at every stage of their revenue journey — from building core teams to scaling fast, hiring leadership, and making informed talent decisions. (We also support B2C sales hiring where needed.)
             </motion.p>
@@ -219,57 +220,62 @@ export default function EmployersPage() {
       />
 
       {/* Why Employers Trust StaffAnchor */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-[var(--color-mist)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-8">⭐ Why Employers Trust StaffAnchor</h2>
+          <div className="mb-16 max-w-2xl">
+            <span className="eyebrow mb-3 block">Why us</span>
+            <h2 className="heading-lg">Why employers trust StaffAnchor</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-900 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-2xl p-8 border border-[var(--color-line)] hover:border-[var(--color-ink)] transition-colors duration-300">
+              <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">01</span>
+              <div className="w-11 h-11 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Sales-Only Expertise</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Sales-Only Expertise</h3>
+              <p className="text-[var(--color-muted)] leading-relaxed">
                 A single-function specialisation that drives accuracy, speed and quality.
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-900 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-[var(--color-line)] hover:border-[var(--color-ink)] transition-colors duration-300">
+              <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">02</span>
+              <div className="w-11 h-11 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">High-Quality Shortlists</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">High-Quality Shortlists</h3>
+              <p className="text-[var(--color-muted)] leading-relaxed">
                 No bulk CVs. Only curated, motion-fit, assessment-backed candidates.
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-900 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-[var(--color-line)] hover:border-[var(--color-ink)] transition-colors duration-300">
+              <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">03</span>
+              <div className="w-11 h-11 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Industry-Agnostic Coverage</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Industry-Agnostic Coverage</h3>
+              <p className="text-[var(--color-muted)] leading-relaxed">
                 SaaS, Fintech, BFSI, Automotive, Real Estate, D2C, Manufacturing & more.
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-900 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-[var(--color-line)] hover:border-[var(--color-ink)] transition-colors duration-300">
+              <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">04</span>
+              <div className="w-11 h-11 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Predictable, Transparent Delivery</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-xl font-poppins font-semibold text-[var(--color-ink)] mb-3 tracking-tight">Predictable, Transparent Delivery</h3>
+              <p className="text-[var(--color-muted)] leading-relaxed">
                 Clear timelines, structured weekly updates and milestone-based execution.
               </p>
             </div>
@@ -284,8 +290,9 @@ export default function EmployersPage() {
       <section className="section-padding bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="heading-lg mb-4">Submit Hiring Mandate</h2>
-            <p className="text-xl text-gray-600">
+            <span className="eyebrow mb-3 block justify-center">Get started</span>
+            <h2 className="heading-lg mb-4">Submit hiring mandate</h2>
+            <p className="text-xl text-[var(--color-muted)]">
               Share your sales hiring requirements and we'll deliver curated, motion-aligned candidates.
             </p>
           </div>

@@ -30,7 +30,7 @@ export default function SalesHiringPage() {
                 Precision hiring for frontline and core sales roles that directly impact revenue.
               </p>
 
-              <h2 className="text-xs font-bold tracking-widest text-blue-900 uppercase mb-4 letter-spacing-wide">
+              <h2 className="text-xs font-bold tracking-widest text-[var(--color-ink)] uppercase mb-4 letter-spacing-wide">
                 The Most Critical Sales Hiring Layer
               </h2>
 
@@ -80,8 +80,8 @@ export default function SalesHiringPage() {
                   'Sales Managers'
                 ].map((role, index) => (
                   <div key={index} className="flex items-center group">
-                    <div className="w-2 h-2 bg-gradient-to-br from-blue-600 to-teal-600 rounded-full mr-4 group-hover:scale-150 transition-transform duration-300"></div>
-                    <span className="text-gray-900 font-medium text-lg group-hover:text-blue-900 transition-colors">{role}</span>
+                    <div className="w-2 h-2 bg-[var(--color-ink)] rounded-full mr-4 group-hover:scale-150 transition-transform duration-300"></div>
+                    <span className="text-gray-900 font-medium text-lg group-hover:text-[var(--color-ink)] transition-colors">{role}</span>
                   </div>
                 ))}
               </div>
@@ -107,8 +107,8 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
               {/* Behavioural Skills */}
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-10 h-10 bg-[var(--color-accent-soft)] rounded-lg flex items-center justify-center mr-3">
+                    <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                   </div>
@@ -119,7 +119,7 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
                 <ul className="space-y-3">
                   {['Questioning depth', 'Listening ability', 'Clarity of articulation', 'Customer empathy'].map((skill, index) => (
                     <li key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-teal-600 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-[var(--color-accent)] mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       <span className="text-gray-700">{skill}</span>
@@ -132,7 +132,7 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="flex items-center mb-6">
                   <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center mr-3">
-                    <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                   </div>
@@ -143,7 +143,7 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
                 <ul className="space-y-3">
                   {['Objection handling', 'Pipeline ownership', 'Deal movement discipline', 'Commercial reasoning', 'Negotiation patterns'].map((competency, index) => (
                     <li key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-teal-600 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-[var(--color-accent)] mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       <span className="text-gray-700">{competency}</span>
@@ -155,8 +155,8 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
               {/* Personal Drivers */}
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-10 h-10 bg-[var(--color-accent-soft)] rounded-lg flex items-center justify-center mr-3">
+                    <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
@@ -167,7 +167,7 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
                 <ul className="space-y-3">
                   {['Coachability', 'Work ethic', 'Resilience', 'Growth trajectory'].map((driver, index) => (
                     <li key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-teal-600 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-[var(--color-accent)] mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       <span className="text-gray-700">{driver}</span>
@@ -180,7 +180,7 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="flex items-center mb-6">
                   <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center mr-3">
-                    <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                     </svg>
                   </div>
@@ -191,7 +191,7 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
                 <ul className="space-y-3">
                   {['Inside sales', 'Field sales', 'Enterprise', 'Channel'].map((motion, index) => (
                     <li key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-teal-600 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-[var(--color-accent)] mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       <span className="text-gray-700">{motion} <span className="text-gray-500 text-sm">(evaluated differently)</span></span>
@@ -221,7 +221,7 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
                 { title: 'Strengths & risk indicators', icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' }
               ].map((item, index) => (
                 <div key={index} className="relative pl-16">
-                  <div className="absolute left-0 top-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="absolute left-0 top-0 w-12 h-12 bg-[var(--color-ink)] rounded-xl flex items-center justify-center shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                     </svg>
@@ -236,7 +236,7 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+        <section className="py-20 bg-[var(--color-ink)] text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-poppins font-light text-3xl md:text-4xl mb-6">
               Hiring Sales Talent is a High-Stakes Decision.
@@ -247,7 +247,7 @@ We evaluate candidates across behaviour, competencies, personal drivers, and sal
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-teal-600 text-white px-8 py-4 rounded-full font-medium hover:bg-teal-500 transition-all duration-200 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="inline-block bg-[var(--color-accent)] text-white px-8 py-4 rounded-full font-medium hover:bg-[var(--color-accent-dark)] transition-all duration-200 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Talk to a Sales Hiring Expert →
             </Link>

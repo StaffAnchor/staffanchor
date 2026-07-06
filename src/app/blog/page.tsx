@@ -35,7 +35,7 @@ export default function BlogPage() {
                   
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">{post.publishDate}</span>
-                    <span className="text-teal-600 font-medium hover:text-teal-700">
+                    <span className="text-[var(--color-accent)] font-medium hover:text-teal-700">
                       Read Article →
                     </span>
                   </div>

@@ -15,8 +15,8 @@ export default function LoadingSpinner({ size = 'md', color = 'primary' }: Loadi
   };
 
   const colorClasses = {
-    primary: 'border-blue-600',
-    secondary: 'border-teal-600', 
+    primary: 'border-[var(--color-accent)]',
+    secondary: 'border-[var(--color-accent)]', 
     white: 'border-white'
   };
 

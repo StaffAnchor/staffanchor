@@ -297,7 +297,7 @@ const JobseekerForm = ({
   };
 
   const renderField = (field: FormField) => {
-    const baseClasses = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200";
+    const baseClasses = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all duration-200";
     
     switch (field.type) {
       case 'textarea':
@@ -342,7 +342,7 @@ const JobseekerForm = ({
             <button
               type="button"
               onClick={() => setOpenMultiselects(prev => ({ ...prev, [field.name]: !prev[field.name] }))}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white flex items-center justify-between hover:border-gray-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white flex items-center justify-between hover:border-gray-400 focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all duration-200"
             >
               <span className="text-gray-700">
                 {selectedOptions[field.name]?.length > 0 
@@ -378,7 +378,7 @@ const JobseekerForm = ({
                         type="checkbox"
                         checked={selectedOptions[field.name]?.includes(option) || false}
                         onChange={() => handleMultiSelectChange(field.name, option)}
-                        className="w-4 h-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
+                        className="w-4 h-4 text-[var(--color-accent)] focus:ring-[var(--color-accent)] border-gray-300 rounded"
                       />
                       <span className="text-sm text-gray-700">{option}</span>
                     </label>
@@ -421,7 +421,7 @@ const JobseekerForm = ({
             />
             <label
               htmlFor={field.name}
-              className="w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 hover:border-teal-400 transition-all duration-200"
+              className="w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 hover:border-[var(--color-accent)] transition-all duration-200"
             >
               <svg className="w-12 h-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -429,7 +429,7 @@ const JobseekerForm = ({
               <div className="text-center">
                 {selectedFile ? (
                   <div>
-                    <p className="text-teal-600 font-medium">{selectedFile.name}</p>
+                    <p className="text-[var(--color-accent)] font-medium">{selectedFile.name}</p>
                     <p className="text-xs text-gray-500 mt-1">Click to change file</p>
                   </div>
                 ) : (
@@ -556,10 +556,10 @@ const JobseekerForm = ({
           disabled={isSubmitting}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className={`w-full py-4 cursor-pointer px-6 rounded-full font-medium text-white transition-all duration-200 ${
+          className={`w-full py-4 cursor-pointer px-6 rounded-lg font-semibold text-white transition-all duration-200 ${
             isSubmitting 
               ? 'bg-gray-400 cursor-not-allowed' 
-              : 'bg-teal-600 hover:bg-teal-700 focus:ring-2 focus:ring-teal-500 focus:ring-offset-2'
+              : 'bg-[var(--color-accent)] hover:bg-teal-700 focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2'
           }`}
         >
           {isSubmitting ? (

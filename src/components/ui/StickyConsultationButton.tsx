@@ -35,7 +35,7 @@ const StickyConsultationButton = () => {
               href={buttonLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-linear-to-r from-teal-600 to-blue-600 hover:from-teal-500 hover:to-blue-500 text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 transform hover:scale-105"
+              className="group relative bg-linear-to-r [var(--color-ink)] hover:bg-[var(--color-accent)] text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 transform hover:scale-105"
             >
               {/* Icon */}
               <div className="shrink-0">
@@ -60,7 +60,7 @@ const StickyConsultationButton = () => {
           ) : (
             <Link
               href={buttonLink}
-              className="group relative bg-linear-to-r from-teal-600 to-blue-600 hover:from-teal-500 hover:to-blue-500 text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 transform hover:scale-105"
+              className="group relative bg-linear-to-r [var(--color-ink)] hover:bg-[var(--color-accent)] text-white px-6 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 transform hover:scale-105"
             >
               {/* Icon */}
               <div className="shrink-0">
@@ -96,7 +96,7 @@ const StickyConsultationButton = () => {
         /* Minimized button */
         <button
           onClick={() => setIsExpanded(true)}
-          className="w-12 hover:cursor-pointer h-12 bg-linear-to-r from-teal-600 to-blue-600 hover:from-teal-500 hover:to-blue-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center transform hover:scale-110"
+          className="w-12 hover:cursor-pointer h-12 bg-linear-to-r [var(--color-ink)] hover:bg-[var(--color-accent)] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center transform hover:scale-110"
           aria-label="Open consultation button"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

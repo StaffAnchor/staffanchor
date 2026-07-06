@@ -75,12 +75,13 @@ export default function CorePracticesSection({
     <section className={`${backgroundColor} py-16 overflow-hidden`}>
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="mb-16 max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
+          <span className="eyebrow mb-3 block">What we do</span>
           <motion.h2 
             className="heading-lg mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -90,15 +91,17 @@ export default function CorePracticesSection({
           >
             {title}
           </motion.h2>
-          <motion.p 
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            {subtitle}
-          </motion.p>
+          {subtitle && (
+            <motion.p 
+              className="text-xl text-[var(--color-muted)]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              {subtitle}
+            </motion.p>
+          )}
         </motion.div>
 
         <motion.div

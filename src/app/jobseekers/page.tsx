@@ -130,7 +130,7 @@ export default function JobseekersPage() {
             href="https://jobs.staffanchor.com/register"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center justify-center px-8 py-4 bg-teal-600 text-white border-2 border-teal-600 font-semibold rounded-full hover:bg-teal-500 hover:border-teal-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl min-w-[200px]"
+            className="group inline-flex items-center justify-center px-8 py-4 bg-[var(--color-accent)] text-white border border-[var(--color-accent)] font-semibold rounded-full hover:bg-[var(--color-accent-dark)] hover:border-[var(--color-accent)] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl min-w-[200px]"
           >
             <span>Submit Profile</span>
             <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,7 +170,7 @@ export default function JobseekersPage() {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-900 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-[var(--color-ink)] rounded-lg flex items-center justify-center mb-4">
                   {benefit.icon}
                 </div>
                 <h3 className="font-semibold text-xl text-gray-900 mb-3">{benefit.title}</h3>
@@ -207,7 +207,7 @@ export default function JobseekersPage() {
               >
                 <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 h-full">
                   <div className="flex items-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-900 to-teal-600 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 bg-[var(--color-ink)] rounded-full flex items-center justify-center">
                       <span className="text-2xl font-bold text-white">{step.step}</span>
                     </div>
                   </div>
@@ -264,7 +264,7 @@ export default function JobseekersPage() {
                 }}
                 className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-8 shadow-lg border border-gray-100"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-900 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-[var(--color-ink)] rounded-lg flex items-center justify-center mb-4">
                   {benefit.icon}
                 </div>
                 <h3 className="font-semibold text-xl text-gray-900 mb-3">{benefit.title}</h3>
@@ -279,7 +279,7 @@ export default function JobseekersPage() {
       <TestimonialCard testimonials={testimonials} />
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-r from-blue-900 to-teal-600 text-white">
+      <section className="section-padding bg-gradient-to-r [var(--color-ink)] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -295,7 +295,7 @@ export default function JobseekersPage() {
               href="https://jobs.staffanchor.com/register"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 border-2 border-white font-semibold rounded-full hover:bg-gray-100 hover:border-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--color-ink)] border-2 border-white font-semibold rounded-full hover:bg-gray-100 hover:border-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               <span>Submit Your Profile</span>
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -322,7 +322,7 @@ export default function JobseekersPage() {
             </p>
             <Link 
               href="/contact" 
-              className="inline-flex items-center justify-center px-8 py-4 bg-blue-900 text-white border-2 border-blue-900 font-semibold rounded-full hover:bg-blue-800 hover:border-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center justify-center px-8 py-4 bg-[var(--color-ink)] text-white border border-[var(--color-ink)] font-semibold rounded-full hover:bg-[var(--color-accent)] hover:border-[var(--color-accent-dark)] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               <span>Get in Touch</span>
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

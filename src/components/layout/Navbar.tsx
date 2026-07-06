@@ -23,8 +23,8 @@ const Navbar = () => {
   const navItems: NavItem[] = [
     { name: 'Home', href: '/' },
     { name: 'Our Approach', href: '/about-us' },
-    { 
-      name: 'For Employers', 
+    {
+      name: 'For Employers',
       href: '/employers',
       submenu: [
         { name: 'Sales Hiring ', href: '/sales-hiring' },
@@ -32,49 +32,50 @@ const Navbar = () => {
         { name: 'Volume Hiring ', href: '/volume-hiring' },
         { name: 'Sales Talent Intelligence', href: '/sales-talent-intelligence' },
         { name: 'Interim & Contract Hiring', href: '/interim' },
-      
       ]
     },
-    { 
-      name: 'For Jobseekers', 
+    {
+      name: 'For Jobseekers',
       href: '/jobseekers',
       submenu: [
         { name: 'Submit Profile', href: 'https://jobs.staffanchor.com/register', targetBlank: true },
       ]
     },
-    // { name: 'Articles', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
 
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+    <nav className="bg-white/90 backdrop-blur-md border-b border-[var(--color-line)] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-18 py-2">
           {/* Logo Section */}
           <div className="shrink-0">
-            <Link href="/" className="flex items-center">
-              <Image 
-                src="/Staffanchor_Logo.svg" 
-                alt="StaffAnchor Talent Solutions" 
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/Staffanchor_Logo.svg"
+                alt="StaffAnchor Talent Solutions"
                 width={140}
                 height={50}
-                className="h-24 w-24"
+                className="h-14 w-14"
               />
+              <span className="font-poppins font-semibold text-lg text-[var(--color-ink)] hidden sm:block">
+                StaffAnchor
+              </span>
             </Link>
           </div>
 
           {/* Desktop Navigation Items */}
           <div className="hidden lg:flex items-center justify-center flex-1">
-            <nav className="flex items-center space-x-4">
+            <nav className="flex items-center space-x-1">
               {navItems.map((item) => (
                 <div key={item.name} className="relative group">
                   <Link
                     href={item.href}
-                    className="text-gray-700 hover:text-blue-900 px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center"
+                    className="text-[var(--color-muted)] hover:text-[var(--color-ink)] px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center rounded-md"
                   >
                     {item.name}
                     {item.submenu && (
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     )}
@@ -82,7 +83,7 @@ const Navbar = () => {
 
                   {/* Dropdown Menu */}
                   {item.submenu && (
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="absolute top-full left-0 mt-1 w-60 bg-white rounded-xl shadow-xl border border-[var(--color-line)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                       <div className="py-2">
                         {item.submenu.map((subItem) => (
                           <Link
@@ -90,7 +91,7 @@ const Navbar = () => {
                             href={subItem.href}
                             target={subItem.targetBlank ? '_blank' : undefined}
                             rel={subItem.targetBlank ? 'noopener noreferrer' : undefined}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-900 transition-colors duration-200"
+                            className="block px-4 py-2 text-sm text-[var(--color-muted)] hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)] transition-colors duration-200"
                           >
                             {subItem.name}
                           </Link>
@@ -108,13 +109,13 @@ const Navbar = () => {
             <div className="flex items-center space-x-3">
               <Link
                 href="/employers"
-                className="bg-blue-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-blue-800 transition-colors duration-200 whitespace-nowrap"
+                className="bg-[var(--color-ink)] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[var(--color-accent)] transition-colors duration-200 whitespace-nowrap"
               >
                 Hire Talent
               </Link>
               <Link
                 href="/jobseekers"
-                className="border border-teal-600 text-teal-600 px-5 py-2.5 rounded-full text-sm font-medium hover:bg-teal-50 transition-colors duration-200 whitespace-nowrap"
+                className="border border-[var(--color-line)] text-[var(--color-ink)] px-5 py-2.5 rounded-lg text-sm font-semibold hover:border-[var(--color-ink)] transition-colors duration-200 whitespace-nowrap"
               >
                 Find Jobs
               </Link>
@@ -125,7 +126,7 @@ const Navbar = () => {
           <div className="lg:hidden shrink-0">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="p-2 rounded-md text-[var(--color-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-mist)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -148,7 +149,7 @@ const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="lg:hidden border-t border-gray-100 bg-white"
+              className="lg:hidden border-t border-[var(--color-line)] bg-white"
             >
               <div className="px-4 pt-4 pb-4 space-y-2">
                 {/* Mobile Navigation Items */}
@@ -156,7 +157,7 @@ const Navbar = () => {
                   <div key={item.name}>
                     <Link
                       href={item.href}
-                      className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                      className="block px-4 py-3 text-base font-medium text-[var(--color-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-mist)] rounded-lg transition-colors duration-200"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -169,7 +170,7 @@ const Navbar = () => {
                             href={subItem.href}
                             target={subItem.targetBlank ? '_blank' : undefined}
                             rel={subItem.targetBlank ? 'noopener noreferrer' : undefined}
-                            className="block px-4 py-2 text-sm text-gray-600 hover:text-blue-900 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                            className="block px-4 py-2 text-sm text-[var(--color-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-mist)] rounded-lg transition-colors duration-200"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
                             {subItem.name}
@@ -179,19 +180,19 @@ const Navbar = () => {
                     )}
                   </div>
                 ))}
-                
+
                 {/* Mobile CTA Buttons */}
-                <div className="pt-6 space-y-3 border-t border-gray-100 mt-4">
+                <div className="pt-6 space-y-3 border-t border-[var(--color-line)] mt-4">
                   <Link
                     href="/employers"
-                    className="block w-full bg-blue-900 text-white px-6 py-3 rounded-full text-center font-medium hover:bg-blue-800 transition-colors duration-200"
+                    className="block w-full bg-[var(--color-ink)] text-white px-6 py-3 rounded-lg text-center font-semibold hover:bg-[var(--color-accent)] transition-colors duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Hire Talent
                   </Link>
                   <Link
                     href="/job-seekers"
-                    className="block w-full border border-teal-600 text-teal-600 px-6 py-3 rounded-full text-center font-medium hover:bg-teal-50 transition-colors duration-200"
+                    className="block w-full border border-[var(--color-line)] text-[var(--color-ink)] px-6 py-3 rounded-lg text-center font-semibold hover:border-[var(--color-ink)] transition-colors duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Find Jobs

@@ -99,7 +99,7 @@ export default function PracticeSidebar({ isOpen, onToggle, currentPage }: Pract
                 
                 if (isCurrentPage) {
                   return (
-                    <div key={page.id} className="bg-blue-900 text-white px-4 py-3 rounded-lg">
+                    <div key={page.id} className="bg-[var(--color-ink)] text-white px-4 py-3 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <div className="text-white">
                           {page.icon}
@@ -117,15 +117,15 @@ export default function PracticeSidebar({ isOpen, onToggle, currentPage }: Pract
                   <Link 
                     key={page.id}
                     href={page.href} 
-                    className="block bg-white border border-gray-200 px-4 py-3 rounded-lg hover:border-teal-300 hover:bg-teal-50 transition-all duration-200 group"
+                    className="block bg-white border border-gray-200 px-4 py-3 rounded-lg hover:border-teal-300 hover:bg-[var(--color-accent-soft)] transition-all duration-200 group"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="text-gray-400 group-hover:text-teal-600">
+                      <div className="text-gray-400 group-hover:text-[var(--color-accent)]">
                         {page.icon}
                       </div>
                       <div>
                         <div className="font-medium text-gray-900 group-hover:text-teal-900">{page.title}</div>
-                        <div className="text-xs text-gray-500 group-hover:text-teal-600">{page.description}</div>
+                        <div className="text-xs text-gray-500 group-hover:text-[var(--color-accent)]">{page.description}</div>
                       </div>
                     </div>
                   </Link>
@@ -134,10 +134,10 @@ export default function PracticeSidebar({ isOpen, onToggle, currentPage }: Pract
             </div>
 
             {/* Additional Info */}
-            <div className="mt-8 p-3 bg-blue-50 rounded-lg">
-              <h4 className="font-medium text-blue-900 mb-2">Need Help Choosing?</h4>
-              <p className="text-sm text-blue-700 mb-3">Our experts can guide you.</p>
-              <Link href="/contact" className="text-xs text-blue-600 hover:text-blue-800 underline">
+            <div className="mt-8 p-3 bg-[var(--color-accent-soft)] rounded-lg">
+              <h4 className="font-medium text-[var(--color-ink)] mb-2">Need Help Choosing?</h4>
+              <p className="text-sm text-[var(--color-muted)] mb-3">Our experts can guide you.</p>
+              <Link href="/contact" className="text-xs text-[var(--color-accent)] hover:text-[var(--color-accent-dark)] underline">
                 Get Expert Consultation →
               </Link>
             </div>
@@ -149,7 +149,7 @@ export default function PracticeSidebar({ isOpen, onToggle, currentPage }: Pract
       <div className="hidden lg:block fixed top-24 left-6 z-30 mt-10">
         <button
           onClick={onToggle}
-          className="p-3 bg-blue-900 text-white rounded-lg shadow-lg hover:bg-blue-800 transition-colors"
+          className="p-3 bg-[var(--color-ink)] text-white rounded-lg shadow-lg hover:bg-[var(--color-accent)] transition-colors"
           aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
         >
           <svg className="w-5 h-5 hover:cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -37,7 +37,7 @@ export default function LoadingScreen({ isVisible, progress = 0 }: LoadingScreen
           }}
         >
           <motion.h1 
-            className="text-5xl md:text-6xl font-poppins font-bold bg-linear-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent mb-3"
+            className="text-5xl md:text-6xl font-poppins font-bold bg-[var(--color-ink)] bg-clip-text text-transparent mb-3"
             animate={{ 
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
             }}
@@ -68,7 +68,7 @@ export default function LoadingScreen({ isVisible, progress = 0 }: LoadingScreen
         >
           {/* Pulsing background circle */}
           <motion.div
-            className="absolute inset-0 bg-blue-100 rounded-full -m-6"
+            className="absolute inset-0 bg-[var(--color-accent-soft)] rounded-full -m-6"
             animate={{ 
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.1, 0.3]
@@ -112,7 +112,7 @@ export default function LoadingScreen({ isVisible, progress = 0 }: LoadingScreen
           transition={{ delay: 0.7, duration: 0.5 }}
         >
           <motion.div
-            className="h-full bg-linear-to-r from-blue-500 to-teal-500 rounded-full"
+            className="h-full bg-[var(--color-accent)] rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.3, ease: "easeOut" }}
@@ -139,7 +139,7 @@ export default function LoadingScreen({ isVisible, progress = 0 }: LoadingScreen
           {[0, 1, 2].map((index) => (
             <motion.div
               key={index}
-              className="w-3 h-3 bg-linear-to-r from-blue-500 to-teal-500 rounded-full"
+              className="w-3 h-3 bg-[var(--color-accent)] rounded-full"
               animate={{
                 y: [0, -12, 0],
                 scale: [1, 1.2, 1],

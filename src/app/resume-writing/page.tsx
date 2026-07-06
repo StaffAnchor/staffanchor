@@ -219,11 +219,11 @@ export default function JobSeekersPage() {
         <div className="absolute inset-0 bg-grid-slate-100 mask-[linear-gradient(0deg,white,rgba(255,255,255,0.6))] opacity-30" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="inline-flex items-center rounded-full border border-blue-200 bg-blue-100 px-4 py-1 text-sm font-semibold text-blue-900">
+            <p className="inline-flex items-center rounded-full border border-blue-200 bg-[var(--color-accent-soft)] px-4 py-1 text-sm font-semibold text-[var(--color-ink)]">
               Expert Resume Writing Service
             </p>
             <h1 className="font-poppins mt-6 text-4xl font-light leading-tight text-gray-900 sm:text-5xl lg:text-6xl">
-              A Resume That Gets You Into the <span className="text-blue-900">Interview Room.</span>
+              A Resume That Gets You Into the <span className="text-[var(--color-ink)]">Interview Room.</span>
             </h1>
             <p className="mt-6 text-lg text-gray-700 sm:text-xl">
               Professionally written, ATS-optimised, and visually compelling - crafted for every stage of your career by domain experts.
@@ -233,7 +233,7 @@ export default function JobSeekersPage() {
                 href={RAZORPAY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-blue-900 px-7 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-blue-700"
+                className="rounded-full bg-[var(--color-ink)] px-7 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-[var(--color-accent)]"
               >
                 Order Resume Now
               </a>
@@ -241,7 +241,7 @@ export default function JobSeekersPage() {
                 href={RAZORPAY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-teal-600 px-7 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-teal-500"
+                className="rounded-full bg-[var(--color-accent)] px-7 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-[var(--color-accent-dark)]"
               >
                 Book Consultation
               </a>
@@ -250,15 +250,15 @@ export default function JobSeekersPage() {
 
           <div className="mt-14 grid gap-4 rounded-2xl border border-gray-200 bg-white p-6 text-sm shadow-sm sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-lg bg-slate-50 p-4">
-              <p className="font-semibold text-blue-900">₹999</p>
+              <p className="font-semibold text-[var(--color-ink)]">₹999</p>
               <p className="mt-1 text-gray-600">Early Stage · 0-6 yrs</p>
             </div>
             <div className="rounded-lg bg-slate-50 p-4">
-              <p className="font-semibold text-blue-900">₹1,499</p>
+              <p className="font-semibold text-[var(--color-ink)]">₹1,499</p>
               <p className="mt-1 text-gray-600">Mid Level · 7-15 yrs</p>
             </div>
             <div className="rounded-lg bg-slate-50 p-4">
-              <p className="font-semibold text-blue-900">₹1,999</p>
+              <p className="font-semibold text-[var(--color-ink)]">₹1,999</p>
               <p className="mt-1 text-gray-600">Senior / CXO · 16+ yrs</p>
             </div>
             <div className="rounded-lg bg-slate-50 p-4">
@@ -309,8 +309,8 @@ export default function JobSeekersPage() {
               onClick={() => setActiveTab(tier.key)}
               className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${
                 activeTab === tier.key
-                  ? 'bg-blue-900 text-white shadow-sm'
-                  : 'border border-gray-300 bg-white text-gray-700 hover:border-blue-400 hover:text-blue-900'
+                  ? 'bg-[var(--color-ink)] text-white shadow-sm'
+                  : 'border border-gray-300 bg-white text-gray-700 hover:border-blue-400 hover:text-[var(--color-ink)]'
               }`}
             >
               {tier.tabLabel}
@@ -337,7 +337,7 @@ export default function JobSeekersPage() {
                   {currentTier.featureRows.map((row) => (
                     <tr key={row.feature} className="border-t border-gray-200">
                       <td className="px-4 py-3 text-gray-700">{row.feature}</td>
-                      <td className="px-4 py-3 font-medium text-blue-900">{row.staffAnchor}</td>
+                      <td className="px-4 py-3 font-medium text-[var(--color-ink)]">{row.staffAnchor}</td>
                       <td className="px-4 py-3 text-gray-500">{row.generic}</td>
                     </tr>
                   ))}
@@ -347,7 +347,7 @@ export default function JobSeekersPage() {
           </div>
 
           <aside className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-medium uppercase tracking-wide text-blue-900">Order Card</p>
+            <p className="text-sm font-medium uppercase tracking-wide text-[var(--color-ink)]">Order Card</p>
             <h4 className="mt-2 text-xl font-semibold text-gray-900">{currentTier.orderTitle}</h4>
             <p className="mt-4 text-4xl font-bold text-gray-900">{currentTier.price}</p>
             <ul className="mt-5 space-y-2 text-sm text-gray-600">
@@ -360,7 +360,7 @@ export default function JobSeekersPage() {
               href={RAZORPAY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-blue-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-[var(--color-ink)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-accent)]"
             >
               Order This Plan
             </a>
@@ -377,7 +377,7 @@ export default function JobSeekersPage() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step) => (
               <div key={step.id} className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                <p className="text-sm font-semibold text-blue-900">{step.id}</p>
+                <p className="text-sm font-semibold text-[var(--color-ink)]">{step.id}</p>
                 <h3 className="mt-2 text-lg font-semibold text-gray-900">{step.title}</h3>
                 <p className="mt-2 text-sm text-gray-600">{step.detail}</p>
               </div>
@@ -445,7 +445,7 @@ export default function JobSeekersPage() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((item) => (
               <div key={item.title} className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                <item.icon className="h-6 w-6 text-blue-900" aria-hidden="true" />
+                <item.icon className="h-6 w-6 text-[var(--color-ink)]" aria-hidden="true" />
                 <h3 className="mt-4 text-lg font-semibold text-gray-900">{item.title}</h3>
                 <p className="mt-2 text-sm text-gray-600">{item.description}</p>
               </div>
@@ -464,7 +464,7 @@ export default function JobSeekersPage() {
               href={RAZORPAY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex w-fit items-center rounded-full bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-teal-500"
+              className="mt-8 inline-flex w-fit items-center rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-dark)]"
             >
               Order Now →
             </a>
@@ -473,7 +473,7 @@ export default function JobSeekersPage() {
           <div className="rounded-xl border border-gray-200 bg-slate-50 p-6">
             <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
               <p className="text-xl font-bold text-gray-900">Arjun Mehta</p>
-              <p className="mt-1 text-sm font-medium text-blue-900">Senior Product Manager</p>
+              <p className="mt-1 text-sm font-medium text-[var(--color-ink)]">Senior Product Manager</p>
               <div className="mt-6 space-y-4">
                 <div>
                   <div className="mb-1 flex items-center justify-between text-xs text-gray-500">
@@ -481,7 +481,7 @@ export default function JobSeekersPage() {
                     <span>92%</span>
                   </div>
                   <div className="h-2 rounded-full bg-gray-200">
-                    <div className="h-2 w-[92%] rounded-full bg-blue-900" />
+                    <div className="h-2 w-[92%] rounded-full bg-[var(--color-ink)]" />
                   </div>
                 </div>
                 <div>
@@ -490,7 +490,7 @@ export default function JobSeekersPage() {
                     <span>88%</span>
                   </div>
                   <div className="h-2 rounded-full bg-gray-200">
-                    <div className="h-2 w-[88%] rounded-full bg-teal-600" />
+                    <div className="h-2 w-[88%] rounded-full bg-[var(--color-accent)]" />
                   </div>
                 </div>
                 <div>
@@ -499,7 +499,7 @@ export default function JobSeekersPage() {
                     <span>95%</span>
                   </div>
                   <div className="h-2 rounded-full bg-gray-200">
-                    <div className="h-2 w-[95%] rounded-full bg-blue-700" />
+                    <div className="h-2 w-[95%] rounded-full bg-[var(--color-accent-dark)]" />
                   </div>
                 </div>
               </div>
@@ -517,21 +517,21 @@ export default function JobSeekersPage() {
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             <article className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900">Priya Nair</h3>
-              <p className="mt-1 text-sm text-blue-900">Senior Analyst → Deloitte</p>
+              <p className="mt-1 text-sm text-[var(--color-ink)]">Senior Analyst → Deloitte</p>
               <p className="mt-4 text-gray-600">
                 "4 interview calls in the first week. My profile finally communicated the value I was creating at work."
               </p>
             </article>
             <article className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900">Rohan Kapoor</h3>
-              <p className="mt-1 text-sm text-blue-900">Campus Hire → Infosys</p>
+              <p className="mt-1 text-sm text-[var(--color-ink)]">Campus Hire → Infosys</p>
               <p className="mt-4 text-gray-600">
                 "As a fresher I had no idea how to present my internships. The final resume looked professional and recruiter-ready."
               </p>
             </article>
             <article className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900">Suresh Iyer</h3>
-              <p className="mt-1 text-sm text-blue-900">GM → VP Operations</p>
+              <p className="mt-1 text-sm text-[var(--color-ink)]">GM → VP Operations</p>
               <p className="mt-4 text-gray-600">
                 "At 20 years of experience I thought I knew my resume. The executive framing changed how I positioned my leadership story."
               </p>
@@ -569,7 +569,7 @@ export default function JobSeekersPage() {
         </div>
       </section>
 
-      <section className="pt-20 pb-12 bg-blue-900 text-white text-center">
+      <section className="pt-20 pb-12 bg-[var(--color-ink)] text-white text-center">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-poppins text-3xl font-light sm:text-4xl">Your next role starts with a better resume.</h2>
           <p className="mt-4 text-lg text-blue-100">
@@ -578,7 +578,7 @@ export default function JobSeekersPage() {
           <a
             href="#pricing"
             rel="noopener noreferrer"
-            className="mt-8 inline-block rounded-full bg-teal-600 px-8 py-4 text-lg font-medium text-white transition-colors duration-200 hover:bg-teal-500"
+            className="mt-8 inline-block rounded-full bg-[var(--color-accent)] px-8 py-4 text-lg font-medium text-white transition-colors duration-200 hover:bg-[var(--color-accent-dark)]"
           >
             See Pricing & Book Session →
           </a>

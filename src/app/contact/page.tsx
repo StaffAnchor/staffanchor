@@ -34,31 +34,31 @@ export default function ContactPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <div className="text-center">
-              <div className="w-16 h-16 bg-linear-to-br from-blue-900 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-[var(--color-ink)] rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
               <h3 className="font-semibold text-lg text-gray-900 mb-2">Email Us</h3>
-              <a href="mailto:info@staffanchor.com" className="text-teal-600 hover:text-teal-700">
+              <a href="mailto:info@staffanchor.com" className="text-[var(--color-accent)] hover:text-teal-700">
                 info@staffanchor.com
               </a>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-linear-to-br from-blue-900 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-[var(--color-ink)] rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
               <h3 className="font-semibold text-lg text-gray-900 mb-2">Call Us</h3>
-              <a href="tel:+917273000088" className="text-teal-600 hover:text-teal-700">
+              <a href="tel:+917273000088" className="text-[var(--color-accent)] hover:text-teal-700">
                 +91 7273000088
               </a>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-linear-to-br from-blue-900 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-[var(--color-ink)] rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                 </svg>
@@ -68,7 +68,7 @@ export default function ContactPage() {
                 href="https://linkedin.com/company/staffanchor" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-teal-600 hover:text-teal-700"
+                className="text-[var(--color-accent)] hover:text-teal-700"
               >
                 LinkedIn
               </a>
@@ -88,7 +88,7 @@ export default function ContactPage() {
                   onClick={() => setActiveForm('employer')}
                   className={`px-8 py-3 hover:cursor-pointer rounded-full font-medium transition-all duration-300 ${
                     activeForm === 'employer'
-                      ? 'bg-blue-900 text-white shadow-md'
+                      ? 'bg-[var(--color-ink)] text-white shadow-md'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
@@ -98,7 +98,7 @@ export default function ContactPage() {
                   onClick={() => setActiveForm('jobseeker')}
                   className={`px-8 py-3 hover:cursor-pointer rounded-full font-medium transition-all duration-300 ${
                     activeForm === 'jobseeker'
-                      ? 'bg-teal-600 text-white shadow-md'
+                      ? 'bg-[var(--color-accent)] text-white shadow-md'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
@@ -148,25 +148,25 @@ export default function ContactPage() {
               <h3 className="font-semibold text-lg text-gray-900 mb-4">For Employers</h3>
               <ul className="space-y-3 text-left">
                 <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">12-day average time to hire</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">95% retention rate</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">AI-powered precision matching</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">Real-time talent analytics</span>
@@ -178,25 +178,25 @@ export default function ContactPage() {
               <h3 className="font-semibold text-lg text-gray-900 mb-4">For Job Seekers</h3>
               <ul className="space-y-3 text-left">
                 <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">Curated exclusive opportunities</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">Career consultation and guidance</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">Market intelligence insights</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <svg className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">Long-term career partnership</span>

@@ -46,7 +46,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <Link 
           href="/blog" 
-          className="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium mb-8"
+          className="inline-flex items-center text-[var(--color-accent)] hover:text-teal-700 font-medium mb-8"
         >
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -106,7 +106,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <ul key={index} className="space-y-3 mb-6 ml-6">
                     {section.items?.map((item, itemIndex) => (
                       <li key={itemIndex} className="text-gray-700 leading-relaxed flex items-start">
-                        <span className="text-teal-600 mr-3 mt-1.5">•</span>
+                        <span className="text-[var(--color-accent)] mr-3 mt-1.5">•</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -115,7 +115,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               
               case 'quote':
                 return (
-                  <div key={index} className="bg-gradient-to-r from-teal-50 to-blue-50 border-l-4 border-teal-600 p-6 my-8 rounded-r-lg">
+                  <div key={index} className="bg-gradient-to-r from-teal-50 to-blue-50 border-l-4 border-[var(--color-accent)] p-6 my-8 rounded-r-lg">
                     <p className="text-gray-800 font-medium italic">
                       {section.text}
                     </p>
@@ -140,7 +140,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </p>
           <Link 
             href="/jobseeker"
-            className="inline-block bg-teal-600 text-white px-8 py-4 rounded-full font-medium hover:bg-teal-700 transition-colors"
+            className="inline-block bg-[var(--color-accent)] text-white px-8 py-4 rounded-full font-medium hover:bg-teal-700 transition-colors"
           >
             Start Your Journey
           </Link>
@@ -167,7 +167,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     <p className="text-gray-600 text-sm line-clamp-2">
                       {relatedPost.excerpt}
                     </p>
-                    <span className="text-teal-600 text-sm font-medium mt-4 inline-block">
+                    <span className="text-[var(--color-accent)] text-sm font-medium mt-4 inline-block">
                       Read More →
                     </span>
                   </article>

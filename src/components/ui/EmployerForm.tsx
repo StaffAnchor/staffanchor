@@ -91,7 +91,7 @@ const EmployerForm = ({
   };
 
   const renderField = (field: FormField) => {
-    const baseClasses = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200";
+    const baseClasses = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all duration-200";
     
     // Special handling for industry field to allow custom input
     if (field.name === 'industry') {
@@ -221,10 +221,10 @@ const EmployerForm = ({
           disabled={isSubmitting}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className={`w-full py-4 cursor-pointer px-6 rounded-full font-medium text-white transition-all duration-200 ${
+          className={`w-full py-4 cursor-pointer px-6 rounded-lg font-semibold text-white transition-all duration-200 ${
             isSubmitting 
               ? 'bg-gray-400 cursor-not-allowed' 
-              : 'bg-blue-900 hover:bg-blue-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+              : 'bg-[var(--color-ink)] hover:bg-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2'
           }`}
         >
           {isSubmitting ? (

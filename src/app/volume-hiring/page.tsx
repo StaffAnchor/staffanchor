@@ -39,14 +39,14 @@ export default function VolumeHiringPage() {
         {/* Why Volume Hiring Breaks Section */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xs font-bold tracking-widest text-blue-900 uppercase mb-12 text-center">
+            <h2 className="text-xs font-bold tracking-widest text-[var(--color-ink)] uppercase mb-12 text-center">
               Why Volume Hiring Breaks — And How We Fix It
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 bg-[var(--color-accent-soft)] rounded-lg flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                   </svg>
                 </div>
@@ -58,7 +58,7 @@ export default function VolumeHiringPage() {
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
@@ -69,8 +69,8 @@ export default function VolumeHiringPage() {
               </div>
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 bg-[var(--color-accent-soft)] rounded-lg flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
@@ -82,7 +82,7 @@ export default function VolumeHiringPage() {
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
@@ -113,8 +113,8 @@ export default function VolumeHiringPage() {
               ].map((item, index) => (
                 <div key={index} className="group bg-white border border-gray-200 rounded-xl p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300">
                   <div className="flex items-start">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-blue-600 transition-colors duration-300 shrink-0">
-                      <svg className="w-6 h-6 text-blue-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-10 h-10 bg-[var(--color-accent-soft)] rounded-lg flex items-center justify-center mr-4 group-hover:bg-[var(--color-accent)] transition-colors duration-300 shrink-0">
+                      <svg className="w-6 h-6 text-[var(--color-accent)] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                       </svg>
                     </div>
@@ -149,7 +149,7 @@ export default function VolumeHiringPage() {
               ].map((role, index) => (
                 <div key={index} className="bg-white rounded-lg p-6 border border-gray-200 hover:shadow-lg transition-all duration-300">
                   <div className="flex items-start">
-                    <svg className="w-5 h-5 text-blue-600 mr-3 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-[var(--color-accent)] mr-3 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-gray-800 font-semibold">{role}</span>
@@ -179,7 +179,7 @@ export default function VolumeHiringPage() {
             <div className="space-y-8 max-w-5xl mx-auto">
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-6 shrink-0">
+                  <div className="w-16 h-16 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mr-6 shrink-0">
                     <span className="text-white font-bold text-2xl">1</span>
                   </div>
                   <div>
@@ -193,7 +193,7 @@ export default function VolumeHiringPage() {
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start">
-                  <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mr-6 shrink-0">
+                  <div className="w-16 h-16 bg-[var(--color-accent)] rounded-xl flex items-center justify-center mr-6 shrink-0">
                     <span className="text-white font-bold text-2xl">2</span>
                   </div>
                   <div>
@@ -207,7 +207,7 @@ export default function VolumeHiringPage() {
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-6 shrink-0">
+                  <div className="w-16 h-16 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mr-6 shrink-0">
                     <span className="text-white font-bold text-2xl">3</span>
                   </div>
                   <div>
@@ -221,7 +221,7 @@ export default function VolumeHiringPage() {
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start">
-                  <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mr-6 shrink-0">
+                  <div className="w-16 h-16 bg-[var(--color-accent)] rounded-xl flex items-center justify-center mr-6 shrink-0">
                     <span className="text-white font-bold text-2xl">4</span>
                   </div>
                   <div>
@@ -235,7 +235,7 @@ export default function VolumeHiringPage() {
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-6 shrink-0">
+                  <div className="w-16 h-16 bg-[var(--color-ink)] rounded-xl flex items-center justify-center mr-6 shrink-0">
                     <span className="text-white font-bold text-2xl">5</span>
                   </div>
                   <div>
@@ -268,7 +268,7 @@ export default function VolumeHiringPage() {
                 { title: 'A single point of accountability for delivery', icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z' }
               ].map((item, index) => (
                 <div key={index} className="relative pl-16">
-                  <div className="absolute left-0 top-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="absolute left-0 top-0 w-12 h-12 bg-[var(--color-ink)] rounded-xl flex items-center justify-center shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                     </svg>
@@ -283,7 +283,7 @@ export default function VolumeHiringPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+        <section className="py-20 bg-[var(--color-ink)] text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-poppins font-light text-3xl md:text-4xl mb-6">
               Ready to Scale Without Losing Control?
@@ -293,7 +293,7 @@ export default function VolumeHiringPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-teal-600 text-white px-8 py-4 rounded-full font-medium hover:bg-teal-500 transition-all duration-200 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="inline-block bg-[var(--color-accent)] text-white px-8 py-4 rounded-full font-medium hover:bg-[var(--color-accent-dark)] transition-all duration-200 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Explore Scale-Up Hiring →
             </Link>

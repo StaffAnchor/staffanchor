@@ -26,7 +26,7 @@ export default function LeadershipHiringPage() {
                Sales leaders who shape GTM strategy, build culture, and drive predictable revenue.
               </h1>
 
-              <h2 className="text-xs font-bold tracking-widest text-blue-900 uppercase mb-4 letter-spacing-wide">
+              <h2 className="text-xs font-bold tracking-widest text-[var(--color-ink)] uppercase mb-4 letter-spacing-wide">
                 Why Leadership Hiring Requires A Different Approach
               </h2>
 
@@ -71,7 +71,7 @@ export default function LeadershipHiringPage() {
               ].map((role, index) => (
                 <div key={index} className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-lg p-6 border border-blue-200 hover:shadow-lg transition-all duration-300">
                   <div className="flex items-start">
-                    <svg className="w-5 h-5 text-blue-600 mr-3 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-[var(--color-accent)] mr-3 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-gray-800 font-semibold">{role}</span>
@@ -100,8 +100,8 @@ export default function LeadershipHiringPage() {
 
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 bg-[var(--color-accent-soft)] rounded-lg flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                   </svg>
                 </div>
@@ -113,7 +113,7 @@ export default function LeadershipHiringPage() {
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
@@ -124,8 +124,8 @@ export default function LeadershipHiringPage() {
               </div>
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 bg-[var(--color-accent-soft)] rounded-lg flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 </div>
@@ -137,7 +137,7 @@ export default function LeadershipHiringPage() {
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
@@ -148,8 +148,8 @@ export default function LeadershipHiringPage() {
               </div>
 
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 bg-[var(--color-accent-soft)] rounded-lg flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
@@ -213,7 +213,7 @@ export default function LeadershipHiringPage() {
                 { title: 'Ongoing alignment through offer, transition, and onboarding', icon: 'M13 10V3L4 14h7v7l9-11h-7z' }
               ].map((item, index) => (
                 <div key={index} className="relative pl-16">
-                  <div className="absolute left-0 top-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="absolute left-0 top-0 w-12 h-12 bg-[var(--color-ink)] rounded-xl flex items-center justify-center shadow-lg">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                     </svg>
@@ -228,7 +228,7 @@ export default function LeadershipHiringPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+        <section className="py-20 bg-[var(--color-ink)] text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-poppins font-light text-3xl md:text-4xl mb-6">
               Ready to Hire Revenue Leadership That Scales?
@@ -238,7 +238,7 @@ export default function LeadershipHiringPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-teal-600 text-white px-8 py-4 rounded-full font-medium hover:bg-teal-500 transition-all duration-200 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="inline-block bg-[var(--color-accent)] text-white px-8 py-4 rounded-full font-medium hover:bg-[var(--color-accent-dark)] transition-all duration-200 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Request Leadership Consultation →
             </Link>

@@ -52,7 +52,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-[var(--color-ink)] text-white">
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 ${hasSidebar && sidebarOpen ? 'lg:ml-64' : ''}`}>
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-start">
@@ -77,7 +77,7 @@ const Footer = () => {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:info@staffanchor.com" className="hover:text-teal-400 transition-colors">
+                <a href="mailto:info@staffanchor.com" className="hover:text-[var(--color-accent)] transition-colors">
                   info@staffanchor.com
                 </a>
               </div>
@@ -85,7 +85,7 @@ const Footer = () => {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <a href="tel:+917273000088" className="hover:text-teal-400 transition-colors">
+                <a href="tel:+917273000088" className="hover:text-[var(--color-accent)] transition-colors">
                   +91 7273000088
                 </a>
               </div>
@@ -102,7 +102,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-teal-400 transition-colors text-sm"
+                    className="text-gray-300 hover:text-[var(--color-accent)] transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -121,7 +121,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-teal-400 transition-colors text-sm"
+                    className="text-gray-300 hover:text-[var(--color-accent)] transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -143,7 +143,7 @@ const Footer = () => {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-300 hover:text-teal-400 transition-colors text-sm flex items-center space-x-1"
+                      className="text-gray-300 hover:text-[var(--color-accent)] transition-colors text-sm flex items-center space-x-1"
                     >
                       <span>{link.name}</span>
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,7 +153,7 @@ const Footer = () => {
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-gray-300 hover:text-teal-400 transition-colors text-sm"
+                      className="text-gray-300 hover:text-[var(--color-accent)] transition-colors text-sm"
                     >
                       {link.name}
                     </Link>
@@ -173,15 +173,15 @@ const Footer = () => {
           {/* Key Metrics */}
           <div className="flex items-center space-x-4 mt-2 md:mt-0 text-xs text-gray-400">
             <div className="flex items-center space-x-1">
-              <span className="text-teal-400 font-semibold">500+</span>
+              <span className="text-[var(--color-accent)] font-semibold">500+</span>
               <span>Placements</span>
             </div>
             <div className="flex items-center space-x-1">
-              <span className="text-teal-400 font-semibold">95%</span>
+              <span className="text-[var(--color-accent)] font-semibold">95%</span>
               <span>Repeat Clients</span>
             </div>
             <div className="flex items-center space-x-1">
-              <span className="text-teal-400 font-semibold">72hr</span>
+              <span className="text-[var(--color-accent)] font-semibold">72hr</span>
               <span>Shortlisting</span>
             </div>
           </div>

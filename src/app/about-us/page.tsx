@@ -70,7 +70,7 @@ export default function AboutPage() {
           <h2 className="heading-lg mb-8">Our Philosophy</h2>
           <div className="bg-white rounded-xl p-8 lg:p-12 shadow-lg">
             <p className="text-xl text-gray-700 leading-relaxed mb-6">
-              Sales roles are not operational — they are <span className="font-semibold text-blue-900">behavioural</span>.
+              Sales roles are not operational — they are <span className="font-semibold text-[var(--color-ink)]">behavioural</span>.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed mb-6">
               The ability to question well, listen deeply, handle objections, manage pressure, and influence customers cannot be derived from resumes.
@@ -103,7 +103,7 @@ export default function AboutPage() {
             {methodology.map((step) => (
               <div key={step.step} className="bg-gray-50 rounded-xl p-8 lg:p-10">
                 <div className="flex items-start gap-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-blue-900 to-teal-600 text-white rounded-full flex items-center justify-center font-poppins font-bold text-xl shrink-0">
+                  <div className="w-14 h-14 bg-[var(--color-ink)] text-white rounded-full flex items-center justify-center font-poppins font-bold text-xl shrink-0">
                     {step.step}
                   </div>
                   <div className="flex-1">
@@ -114,7 +114,7 @@ export default function AboutPage() {
                     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                       {step.features.map((feature) => (
                         <li key={feature} className="flex items-center space-x-2 text-sm text-gray-600">
-                          <svg className="w-4 h-4 text-teal-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                           <span>{feature}</span>
@@ -131,7 +131,7 @@ export default function AboutPage() {
 
      
       {/* Closing CTA */}
-      <section className="pt-20 pb-12 bg-blue-900 text-white text-center">
+      <section className="pt-20 pb-12 bg-[var(--color-ink)] text-white text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-poppins font-light text-3xl md:text-4xl mb-8 uppercase tracking-wide">
             Ready to hire
@@ -141,7 +141,7 @@ export default function AboutPage() {
           </p>
           <Link
             href="/contact" 
-            className="inline-block bg-teal-600 text-white px-8 py-4 rounded-full font-medium hover:bg-teal-500 transition-colors duration-200 text-lg"
+            className="inline-block bg-[var(--color-accent)] text-white px-8 py-4 rounded-full font-medium hover:bg-[var(--color-accent-dark)] transition-colors duration-200 text-lg"
           >
             Share Your Hiring Mandate →
           </Link>
