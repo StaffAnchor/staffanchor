@@ -15,6 +15,7 @@ type NavItem = {
   name: string;
   href: string;
   submenu?: NavSubItem[];
+  targetBlank?: boolean;
 };
 
 const Navbar = () => {
@@ -25,6 +26,7 @@ const Navbar = () => {
     { name: 'About Us', href: '/about-us' },
     { name: 'Employers', href: '/employers' },
     { name: 'Jobseekers', href: '/jobseekers' },
+    { name: 'Current Jobs', href: 'https://jobs.staffanchor.com/jobs', targetBlank: true },
     { name: 'Contact Us', href: '/contact' },
   ];
 
@@ -55,6 +57,8 @@ const Navbar = () => {
                 <div key={item.name} className="relative group">
                   <Link
                     href={item.href}
+                    target={item.targetBlank ? '_blank' : undefined}
+                    rel={item.targetBlank ? 'noopener noreferrer' : undefined}
                     className="text-[var(--color-muted)] hover:text-[var(--color-ink)] px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center rounded-md"
                   >
                     {item.name}
@@ -141,6 +145,8 @@ const Navbar = () => {
                   <div key={item.name}>
                     <Link
                       href={item.href}
+                      target={item.targetBlank ? '_blank' : undefined}
+                      rel={item.targetBlank ? 'noopener noreferrer' : undefined}
                       className="block px-4 py-3 text-base font-medium text-[var(--color-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-mist)] rounded-lg transition-colors duration-200"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
