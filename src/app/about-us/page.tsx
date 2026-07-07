@@ -11,12 +11,6 @@ const values = [
   { title: 'Speed for employers', description: 'A shortlist arrives pre-qualified — verified before you ever see it, not after you’ve wasted a week on it.' },
 ];
 
-const teamPlaceholders = [
-  { role: 'Founder', note: 'Bio placeholder — to be added.' },
-  { role: 'Lead Recruiter, B2B Sales', note: 'Bio placeholder — to be added.' },
-  { role: 'Lead Recruiter, B2C Sales', note: 'Bio placeholder — to be added.' },
-];
-
 export default function AboutUsPage() {
   return (
     <>
@@ -121,31 +115,6 @@ export default function AboutUsPage() {
                 <h3 className="font-poppins font-semibold text-lg text-[var(--color-ink)] mb-2 tracking-tight">{v.title}</h3>
                 <p className="text-[var(--color-muted)] leading-relaxed">{v.description}</p>
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team placeholder */}
-      <section className="section-padding bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="mb-12 max-w-2xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="eyebrow mb-3 block">Team</span>
-            <h2 className="heading-lg">Who you'll work with</h2>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {teamPlaceholders.map((t) => (
-              <div key={t.role} className="rounded-2xl border border-dashed border-[var(--color-line)] p-8 text-center">
-                <div className="w-16 h-16 rounded-full bg-[var(--color-mist)] mx-auto mb-4" />
-                <h3 className="font-poppins font-semibold text-[var(--color-ink)] mb-1">{t.role}</h3>
-                <p className="text-xs text-[var(--color-muted-soft)] uppercase tracking-wider">{t.note}</p>
-              </div>
             ))}
           </div>
         </div>
