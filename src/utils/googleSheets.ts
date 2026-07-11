@@ -1,39 +1,6 @@
-import { supabase } from "@/lib/supabase";
-
 const GOOGLE_SHEETS_ENDPOINTS = {
   employers: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_EMPLOYERS_ENDPOINT!,
   jobSeekers: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_JOBSEEKERS_ENDPOINT!,
-};
-
-// Best-effort: lands the same employer submission in the CRM (Employer
-// Inquiries) via a SECURITY DEFINER RPC, so recruiters can triage it and
-// convert to a Client/Mandate without ever opening the Google Sheet. This
-// runs alongside the existing Google Sheets submission below, not instead
-// of it -- if Supabase is misconfigured or the call fails for any reason,
-// it only logs a warning and the employer's submission still goes through
-// to Google Sheets as it always has.
-const submitToCrm = async (data: Record<string, unknown>, source: "employers_page" | "contact_page") => {
-  if (!supabase) {
-    console.warn("Supabase env vars not configured -- skipping CRM employer inquiry sync.");
-    return;
-  }
-  try {
-    const { error } = await supabase.rpc("submit_employer_inquiry", {
-      payload: {
-        company_name: data.companyName ?? "",
-        industry: data.industry ?? "",
-        custom_industry: data.customIndustry ?? "",
-        full_name: data.fullName ?? "",
-        designation: data.designation ?? "",
-        work_email: data.workEmail ?? "",
-        mobile_number: data.mobileNumber ?? "",
-        source,
-      },
-    });
-    if (error) throw error;
-  } catch (error) {
-    console.error("Error syncing employer inquiry to CRM (Google Sheets submission unaffected):", error);
-  }
 };
 
 // Helper function to convert file to base64
@@ -130,10 +97,6 @@ export const submitEmployerForm = async (inputFormData: FormData): Promise<void>
     // Add timestamp
     data.timestamp = new Date().toISOString();
 
-    // Land the same submission in the CRM as an Employer Inquiry. Fired
-    // alongside (not blocking) the Google Sheets POST below.
-    void submitToCrm(data as Record<string, unknown>, "employers_page");
-
     // Send to Google Sheets using form data to avoid CORS preflight
     const formData = new FormData();
     for (const [key, value] of Object.entries(data)) {
@@ -143,7 +106,7 @@ export const submitEmployerForm = async (inputFormData: FormData): Promise<void>
         formData.append(key, String(value));
       }
     }
-
+    
 
     const response = await fetch(GOOGLE_SHEETS_ENDPOINTS.employers, {
       method: 'POST',
@@ -236,3 +199,43 @@ export const submitJobSeekerForm = async (inputFormData: FormData): Promise<void
   }
 };
 
+
+export interface ContactFormData {
+  name: string;
+  email: string;
+  phone?: string;
+  audience: string; // "Employer" | "Jobseeker" | "Other"
+  message: string;
+  timestamp?: string;
+}
+
+// Reuses the employers sheet endpoint as a general inbox until a dedicated
+// contact-form endpoint is provisioned.
+export const submitContactForm = async (inputFormData: FormData): Promise<void> => {
+  try {
+    const data: Record<string, string> = {};
+    for (const [key, value] of inputFormData.entries()) {
+      data[key] = String(value);
+    }
+    data.timestamp = new Date().toISOString();
+    data.formType = 'contact';
+
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(data)) {
+      formData.append(key, value);
+    }
+
+    const response = await fetch(GOOGLE_SHEETS_ENDPOINTS.employers, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`HTTP error! status: ${response.status}, response: ${errorText}`);
+    }
+  } catch (error) {
+    console.error('Error submitting contact form:', error);
+    throw error;
+  }
+};
