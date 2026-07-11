@@ -1,3 +1,5 @@
+import { supabase } from '@/lib/supabaseClient';
+
 const GOOGLE_SHEETS_ENDPOINTS = {
   employers: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_EMPLOYERS_ENDPOINT!,
   jobSeekers: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_JOBSEEKERS_ENDPOINT!,
@@ -209,6 +211,29 @@ export interface ContactFormData {
   timestamp?: string;
 }
 
+// Best-effort: also lands the submission in the CRM's Employer Inquiries
+// list via the same submit_employer_inquiry() RPC the employers-page form
+// would use, tagged source: 'contact_page'. Runs alongside the Google
+// Sheets POST below, not instead of it -- if this fails for any reason it
+// only logs a warning and the Google Sheets submission still goes through.
+const syncContactToCrm = async (data: Record<string, string>) => {
+  try {
+    const { error } = await supabase.rpc('submit_employer_inquiry', {
+      payload: {
+        full_name: data.name ?? '',
+        work_email: data.email ?? '',
+        mobile_number: data.phone ?? '',
+        audience: data.audience ?? '',
+        message: data.message ?? '',
+        source: 'contact_page',
+      },
+    });
+    if (error) throw error;
+  } catch (error) {
+    console.error('Error syncing contact form to CRM (Google Sheets submission unaffected):', error);
+  }
+};
+
 // Reuses the employers sheet endpoint as a general inbox until a dedicated
 // contact-form endpoint is provisioned.
 export const submitContactForm = async (inputFormData: FormData): Promise<void> => {
@@ -219,6 +244,8 @@ export const submitContactForm = async (inputFormData: FormData): Promise<void> 
     }
     data.timestamp = new Date().toISOString();
     data.formType = 'contact';
+
+    void syncContactToCrm(data);
 
     const formData = new FormData();
     for (const [key, value] of Object.entries(data)) {
