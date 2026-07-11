@@ -14,9 +14,14 @@ const BUDGET_RANGE_MAP: Record<string, { min: number | null; max: number | null 
   '75L+': { min: 75, max: null },
 };
 
-// Submits an employer hiring mandate directly to Supabase via the
-// public.submit_mandate() RPC (SECURITY DEFINER function, safe for
-// anonymous writes — see resume_storage_upload_policy / public_form_submission_functions migrations).
+// Submits an employer hiring mandate to Supabase via the
+// public.submit_employer_inquiry() RPC (SECURITY DEFINER, safe for
+// anonymous writes). This deliberately lands in the employer_inquiries
+// staging table, NOT directly in public.mandates -- a mandate that goes
+// straight live would appear as a public, unreviewed job listing on
+// jobs.staffanchor.com. A recruiter now reviews each submission in the
+// CRM and explicitly promotes it into a real mandate ("Create Mandate"),
+// which is what actually publishes it.
 export const submitEmployerForm = async (formData: FormData): Promise<void> => {
   const get = (key: string) => (formData.get(key) as string | null) ?? '';
 
@@ -24,25 +29,22 @@ export const submitEmployerForm = async (formData: FormData): Promise<void> => {
   const budgetRange = get('budgetRange');
   const budget = BUDGET_RANGE_MAP[budgetRange] ?? { min: null, max: null };
 
-  const contactLines = [
-    `Contact: ${get('fullName')} (${get('designation')})`,
-    `Email: ${get('workEmail')}`,
-    `Mobile: ${get('mobileNumber')}`,
-    '',
-    get('description'),
-  ].join('\n');
-
   const payload = {
-    client_name: get('companyName'),
+    company_name: get('companyName'),
     role_title: get('roleTitle'),
-    category: CATEGORY_MAP[salesCategory] ?? null,
+    category: CATEGORY_MAP[salesCategory] ?? '',
     city: get('city'),
-    budget_min: budget.min,
-    budget_max: budget.max,
-    notes: contactLines,
+    budget_min: budget.min !== null ? String(budget.min) : '',
+    budget_max: budget.max !== null ? String(budget.max) : '',
+    full_name: get('fullName'),
+    designation: get('designation'),
+    work_email: get('workEmail'),
+    mobile_number: get('mobileNumber'),
+    message: get('description'),
+    source: 'employers_page',
   };
 
-  const { error } = await supabase.rpc('submit_mandate', { payload });
+  const { error } = await supabase.rpc('submit_employer_inquiry', { payload });
   if (error) {
     throw new Error(error.message || 'Failed to submit mandate');
   }
