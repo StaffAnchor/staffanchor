@@ -157,6 +157,11 @@ export default function MandateRequestForm({
     industriesSoldTo: [] as string[],
     languagesRequired: [] as string[],
     message: '',
+    // Honeypot -- invisible to real users, left blank. Bots that auto-fill
+    // every field on the page tend to fill this too; if it's non-empty we
+    // silently pretend to succeed instead of submitting, so scripted spam
+    // doesn't need a captcha round trip to be caught.
+    website: '',
   });
 
   const isSalesRole = form.category === 'b2b_sales' || form.category === 'b2c_sales';
@@ -182,6 +187,12 @@ export default function MandateRequestForm({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (form.website.trim() !== '') {
+      // Honeypot tripped -- almost certainly a bot. Pretend it worked so it
+      // doesn't retry with a different payload, but never hit the RPC.
+      setSubmitted(true);
+      return;
+    }
     setError('');
     setSubmitting(true);
     try {
@@ -257,6 +268,21 @@ export default function MandateRequestForm({
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Honeypot -- hidden from real users via CSS + off-screen position,
+            but present in the DOM/tab order so basic scripted bots that fill
+            every input on the page tend to fill it too. Never shown, never
+            required, never read except in handleSubmit's spam check above. */}
+        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }} aria-hidden="true">
+          <label htmlFor="website">Leave this field blank</label>
+          <input
+            id="website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.website}
+            onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))}
+          />
+        </div>
         <div className="grid grid-cols-2 gap-3">
           <div className="col-span-2">
             <label className={labelCls}>Company name</label>
