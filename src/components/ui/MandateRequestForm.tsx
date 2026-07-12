@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import MultiSelectChips from './MultiSelectChips';
+import WeekOffPicker, { emptyWeekOffValue, type WeekOffValue } from './WeekOffPicker';
 
 // Selling style, industries, and languages options are fetched at runtime
 // from the shared mandate_option_sets table (via get_mandate_option_sets RPC)
@@ -84,6 +85,22 @@ function dealSizeBandsFor(category: string, currency: string): string[] {
   return bands[currency] ?? [];
 }
 
+// B2C: who the end consumer actually is (mirrors CRM's candidate-options.ts).
+const B2C_CUSTOMER_TYPES = [
+  'Middle Class', 'Upper Middle Class', 'High Net-worth Individuals (HNI)',
+  'Parents', 'Students', 'Working Professionals', 'Young Professionals / First Jobbers',
+  'Homemakers', 'Senior Citizens', 'Retail Walk-in Visitors', 'Small Business Owners',
+  'Urban Consumers', 'Rural / Semi-Urban Consumers',
+];
+
+// B2B: the actual decision-maker persona/title this role sells to (mirrors
+// CRM's candidate-options.ts).
+const CLIENT_PROFILE_OPTIONS = [
+  'CEO / Founder', 'CFO', 'COO', 'CHRO / HR Head', 'HR Manager', 'CTO / Tech Head',
+  'IT Head', 'Plant Head / Operations Head', 'Procurement Head', 'Marketing Head',
+  'Sales Head', 'VP / Director level', 'Business Owner (SMB)',
+];
+
 const inputCls =
   'w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 bg-white';
 const labelCls = 'block text-[13px] font-medium text-slate-700 mb-1.5';
@@ -156,6 +173,9 @@ export default function MandateRequestForm({
     preferredIndustries: [] as string[],
     industriesSoldTo: [] as string[],
     languagesRequired: [] as string[],
+    weekOff: emptyWeekOffValue as WeekOffValue,
+    b2cCustomerTypes: [] as string[],
+    clientProfile: [] as string[],
     message: '',
     // Honeypot -- invisible to real users, left blank. Bots that auto-fill
     // every field on the page tend to fill this too; if it's non-empty we
@@ -165,6 +185,8 @@ export default function MandateRequestForm({
   });
 
   const isSalesRole = form.category === 'b2b_sales' || form.category === 'b2c_sales';
+  const isB2B = form.category === 'b2b_sales';
+  const isB2C = form.category === 'b2c_sales';
   const subDomainOptions = subDomainsFor(form.category);
   const dealSizeOptions = dealSizeBandsFor(form.category, form.dealSizeCurrency);
 
@@ -235,6 +257,12 @@ export default function MandateRequestForm({
         preferred_industries: form.preferredIndustries,
         industries_sold_to: isSalesRole ? form.industriesSoldTo : [],
         languages_required: form.languagesRequired,
+        week_off: form.weekOff.week_off_type === 'fixed' ? form.weekOff.week_off : [],
+        week_off_type: form.weekOff.week_off_type,
+        rotational_offs_per_week: form.weekOff.week_off_type === 'rotational' ? form.weekOff.rotational_offs_per_week : '',
+        mandatory_working_days: form.weekOff.week_off_type === 'rotational' ? form.weekOff.mandatory_working_days : [],
+        b2c_customer_types: isB2C ? form.b2cCustomerTypes : [],
+        client_profile: isB2B ? form.clientProfile : [],
         message: form.message,
       };
       const { error: rpcError } = await supabase.rpc('submit_employer_inquiry', { payload });
@@ -621,6 +649,30 @@ export default function MandateRequestForm({
                 className={inputCls}
               />
             </div>
+
+            {isB2C && (
+              <div>
+                <label className={labelCls}>Who are the end consumers? (B2C)</label>
+                <MultiSelectChips
+                  options={B2C_CUSTOMER_TYPES.map((o) => ({ value: o, label: o }))}
+                  selected={form.b2cCustomerTypes}
+                  onChange={(next) => setForm((f) => ({ ...f, b2cCustomerTypes: next }))}
+                  placeholder="Search consumer types..."
+                />
+              </div>
+            )}
+
+            {isB2B && (
+              <div>
+                <label className={labelCls}>Client profile -- who do they actually sell to? (B2B)</label>
+                <MultiSelectChips
+                  options={CLIENT_PROFILE_OPTIONS.map((o) => ({ value: o, label: o }))}
+                  selected={form.clientProfile}
+                  onChange={(next) => setForm((f) => ({ ...f, clientProfile: next }))}
+                  placeholder="Search titles..."
+                />
+              </div>
+            )}
           </>
         )}
 
@@ -671,6 +723,8 @@ export default function MandateRequestForm({
             </select>
           </div>
         </div>
+
+        <WeekOffPicker value={form.weekOff} onChange={(next) => setForm((f) => ({ ...f, weekOff: next }))} />
 
         <div className="grid grid-cols-2 gap-3">
           <div>
