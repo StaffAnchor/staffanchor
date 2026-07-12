@@ -49,6 +49,17 @@ function subDomainsFor(category: string): string[] {
   return [];
 }
 
+// Mirrors the CRM's candidate-options.ts city list so a client's city picks
+// map onto the same known values the recruiter side uses -- "Other" still
+// allows a manual entry for anything not on the list.
+const CITY_OPTIONS = [
+  'Delhi', 'Noida', 'Greater Noida', 'Gurgaon', 'Faridabad', 'Ghaziabad',
+  'Mumbai', 'Pune', 'Nagpur', 'Bangalore', 'Hyderabad', 'Chennai', 'Coimbatore',
+  'Kolkata', 'Ahmedabad', 'Surat', 'Vadodara', 'Chandigarh', 'Mohali', 'Jaipur',
+  'Lucknow', 'Kanpur', 'Indore', 'Bhopal', 'Kochi', 'Thiruvananthapuram',
+  'Visakhapatnam', 'Patna', 'Guwahati', 'Bhubaneswar', 'Dehradun',
+];
+
 const TEAM_SIZE_OPTIONS = [
   '1-5', '6-10', '11-20', '21-30', '31-40', '41-50',
   '51-75', '76-100', '101-150', '151-200', '201-300',
@@ -118,7 +129,9 @@ export default function MandateRequestForm({
     roleTitle: roleTitlePrefill ?? '',
     category: '',
     subDomains: [] as string[],
-    cities: '',
+    cities: [] as string[],
+    cityPick: '',
+    cityOther: '',
     budgetMin: '',
     budgetMax: '',
     experienceMin: '',
@@ -157,6 +170,16 @@ export default function MandateRequestForm({
     }));
   }
 
+  function addCity(value: string) {
+    const v = value.trim();
+    if (!v) return;
+    setForm((f) => (f.cities.includes(v) ? f : { ...f, cities: [...f.cities, v] }));
+  }
+
+  function removeCity(value: string) {
+    setForm((f) => ({ ...f, cities: f.cities.filter((c) => c !== value) }));
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
@@ -173,10 +196,7 @@ export default function MandateRequestForm({
         role_title: form.roleTitle,
         category: form.category,
         sub_domains: form.subDomains,
-        cities: form.cities
-          .split(',')
-          .map((c) => c.trim())
-          .filter(Boolean),
+        cities: form.cities,
         budget_min: form.budgetMin,
         budget_max: form.budgetMax,
         experience_min: form.experienceMin,
@@ -327,13 +347,64 @@ export default function MandateRequestForm({
         )}
 
         <div>
-          <label className={labelCls}>Location(s) -- city or cities, comma-separated</label>
-          <input
-            placeholder="e.g. Mumbai, Bangalore"
-            value={form.cities}
-            onChange={(e) => setForm((f) => ({ ...f, cities: e.target.value }))}
-            className={inputCls}
-          />
+          <label className={labelCls}>Location(s)</label>
+          {form.cities.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-2">
+              {form.cities.map((c) => (
+                <span
+                  key={c}
+                  className="flex items-center gap-1 rounded-full bg-slate-100 text-slate-700 text-[12px] font-medium px-2.5 py-1"
+                >
+                  {c}
+                  <button type="button" onClick={() => removeCity(c)} className="text-slate-400 hover:text-red-600">
+                    ×
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
+          <div className="flex gap-2">
+            <select
+              value={form.cityPick}
+              onChange={(e) => setForm((f) => ({ ...f, cityPick: e.target.value }))}
+              className={inputCls}
+            >
+              <option value="">Select city...</option>
+              {CITY_OPTIONS.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              onClick={() => {
+                addCity(form.cityPick);
+                setForm((f) => ({ ...f, cityPick: '' }));
+              }}
+              className="shrink-0 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-[12px] font-medium px-4"
+            >
+              Add
+            </button>
+          </div>
+          <div className="flex gap-2 mt-1.5">
+            <input
+              placeholder="Other location (manual entry)"
+              value={form.cityOther}
+              onChange={(e) => setForm((f) => ({ ...f, cityOther: e.target.value }))}
+              className={inputCls}
+            />
+            <button
+              type="button"
+              onClick={() => {
+                addCity(form.cityOther);
+                setForm((f) => ({ ...f, cityOther: '' }));
+              }}
+              className="shrink-0 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-[12px] font-medium px-4"
+            >
+              Add
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
