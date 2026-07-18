@@ -163,22 +163,6 @@ const Footer = () => {
           <p className="text-gray-400 text-xs">
             © {currentYear} StaffAnchor Talent Solutions. All rights reserved.
           </p>
-          
-          {/* Key Metrics */}
-          <div className="flex items-center space-x-4 mt-2 md:mt-0 text-xs text-gray-400">
-            <div className="flex items-center space-x-1">
-              <span className="text-[var(--color-accent)] font-semibold">500+</span>
-              <span>Placements</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <span className="text-[var(--color-accent)] font-semibold">95%</span>
-              <span>Repeat Clients</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <span className="text-[var(--color-accent)] font-semibold">72hr</span>
-              <span>Shortlisting</span>
-            </div>
-          </div>
         </div>
       </div>
     </footer>

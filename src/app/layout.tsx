@@ -3,7 +3,6 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import PageLoader from "@/components/ui/PageLoader";
 import StickyConsultationButton from "@/components/ui/StickyConsultationButton";
 
 const inter = Inter({
@@ -60,14 +59,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${poppins.variable} font-inter antialiased bg-white text-gray-900 min-h-screen flex flex-col`}>
-        <PageLoader>
-          <Navbar />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-          <StickyConsultationButton />
-        </PageLoader>
+        <Navbar />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer />
+        <StickyConsultationButton />
       </body>
     </html>
   );

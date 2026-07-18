@@ -204,7 +204,7 @@ export default function EmployersPage() {
       <SalesDomainsGrid
         eyebrow="Whatever your motion"
         title="We've placed for it"
-        subtitle="B2B or B2C, whatever your sales motion, we've built shortlists for it."
+        subtitle="B2B sales and GTM hiring is our core focus — with B2C sales expertise built for it too."
       />
 
       {/* Social proof placeholder */}

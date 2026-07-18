@@ -29,32 +29,35 @@ export default function SalesDomainsGrid({
           {subtitle && <p className="text-lg text-[var(--color-muted)]">{subtitle}</p>}
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-4">B2B Sales</p>
-            <div className="flex flex-wrap gap-2.5">
-              {b2bDomains.map((d) => (
-                <span
-                  key={d}
-                  className="px-4 py-2 rounded-full border border-[var(--color-line)] text-sm font-medium text-[var(--color-ink)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200"
-                >
-                  {d}
-                </span>
-              ))}
-            </div>
+        {/* B2B Sales — primary. This is the core of what StaffAnchor does, so it
+            leads at full width instead of splitting the section 50/50 with B2C. */}
+        <div className="mb-10">
+          <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-accent)] mb-4 font-semibold">B2B Sales — core focus</p>
+          <div className="flex flex-wrap gap-2.5">
+            {b2bDomains.map((d) => (
+              <span
+                key={d}
+                className="px-4 py-2 rounded-full border border-[var(--color-line)] text-sm font-medium text-[var(--color-ink)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200"
+              >
+                {d}
+              </span>
+            ))}
           </div>
-          <div>
-            <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-4">B2C Sales</p>
-            <div className="flex flex-wrap gap-2.5">
-              {b2cDomains.map((d) => (
-                <span
-                  key={d}
-                  className="px-4 py-2 rounded-full border border-[var(--color-line)] text-sm font-medium text-[var(--color-ink)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200"
-                >
-                  {d}
-                </span>
-              ))}
-            </div>
+        </div>
+
+        {/* B2C Sales — secondary, presented as additional coverage rather than
+            a co-equal column. */}
+        <div className="pt-6 border-t border-[var(--color-line)]">
+          <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-4">We also cover B2C Sales</p>
+          <div className="flex flex-wrap gap-2.5">
+            {b2cDomains.map((d) => (
+              <span
+                key={d}
+                className="px-4 py-2 rounded-full border border-[var(--color-line)] text-sm font-medium text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200"
+              >
+                {d}
+              </span>
+            ))}
           </div>
         </div>
       </div>
