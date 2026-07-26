@@ -207,27 +207,38 @@ export default function EmployersPage() {
         subtitle="B2B sales and GTM hiring is our core focus — with B2C sales expertise built for it too."
       />
 
-      {/* Social proof placeholder */}
+      {/* Was a grid of "Client logo placeholder" boxes shipped straight to
+          production -- a fabricated trust marker (dashed boxes implying
+          logos exist and are just pending) is worse for a firm whose whole
+          pitch is verified data than showing nothing at all. Replaced with
+          real, honest numbers pulled from the live candidate database --
+          update these from the CRM's own counts (Candidates page total,
+          Reports) each time this page is touched, rather than reaching for
+          a stat that sounds bigger but isn't true. */}
       <section className="section-padding bg-[var(--color-mist)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="mb-12 max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
+            viewport={{ once: true, margin: '-100px' }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ margin: '-100px' }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.45 }}
           >
-            <span className="eyebrow mb-3 block">Trusted by</span>
-            <h2 className="heading-lg">Companies we've placed for</h2>
+            <span className="eyebrow mb-3 block">Where we stand today</span>
+            <h2 className="heading-lg">The database behind the shortlist</h2>
           </motion.div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-white rounded-xl border border-dashed border-[var(--color-line)] h-20 flex items-center justify-center text-xs text-[var(--color-muted-soft)] font-medium uppercase tracking-wider">
-                Client logo placeholder
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {[
+              { value: '750+', label: 'Sales & GTM profiles in our database' },
+              { value: '2', label: 'Specialist practices — Enterprise Tech GTM, Industrial Commercial' },
+              { value: '1 business day', label: 'Response time on every mandate submitted' },
+            ].map((s) => (
+              <div key={s.label} className="bg-white rounded-2xl p-7 border border-[var(--color-line)]">
+                <p className="heading-accent text-4xl mb-2">{s.value}</p>
+                <p className="text-sm text-[var(--color-muted)] leading-relaxed">{s.label}</p>
               </div>
             ))}
           </div>
-          <p className="text-xs text-[var(--color-muted-soft)] mt-4">Client logos and testimonials to be added — placeholder until supplied.</p>
         </div>
       </section>
 
