@@ -17,6 +17,17 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
+    // Honeypot -- same pattern as MandateRequestForm.tsx. A field that's
+    // invisible/unreachable for a real visitor but that scripted bots which
+    // blindly fill every input on the page tend to fill anyway. Non-empty
+    // here means it's almost certainly a bot, so we pretend success and
+    // never call onSubmit (no request to Google Sheets or the CRM RPC).
+    if (String(formData.get('website') || '').trim() !== '') {
+      setStatus('success');
+      form.reset();
+      return;
+    }
+
     const newErrors: Record<string, string> = {};
     if (!formData.get('name')) newErrors.name = 'Please enter your name.';
     const email = String(formData.get('email') || '');
@@ -62,6 +73,12 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="bg-white rounded-2xl border border-[var(--color-line)] p-8 space-y-5">
+      {/* Honeypot -- hidden off-screen, never shown or required to a real
+          visitor. See handleSubmit above for the spam check. */}
+      <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }} aria-hidden="true">
+        <label htmlFor="website">Leave this field blank</label>
+        <input id="website" name="website" tabIndex={-1} autoComplete="off" />
+      </div>
       {status === 'error' && (
         <div className="bg-[var(--color-amber-soft)] border border-[var(--color-amber)]/30 text-[var(--color-amber)] rounded-lg p-4 text-sm">
           Something went wrong sending your message. Please try again, or email us directly.

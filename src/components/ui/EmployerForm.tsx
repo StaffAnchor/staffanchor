@@ -60,16 +60,29 @@ const EmployerForm = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Honeypot -- same pattern as MandateRequestForm.tsx / ContactForm.tsx.
+    // A field invisible to real visitors that scripted bots filling every
+    // input on the page tend to fill anyway. Non-empty means it's almost
+    // certainly a bot, so we pretend success without ever calling onSubmit.
+    if (formData.website && formData.website.trim() !== '') {
+      setSubmitStatus('success');
+      setFormData({});
+      setShowCustomIndustry(false);
+      (e.target as HTMLFormElement).reset();
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
-    
+
     const formDataToSubmit = new FormData();
-    
+
     // Add all form field values
     Object.entries(formData).forEach(([key, value]) => {
       formDataToSubmit.set(key, value);
     });
-    
+
     try {
       await onSubmit(formDataToSubmit);
       setSubmitStatus('success');
@@ -210,6 +223,19 @@ const EmployerForm = ({
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Honeypot -- hidden off-screen, never shown or required to a real
+            visitor. See handleSubmit above for the spam check. */}
+        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }} aria-hidden="true">
+          <label htmlFor="website">Leave this field blank</label>
+          <input
+            id="website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website || ''}
+            onChange={(e) => handleInputChange('website', e.target.value)}
+          />
+        </div>
         {employerFormFields.map((field) => (
           <div key={field.name}>
             <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-2">
