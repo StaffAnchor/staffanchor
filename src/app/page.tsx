@@ -8,11 +8,16 @@ import TestimonialCard from '@/components/ui/TestimonialCard';
 import SalesDomainsGrid from '@/components/ui/SalesDomainsGrid';
 import PassportDemoCard from '@/components/ui/PassportDemoCard';
 
+// Every figure below is a fact about how we operate or what's actually in
+// the candidate database today (verified against live data), not a
+// placement outcome — so unlike the old "Illustrative figures, pending
+// real placement data" framing, none of these need a hedge. They stand on
+// their own regardless of how many placements have closed so far.
 const proofStats = [
   { value: '3-Year', label: 'Quota attainment tracked', note: 'Every candidate’s performance history, not just their title.' },
   { value: '100%', label: 'Verified by a real conversation', note: 'No profile reaches a client without a recruiter call.' },
-  { value: '12+', label: 'Sales sub-domains covered', note: 'SaaS, Enterprise, BFSI, EdTech, Real Estate & more.' },
-  { value: '30-Day', label: 'Typical notice period on file', note: 'Confirmed upfront, so timelines are never a surprise.' },
+  { value: '20+', label: 'Sales sub-domains covered', note: 'SaaS, Enterprise, BFSI, EdTech, Real Estate & more.' },
+  { value: 'Upfront', label: 'Notice period confirmed', note: 'Every candidate confirms their notice period before submission — never a surprise later.' },
 ];
 
 const whyDifferent = [
@@ -81,7 +86,7 @@ export default function Home() {
       {/* Proof-point stat row — anchor-line style */}
       <section className="py-16 border-y border-[var(--color-line)] bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs text-[var(--color-muted-soft)] mb-8 uppercase tracking-wider font-semibold">Illustrative figures, pending real placement data</p>
+          <p className="text-xs text-[var(--color-muted-soft)] mb-8 uppercase tracking-wider font-semibold">Built into every candidate profile</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {proofStats.map((stat, i) => (
               <motion.div
