@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter, Space_Grotesk, Fraunces } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StickyConsultationButton from "@/components/ui/StickyConsultationButton";
+import PostHogProvider from "@/components/providers/PostHogProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -71,6 +73,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${poppins.variable} ${fraunces.variable} font-inter antialiased bg-white text-gray-900 min-h-screen flex flex-col`}>
+        <Suspense fallback={null}>
+          <PostHogProvider />
+        </Suspense>
         <Navbar />
         <main className="flex-1">
           {children}

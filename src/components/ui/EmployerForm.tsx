@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { posthog } from '@/lib/posthog';
 
 interface FormField {
   name: string;
@@ -72,6 +73,9 @@ const EmployerForm = ({
     try {
       await onSubmit(formDataToSubmit);
       setSubmitStatus('success');
+      posthog.capture('employer_mandate_submitted', {
+        salesCategory: formDataToSubmit.get('salesCategory')?.toString() ?? undefined,
+      });
       setFormData({});
       setShowCustomIndustry(false);
       (e.target as HTMLFormElement).reset();

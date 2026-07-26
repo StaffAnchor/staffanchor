@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { posthog } from '@/lib/posthog';
 
 interface ContactFormProps {
   onSubmit: (formData: FormData) => Promise<void>;
@@ -33,6 +34,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     try {
       await onSubmit(formData);
       setStatus('success');
+      posthog.capture('contact_form_submitted', { audience: String(formData.get('audience') || '') });
       form.reset();
     } catch (err) {
       console.error(err);
