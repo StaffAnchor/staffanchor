@@ -15,6 +15,10 @@ interface HeroSectionProps {
   children?: ReactNode;
   backgroundPattern?: boolean;
   centered?: boolean;
+  /** Optional right-column visual (e.g. the homepage's live passport demo
+   * card). Only the homepage passes this -- every other page keeps the
+   * original single-column layout untouched. */
+  visual?: ReactNode;
 }
 
 const HeroSection = ({
@@ -25,7 +29,8 @@ const HeroSection = ({
   eyebrow,
   children,
   backgroundPattern = false,
-  centered = false
+  centered = false,
+  visual,
 }: HeroSectionProps) => {
   return (
     <section className={`relative py-24 lg:py-32 overflow-hidden ${backgroundPattern ? 'bg-[var(--color-mist)]' : 'bg-white'}`}>
@@ -52,7 +57,8 @@ const HeroSection = ({
       )}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`${centered ? 'text-center mx-auto' : ''} max-w-3xl`}>
+        <div className={visual ? 'grid grid-cols-1 lg:grid-cols-12 gap-12 items-center' : ''}>
+        <div className={`${centered ? 'text-center mx-auto' : ''} max-w-3xl ${visual ? 'lg:col-span-7' : ''}`}>
           {eyebrow && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -111,6 +117,18 @@ const HeroSection = ({
               {children}
             </motion.div>
           )}
+        </div>
+
+        {visual && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-5"
+          >
+            {visual}
+          </motion.div>
+        )}
         </div>
       </div>
     </section>

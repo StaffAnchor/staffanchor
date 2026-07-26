@@ -6,6 +6,7 @@ import Image from 'next/image';
 import HeroSection from '@/components/ui/HeroSection';
 import TestimonialCard from '@/components/ui/TestimonialCard';
 import SalesDomainsGrid from '@/components/ui/SalesDomainsGrid';
+import PassportDemoCard from '@/components/ui/PassportDemoCard';
 
 const proofStats = [
   { value: '3-Year', label: 'Quota attainment tracked', note: 'Every candidate’s performance history, not just their title.' },
@@ -53,6 +54,7 @@ export default function Home() {
         subtext="For candidates: a profile that actually captures your performance, not just your title. For employers: shortlists backed by verified data, not a keyword match."
         specialization={true}
         backgroundPattern={true}
+        visual={<PassportDemoCard />}
       >
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
