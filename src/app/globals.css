@@ -3,6 +3,7 @@
 :root {
   --font-inter: 'Inter', sans-serif;
   --font-poppins: 'Space Grotesk', sans-serif;
+  --font-serif: 'Fraunces', serif;
 
   /* StaffAnchor brand tokens */
   --color-ink: #12131A;
@@ -172,6 +173,17 @@ body {
   .heading-xl {
     font-size: 4.25rem;
   }
+}
+
+/* Editorial accent word inside a heading-xl headline -- serif italic in the
+   brand accent colour, the same "one contrasting word" trick used by
+   competitor hero sections, applied to our existing display type instead of
+   replacing it. */
+.heading-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-accent);
 }
 
 .heading-lg {

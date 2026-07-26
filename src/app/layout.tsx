@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Fraunces } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -19,6 +19,18 @@ const poppins = Space_Grotesk({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Serif display face used sparingly -- one accent phrase inside hero
+// headlines, in italic, to give the type some of the editorial contrast
+// competitor sites (Prism) use, without abandoning the existing Space
+// Grotesk system everywhere else.
+const fraunces = Fraunces({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["italic"],
   display: "swap",
 });
 
@@ -58,7 +70,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${poppins.variable} font-inter antialiased bg-white text-gray-900 min-h-screen flex flex-col`}>
+      <body className={`${inter.variable} ${poppins.variable} ${fraunces.variable} font-inter antialiased bg-white text-gray-900 min-h-screen flex flex-col`}>
         <Navbar />
         <main className="flex-1">
           {children}

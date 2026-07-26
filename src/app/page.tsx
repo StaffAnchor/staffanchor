@@ -48,7 +48,8 @@ export default function Home() {
       {/* Hero */}
       <HeroSection
         eyebrow="Sales hiring, done like a specialist"
-        headline="Your Career — and Your Hiring — On the Record."
+        headline="Your career — and your hiring —"
+        accentText="on the record."
         subtext="For candidates: a profile that actually captures your performance, not just your title. For employers: shortlists backed by verified data, not a keyword match."
         specialization={true}
         backgroundPattern={true}

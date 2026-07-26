@@ -5,6 +5,9 @@ import { ReactNode } from 'react';
 
 interface HeroSectionProps {
   headline: string;
+  /** Optional trailing phrase rendered in serif italic accent colour, on its
+   * own line -- the editorial "one contrasting word/phrase" treatment. */
+  accentText?: string;
   subtext?: string;
   specialization?: boolean;
   extra?: boolean;
@@ -16,6 +19,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({
   headline,
+  accentText,
   subtext,
   extra,
   eyebrow,
@@ -34,10 +38,17 @@ const HeroSection = ({
         }} />
       )}
 
-      {/* Soft accent glow */}
+      {/* Textured multi-bloom backdrop -- two soft, differently-hued colour
+          washes rather than a single flat glow, so the hero reads less like
+          a plain tinted rectangle and more like the layered, editorial
+          backgrounds used on competitor hero sections. */}
       {backgroundPattern && (
-        <div className="absolute -top-32 right-0 w-[32rem] h-[32rem] rounded-full opacity-[0.08] blur-3xl"
-          style={{ background: 'var(--color-accent)' }} />
+        <>
+          <div className="absolute -top-32 right-0 w-[32rem] h-[32rem] rounded-full opacity-[0.10] blur-3xl"
+            style={{ background: 'var(--color-accent)' }} />
+          <div className="absolute -bottom-40 -left-20 w-[26rem] h-[26rem] rounded-full opacity-[0.08] blur-3xl"
+            style={{ background: 'var(--color-success)' }} />
+        </>
       )}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,6 +71,12 @@ const HeroSection = ({
             className="heading-xl"
           >
             {headline}
+            {accentText && (
+              <>
+                {' '}
+                <span className="heading-accent">{accentText}</span>
+              </>
+            )}
           </motion.h1>
 
           {subtext && (
