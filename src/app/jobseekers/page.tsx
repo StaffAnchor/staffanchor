@@ -120,7 +120,7 @@ export default function JobseekersPage() {
         </div>
       </section>
 
-      {/* Free AI Mock Interview tool */}
+      {/* Free tools for jobseekers */}
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -133,23 +133,21 @@ export default function JobseekersPage() {
             <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <div className="max-w-2xl">
                 <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 bg-white/10 rounded-full px-3 py-1 mb-4">
-                  Free tool · No sign-up needed
+                  Free tools · No sign-up needed
                 </span>
                 <h2 className="font-poppins font-semibold text-2xl md:text-3xl text-white tracking-tight mb-3">
-                  Practice with our AI Sales Mock Interview
+                  Free tools built for sales candidates
                 </h2>
                 <p className="text-white/70 leading-relaxed">
-                  Answer real discovery, objection-handling, pitching, and closing questions, and get instant,
-                  specific feedback before your next interview — built specifically for sales roles.
+                  Practice real interview questions with instant AI feedback, and check how your resume scores for
+                  ATS-parsability and keyword match — both free, both built specifically for sales roles.
                 </p>
               </div>
               <Link
-                href="https://jobs.staffanchor.com/mock-interview"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/free-tools"
                 className="group inline-flex items-center justify-center px-7 py-3.5 bg-white text-[var(--color-ink)] font-semibold rounded-xl hover:bg-[var(--color-accent)] hover:text-white transition-colors duration-300 shrink-0 min-w-[220px]"
               >
-                <span>Try Mock Interview</span>
+                <span>Explore Free Tools</span>
                 <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>

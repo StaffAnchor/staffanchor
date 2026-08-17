@@ -27,7 +27,7 @@ const Navbar = () => {
     { name: 'Employers', href: '/employers' },
     { name: 'Jobseekers', href: '/jobseekers' },
     { name: 'Current Jobs', href: 'https://jobs.staffanchor.com/jobs', targetBlank: true },
-    { name: 'Mock Interview', href: 'https://jobs.staffanchor.com/mock-interview', targetBlank: true },
+    { name: 'Free Tools', href: '/free-tools' },
     { name: 'Contact Us', href: '/contact' },
   ];
 
