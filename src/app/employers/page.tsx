@@ -1,10 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import EmployerForm from '@/components/ui/EmployerForm';
 import { submitEmployerForm } from '@/utils/mandates';
 import SalesDomainsGrid from '@/components/ui/SalesDomainsGrid';
+import HeroSection from '@/components/ui/HeroSection';
+import RecruiterInsightsCard from '@/components/ui/RecruiterInsightsCard';
 
 const howItWorks = [
   {
@@ -58,44 +59,18 @@ export default function EmployersPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-24 lg:py-28 overflow-hidden bg-white">
-        <div className="absolute inset-0 opacity-[0.4]" style={{
-          backgroundImage: `radial-gradient(var(--color-line) 1px, transparent 1px)`,
-          backgroundSize: '28px 28px',
-          maskImage: 'linear-gradient(to bottom, black, transparent 85%)',
-        }} />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="eyebrow mb-6 block">For employers</span>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="heading-xl mb-6"
-            >
-              A Shortlist You Can Say Yes To, Fast.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-lg md:text-xl text-[var(--color-muted)] leading-relaxed"
-            >
-              Sales hiring is high-stakes, and a generalist agency's unqualified shortlist wastes weeks you don't have. StaffAnchor verifies real sales performance data before a candidate ever reaches you.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8"
-            >
-              <a href="#mandate-form" className="inline-flex items-center justify-center px-7 py-3.5 bg-[var(--color-ink)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent)] transition-colors duration-300">
-                Submit a hiring mandate →
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        eyebrow="For employers"
+        headline="A Shortlist You Can Say Yes To,"
+        accentText="Fast."
+        subtext="Sales hiring is high-stakes, and a generalist agency's unqualified shortlist wastes weeks you don't have. StaffAnchor verifies real sales performance data before a candidate ever reaches you."
+        backgroundPattern={true}
+        visual={<RecruiterInsightsCard />}
+      >
+        <a href="#mandate-form" className="inline-flex items-center justify-center px-7 py-3.5 bg-[var(--color-ink)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent)] transition-colors duration-300">
+          Submit a hiring mandate →
+        </a>
+      </HeroSection>
 
       {/* How it works */}
       <section className="section-padding bg-[var(--color-mist)]">
