@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Sparkles } from 'lucide-react';
 
 type NavSubItem = {
   name: string;
@@ -16,6 +17,7 @@ type NavItem = {
   href: string;
   submenu?: NavSubItem[];
   targetBlank?: boolean;
+  highlight?: boolean;
 };
 
 const Navbar = () => {
@@ -27,7 +29,7 @@ const Navbar = () => {
     { name: 'Employers', href: '/employers' },
     { name: 'Jobseekers', href: '/jobseekers' },
     { name: 'Current Jobs', href: 'https://jobs.staffanchor.com/jobs', targetBlank: true },
-    { name: 'Free Tools', href: '/free-tools' },
+    { name: 'Free Tools', href: '/free-tools', highlight: true },
     { name: 'Contact Us', href: '/contact' },
   ];
 
@@ -56,19 +58,31 @@ const Navbar = () => {
             <nav className="flex items-center space-x-1">
               {navItems.map((item) => (
                 <div key={item.name} className="relative group">
-                  <Link
-                    href={item.href}
-                    target={item.targetBlank ? '_blank' : undefined}
-                    rel={item.targetBlank ? 'noopener noreferrer' : undefined}
-                    className="text-[var(--color-muted)] hover:text-[var(--color-ink)] px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center rounded-md"
-                  >
-                    {item.name}
-                    {item.submenu && (
-                      <svg className="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    )}
-                  </Link>
+                  {item.highlight ? (
+                    <Link
+                      href={item.href}
+                      target={item.targetBlank ? '_blank' : undefined}
+                      rel={item.targetBlank ? 'noopener noreferrer' : undefined}
+                      className="group/tool relative mx-1 flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[var(--color-accent)] to-indigo-500 px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm shadow-indigo-500/20 transition-transform duration-200 hover:scale-105 hover:shadow-md hover:shadow-indigo-500/30"
+                    >
+                      <Sparkles className="h-3.5 w-3.5 animate-pulse" />
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      target={item.targetBlank ? '_blank' : undefined}
+                      rel={item.targetBlank ? 'noopener noreferrer' : undefined}
+                      className="text-[var(--color-muted)] hover:text-[var(--color-ink)] px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center rounded-md"
+                    >
+                      {item.name}
+                      {item.submenu && (
+                        <svg className="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      )}
+                    </Link>
+                  )}
 
                   {/* Dropdown Menu */}
                   {item.submenu && (
@@ -144,15 +158,28 @@ const Navbar = () => {
                 {/* Mobile Navigation Items */}
                 {navItems.map((item) => (
                   <div key={item.name}>
-                    <Link
-                      href={item.href}
-                      target={item.targetBlank ? '_blank' : undefined}
-                      rel={item.targetBlank ? 'noopener noreferrer' : undefined}
-                      className="block px-4 py-3 text-base font-medium text-[var(--color-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-mist)] rounded-lg transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
+                    {item.highlight ? (
+                      <Link
+                        href={item.href}
+                        target={item.targetBlank ? '_blank' : undefined}
+                        rel={item.targetBlank ? 'noopener noreferrer' : undefined}
+                        className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-[var(--color-accent)] to-indigo-500 px-4 py-3 text-base font-semibold text-white shadow-sm transition-transform duration-200 hover:scale-[1.01]"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <Sparkles className="h-4 w-4" />
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        target={item.targetBlank ? '_blank' : undefined}
+                        rel={item.targetBlank ? 'noopener noreferrer' : undefined}
+                        className="block px-4 py-3 text-base font-medium text-[var(--color-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-mist)] rounded-lg transition-colors duration-200"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
                     {item.submenu && (
                       <div className="ml-4 mt-2 space-y-1">
                         {item.submenu.map((subItem) => (
