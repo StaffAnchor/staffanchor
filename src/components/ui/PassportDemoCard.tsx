@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck, TrendingUp, Wallet, Clock3 } from 'lucide-react';
 
 // Three fictional, clearly-labeled sample profiles -- makes the "verified
 // data, not a resume" pitch tangible right in the hero instead of asking a
@@ -10,28 +10,37 @@ import { ShieldCheck } from 'lucide-react';
 // no live data fetch, so this never breaks if the DB is unreachable.
 const SAMPLES = [
   {
+    initials: 'EA',
     name: 'Sample Profile — Enterprise AE',
     role: 'Enterprise Account Executive · SaaS',
-    quota: '128% avg. attainment · 3 yrs',
+    attainment: 128,
+    years: '3 yrs',
     dealSize: '₹42L avg. deal size',
     notice: '30 days · verified',
-    tone: 'from-blue-500/10 to-blue-500/0',
+    tone: 'from-blue-500 to-indigo-500',
+    glow: 'from-blue-500/20 to-indigo-500/0',
   },
   {
+    initials: 'RM',
     name: 'Sample Profile — Regional Sales Manager',
     role: 'Regional Sales Manager · BFSI',
-    quota: '112% avg. attainment · 4 yrs',
+    attainment: 112,
+    years: '4 yrs',
     dealSize: '₹18L avg. deal size',
     notice: '45 days · verified',
-    tone: 'from-emerald-500/10 to-emerald-500/0',
+    tone: 'from-emerald-500 to-teal-500',
+    glow: 'from-emerald-500/20 to-teal-500/0',
   },
   {
+    initials: 'IS',
     name: 'Sample Profile — Inside Sales / SDR Lead',
     role: 'Inside Sales Team Lead · EdTech',
-    quota: '134% avg. attainment · 2 yrs',
+    attainment: 134,
+    years: '2 yrs',
     dealSize: '₹4.5L avg. deal size',
     notice: '15 days · verified',
-    tone: 'from-violet-500/10 to-violet-500/0',
+    tone: 'from-violet-500 to-fuchsia-500',
+    glow: 'from-violet-500/20 to-fuchsia-500/0',
   },
 ];
 
@@ -44,15 +53,18 @@ export default function PassportDemoCard() {
   }, []);
 
   const s = SAMPLES[index];
+  const barWidth = Math.min(100, (s.attainment / 140) * 100);
 
   return (
     <div className="relative w-full max-w-sm mx-auto lg:mx-0">
-      <div className={`absolute -inset-4 bg-gradient-to-br ${s.tone} rounded-3xl blur-2xl transition-colors duration-700`} />
-      <div className="relative bg-white rounded-2xl border border-[var(--color-line)] shadow-xl shadow-slate-900/5 p-6 overflow-hidden">
-        <div className="flex items-center justify-between mb-4">
+      <div
+        className={`absolute -inset-6 bg-gradient-to-br ${s.glow} rounded-[2rem] blur-3xl transition-colors duration-700`}
+      />
+      <div className="relative bg-white rounded-[1.75rem] border border-[var(--color-line)] shadow-2xl shadow-slate-900/10 p-6 overflow-hidden">
+        <div className="flex items-center justify-between mb-5">
           <span className="eyebrow !mb-0 text-[11px]">Sales Passport</span>
-          <span className="flex items-center gap-1 text-[11px] font-semibold text-emerald-600 bg-emerald-50 rounded-full px-2 py-0.5">
-            <ShieldCheck className="w-3 h-3" /> Verified
+          <span className="flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 rounded-full px-2.5 py-1 ring-1 ring-emerald-100">
+            <ShieldCheck className="w-3 h-3" /> Recruiter Verified
           </span>
         </div>
 
@@ -64,21 +76,54 @@ export default function PassportDemoCard() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4 }}
           >
-            <p className="text-[13px] font-medium text-[var(--color-muted)] mb-0.5">{s.name}</p>
-            <p className="text-base font-semibold text-[var(--color-ink)] mb-4">{s.role}</p>
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className={`flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br ${s.tone} text-white text-sm font-bold shadow-md shrink-0`}
+              >
+                {s.initials}
+              </div>
+              <div className="min-w-0">
+                <p className="text-[15px] font-semibold text-[var(--color-ink)] leading-tight truncate">{s.role}</p>
+                <p className="text-[12px] text-[var(--color-muted)] leading-tight">{s.years} track record</p>
+              </div>
+            </div>
 
-            <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[var(--color-line)]">
-              <div>
-                <p className="text-[10px] text-[var(--color-muted)] uppercase tracking-wide mb-1">Quota</p>
-                <p className="text-[13px] font-semibold text-[var(--color-ink)]">{s.quota}</p>
+            <div className="mb-5">
+              <div className="flex items-end justify-between mb-1.5">
+                <span className="flex items-center gap-1 text-[11px] font-semibold text-[var(--color-muted)] uppercase tracking-wide">
+                  <TrendingUp className="w-3 h-3" /> Quota attainment
+                </span>
+                <span className="text-lg font-bold text-[var(--color-ink)] leading-none">{s.attainment}%</span>
               </div>
-              <div>
-                <p className="text-[10px] text-[var(--color-muted)] uppercase tracking-wide mb-1">Deal size</p>
-                <p className="text-[13px] font-semibold text-[var(--color-ink)]">{s.dealSize}</p>
+              <div className="h-2 w-full rounded-full bg-[var(--color-mist)] overflow-hidden">
+                <motion.div
+                  key={`${index}-bar`}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${barWidth}%` }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  className={`h-full rounded-full bg-gradient-to-r ${s.tone}`}
+                />
               </div>
-              <div>
-                <p className="text-[10px] text-[var(--color-muted)] uppercase tracking-wide mb-1">Notice</p>
-                <p className="text-[13px] font-semibold text-[var(--color-ink)]">{s.notice}</p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 pt-4 border-t border-[var(--color-line)]">
+              <div className="flex items-center gap-2">
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-accent-soft)] text-[var(--color-accent)] shrink-0">
+                  <Wallet className="w-3.5 h-3.5" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[10px] text-[var(--color-muted)] uppercase tracking-wide">Deal size</p>
+                  <p className="text-[12.5px] font-semibold text-[var(--color-ink)] truncate">{s.dealSize}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-accent-soft)] text-[var(--color-accent)] shrink-0">
+                  <Clock3 className="w-3.5 h-3.5" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[10px] text-[var(--color-muted)] uppercase tracking-wide">Notice</p>
+                  <p className="text-[12.5px] font-semibold text-[var(--color-ink)] truncate">{s.notice}</p>
+                </div>
               </div>
             </div>
           </motion.div>
