@@ -46,10 +46,10 @@ const SECTOR_OPTIONS = [
 // CRM's sales_circle_payout_slabs table and is admin-editable, so this copy
 // stays hedged rather than a binding quote.
 const PAYOUT_BANDS = [
-  { band: 'Up to ₹6L CTC', payout: '₹15,000' },
-  { band: '₹6L – ₹12L CTC', payout: '₹30,000' },
-  { band: '₹12L – ₹20L CTC', payout: '₹50,000' },
-  { band: '₹20L+ CTC', payout: '₹75,000' },
+  { band: 'Up to ₹6L CTC', payout: 'Up to ₹15,000' },
+  { band: '₹6L – ₹12L CTC', payout: 'Up to ₹30,000' },
+  { band: '₹12L – ₹20L CTC', payout: 'Up to ₹50,000' },
+  { band: '₹20L+ CTC', payout: 'Up to ₹75,000' },
 ];
 
 const HOW_IT_WORKS = [
@@ -66,7 +66,7 @@ const HOW_IT_WORKS = [
   {
     icon: Wallet,
     title: 'Get paid when they join & stay',
-    body: 'Once your referral joins and completes 90 days, your payout is processed against a transparent CTC-band slab -- no negotiation, no chasing.',
+    body: 'Once your referral joins and completes 90 days, your payout is calculated against a transparent CTC-band slab, capped at 30% of the fee we\'re paid -- no negotiation, no chasing.',
   },
 ];
 
@@ -84,7 +84,7 @@ const VALUE_PROPS = [
   {
     icon: Clock3,
     title: 'Fast, transparent payouts',
-    body: "Payout amount is fixed by CTC band before you refer -- you'll always know what you're earning and why.",
+    body: "Payout is set per CTC band and capped at 30% of the fee we're actually paid by the client -- you'll know the ceiling before you refer, and the exact number the moment you do.",
   },
   {
     icon: Lock,
@@ -280,8 +280,8 @@ export default function SalesCirclePage() {
             </div>
             <h2 className="font-poppins font-semibold text-2xl tracking-tight">What a placement is worth</h2>
             <p className="mt-2 text-sm text-white/60 max-w-lg mx-auto">
-              Illustrative slabs by the candidate&apos;s CTC -- the exact, currently-active payout is confirmed the
-              moment you submit a referral.
+              Illustrative slabs by the candidate&apos;s CTC, capped at 30% of the placement fee we actually receive
+              -- the exact, currently-active payout is confirmed the moment you submit a referral.
             </p>
           </motion.div>
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] overflow-hidden">
