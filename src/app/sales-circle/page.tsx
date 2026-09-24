@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { posthog } from '@/lib/posthog';
 import {
   Sparkles,
   Wallet,
@@ -140,12 +141,15 @@ export default function SalesCirclePage() {
       if (!res.ok) {
         setError(data.error ?? 'Something went wrong. Please try again.');
         setSubmitting(false);
+        posthog.capture('sales_circle_application_error', { reason: data.error ?? 'unknown' });
         return;
       }
       setSubmitted(true);
+      posthog.capture('sales_circle_application_submitted', { sectors: selectedSectors });
     } catch {
       setError('Something went wrong. Please try again.');
       setSubmitting(false);
+      posthog.capture('sales_circle_application_error', { reason: 'network_error' });
     }
   }
 
@@ -206,6 +210,7 @@ export default function SalesCirclePage() {
           </div>
           <a
             href="#apply"
+            onClick={() => posthog.capture('sales_circle_apply_cta_clicked', { location: 'hero' })}
             className="mt-10 inline-flex items-center gap-2 rounded-xl bg-[var(--color-accent)] text-white text-sm font-semibold px-7 py-3.5 shadow-lg shadow-indigo-600/25 transition-all duration-150 hover:bg-white hover:text-[var(--color-ink)] hover:-translate-y-0.5"
           >
             Apply to join
