@@ -218,7 +218,7 @@ export default function Home() {
                 href="/sales-circle"
                 className="inline-flex items-center justify-center px-7 py-3.5 bg-[var(--color-ink)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent)] transition-colors duration-300 whitespace-nowrap"
               >
-                Explore Sales Circle →
+                Refer & Earn →
               </Link>
             </div>
           </motion.div>

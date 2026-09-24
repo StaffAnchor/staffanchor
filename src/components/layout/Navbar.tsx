@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Wallet } from 'lucide-react';
 
 type NavSubItem = {
   name: string;
@@ -18,6 +18,14 @@ type NavItem = {
   submenu?: NavSubItem[];
   targetBlank?: boolean;
   highlight?: boolean;
+  // Small pill-within-a-pill marketing badge, e.g. "Up to ₹75K" on the
+  // Refer & Earn tab -- distinct from `highlight` (which just makes the tab
+  // itself a gradient pill) so a highlighted item can carry an extra bit of
+  // eye-catching copy without needing a second visual treatment.
+  badge?: string;
+  // Which icon renders inside a highlighted pill -- defaults to Sparkles
+  // (used by Free Tools) so existing highlighted items don't need updating.
+  icon?: 'sparkles' | 'wallet';
 };
 
 const Navbar = () => {
@@ -29,7 +37,7 @@ const Navbar = () => {
     { name: 'Employers', href: '/employers' },
     { name: 'Jobseekers', href: '/jobseekers' },
     { name: 'Current Jobs', href: 'https://jobs.staffanchor.com/jobs', targetBlank: true },
-    { name: 'Sales Circle', href: '/sales-circle' },
+    { name: 'Refer & Earn', href: '/sales-circle', highlight: true, badge: 'Up to ₹75K', icon: 'wallet' },
     { name: 'Free Tools', href: '/free-tools', highlight: true },
     { name: 'Contact Us', href: '/contact' },
   ];
@@ -64,10 +72,23 @@ const Navbar = () => {
                       href={item.href}
                       target={item.targetBlank ? '_blank' : undefined}
                       rel={item.targetBlank ? 'noopener noreferrer' : undefined}
-                      className="group/tool relative mx-1 flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[var(--color-accent)] to-indigo-500 px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm shadow-indigo-500/20 transition-transform duration-200 hover:scale-105 hover:shadow-md hover:shadow-indigo-500/30"
+                      className={`group/tool relative mx-1 flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-md ${
+                        item.icon === 'wallet'
+                          ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 shadow-emerald-500/20 hover:shadow-emerald-500/30'
+                          : 'bg-gradient-to-r from-[var(--color-accent)] to-indigo-500 shadow-indigo-500/20 hover:shadow-indigo-500/30'
+                      }`}
                     >
-                      <Sparkles className="h-3.5 w-3.5 animate-pulse" />
+                      {item.icon === 'wallet' ? (
+                        <Wallet className="h-3.5 w-3.5" />
+                      ) : (
+                        <Sparkles className="h-3.5 w-3.5 animate-pulse" />
+                      )}
                       {item.name}
+                      {item.badge && (
+                        <span className="ml-0.5 rounded-full bg-white/20 px-1.5 py-0.5 text-[10px] font-bold leading-none">
+                          {item.badge}
+                        </span>
+                      )}
                     </Link>
                   ) : (
                     <Link
@@ -164,11 +185,20 @@ const Navbar = () => {
                         href={item.href}
                         target={item.targetBlank ? '_blank' : undefined}
                         rel={item.targetBlank ? 'noopener noreferrer' : undefined}
-                        className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-[var(--color-accent)] to-indigo-500 px-4 py-3 text-base font-semibold text-white shadow-sm transition-transform duration-200 hover:scale-[1.01]"
+                        className={`flex items-center gap-2 rounded-lg px-4 py-3 text-base font-semibold text-white shadow-sm transition-transform duration-200 hover:scale-[1.01] ${
+                          item.icon === 'wallet'
+                            ? 'bg-gradient-to-r from-emerald-600 to-emerald-500'
+                            : 'bg-gradient-to-r from-[var(--color-accent)] to-indigo-500'
+                        }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        <Sparkles className="h-4 w-4" />
+                        {item.icon === 'wallet' ? <Wallet className="h-4 w-4" /> : <Sparkles className="h-4 w-4" />}
                         {item.name}
+                        {item.badge && (
+                          <span className="ml-auto rounded-full bg-white/20 px-2 py-0.5 text-[11px] font-bold leading-none">
+                            {item.badge}
+                          </span>
+                        )}
                       </Link>
                     ) : (
                       <Link
