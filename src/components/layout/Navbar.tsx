@@ -72,20 +72,22 @@ const Navbar = () => {
                       href={item.href}
                       target={item.targetBlank ? '_blank' : undefined}
                       rel={item.targetBlank ? 'noopener noreferrer' : undefined}
-                      className={`group/tool relative mx-1 flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-md ${
+                      className={`group/tool relative mx-1 flex items-center gap-1.5 whitespace-nowrap rounded-full py-1.5 pl-3.5 text-sm font-semibold text-white shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-md ${
+                        item.badge ? 'pr-1.5' : 'pr-3.5'
+                      } ${
                         item.icon === 'wallet'
                           ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 shadow-emerald-500/20 hover:shadow-emerald-500/30'
                           : 'bg-gradient-to-r from-[var(--color-accent)] to-indigo-500 shadow-indigo-500/20 hover:shadow-indigo-500/30'
                       }`}
                     >
                       {item.icon === 'wallet' ? (
-                        <Wallet className="h-3.5 w-3.5" />
+                        <Wallet className="h-3.5 w-3.5 shrink-0" />
                       ) : (
-                        <Sparkles className="h-3.5 w-3.5 animate-pulse" />
+                        <Sparkles className="h-3.5 w-3.5 shrink-0 animate-pulse" />
                       )}
-                      {item.name}
+                      <span>{item.name}</span>
                       {item.badge && (
-                        <span className="ml-0.5 rounded-full bg-white/20 px-1.5 py-0.5 text-[10px] font-bold leading-none">
+                        <span className="ml-0.5 whitespace-nowrap rounded-full bg-white/25 px-2 py-1 text-[10.5px] font-bold leading-none tracking-tight">
                           {item.badge}
                         </span>
                       )}
@@ -192,10 +194,10 @@ const Navbar = () => {
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        {item.icon === 'wallet' ? <Wallet className="h-4 w-4" /> : <Sparkles className="h-4 w-4" />}
-                        {item.name}
+                        {item.icon === 'wallet' ? <Wallet className="h-4 w-4 shrink-0" /> : <Sparkles className="h-4 w-4 shrink-0" />}
+                        <span>{item.name}</span>
                         {item.badge && (
-                          <span className="ml-auto rounded-full bg-white/20 px-2 py-0.5 text-[11px] font-bold leading-none">
+                          <span className="ml-auto shrink-0 whitespace-nowrap rounded-full bg-white/25 px-2.5 py-1 text-[11px] font-bold leading-none tracking-tight">
                             {item.badge}
                           </span>
                         )}
