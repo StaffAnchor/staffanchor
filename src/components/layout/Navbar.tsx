@@ -97,11 +97,11 @@ const Navbar = () => {
                       href={item.href}
                       target={item.targetBlank ? '_blank' : undefined}
                       rel={item.targetBlank ? 'noopener noreferrer' : undefined}
-                      className="text-[var(--color-muted)] hover:text-[var(--color-ink)] px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center rounded-md"
+                      className="whitespace-nowrap text-[var(--color-muted)] hover:text-[var(--color-ink)] px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center rounded-md"
                     >
                       {item.name}
                       {item.submenu && (
-                        <svg className="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3.5 h-3.5 ml-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                       )}
