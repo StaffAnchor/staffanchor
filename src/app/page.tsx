@@ -194,6 +194,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Sales Circle referrer promo */}
+      <section className="section-padding bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-3xl border border-[var(--color-line)] bg-[var(--color-mist)] px-6 py-12 sm:px-12 sm:py-16"
+          >
+            <div className="relative grid grid-cols-1 lg:grid-cols-[1.3fr_auto] gap-8 items-center">
+              <div>
+                <span className="eyebrow mb-3">StaffAnchor Sales Circle</span>
+                <h2 className="heading-lg mb-3">Know great sales talent? Get paid to introduce them.</h2>
+                <p className="text-[var(--color-muted)] leading-relaxed max-w-xl">
+                  A curated, by-application referral network — earn up to ₹75,000 per placement when someone
+                  you refer joins and stays. No recruiting work, no cold outreach, full visibility into every
+                  referral&apos;s status.
+                </p>
+              </div>
+              <Link
+                href="/sales-circle"
+                className="inline-flex items-center justify-center px-7 py-3.5 bg-[var(--color-ink)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent)] transition-colors duration-300 whitespace-nowrap"
+              >
+                Explore Sales Circle →
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Dual-path closing */}
       <section className="pt-20 pb-20 bg-[var(--color-ink)] text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

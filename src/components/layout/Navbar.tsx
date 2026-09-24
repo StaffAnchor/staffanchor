@@ -29,6 +29,7 @@ const Navbar = () => {
     { name: 'Employers', href: '/employers' },
     { name: 'Jobseekers', href: '/jobseekers' },
     { name: 'Current Jobs', href: 'https://jobs.staffanchor.com/jobs', targetBlank: true },
+    { name: 'Sales Circle', href: '/sales-circle' },
     { name: 'Free Tools', href: '/free-tools', highlight: true },
     { name: 'Contact Us', href: '/contact' },
   ];
