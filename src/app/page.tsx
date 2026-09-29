@@ -5,8 +5,23 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import HeroSection from '@/components/ui/HeroSection';
 import TestimonialCard from '@/components/ui/TestimonialCard';
-import SalesDomainsGrid from '@/components/ui/SalesDomainsGrid';
 import PassportDemoCard from '@/components/ui/PassportDemoCard';
+
+// Repositioning pass (Sept 2026): narrowed from "sales, any industry,
+// SDR-to-CRO" to enterprise/leadership sales roles at B2B technology
+// companies specifically. These two lists are the editable building
+// blocks for that -- kept as plain arrays (not hardcoded into JSX) so the
+// industry focus and role list can change without touching layout code,
+// per the brief's ask to keep these sections editable for future
+// "specialism" pages (cybersecurity, infra, etc.).
+const focusAreas: string[] = ['Cybersecurity', 'Cloud', 'Data & AI', 'B2B SaaS & Vertical Software'];
+
+const rolesWeHire = [
+  { title: 'Enterprise & Strategic Account Executives', description: 'Win and close large, complex deals.' },
+  { title: 'Account Managers & Key Account Directors', description: 'Grow and protect your most important customer relationships.' },
+  { title: 'Sales Managers, Regional Heads & Sales Directors', description: 'Build and lead high-performing sales teams.' },
+  { title: 'Country Heads & VPs of Sales', description: 'Own revenue for a market or a business.' },
+];
 
 // Every figure below is a fact about how we operate or what's actually in
 // the candidate database today (verified against live data), not a
@@ -16,14 +31,14 @@ import PassportDemoCard from '@/components/ui/PassportDemoCard';
 const proofStats = [
   { value: '3-Year', label: 'Quota attainment tracked', note: 'Every candidate’s performance history, not just their title.' },
   { value: '100%', label: 'Verified by a real conversation', note: 'No profile reaches a client without a recruiter call.' },
-  { value: '20+', label: 'Sales sub-domains covered', note: 'SaaS, Enterprise, BFSI, EdTech, Real Estate & more.' },
+  { value: '20+', label: 'Sales sub-domains covered', note: 'Cybersecurity, Cloud, Data & AI, B2B SaaS & vertical software.' },
   { value: 'Upfront', label: 'Notice period confirmed', note: 'Every candidate confirms their notice period before submission — never a surprise later.' },
 ];
 
 const whyDifferent = [
   {
-    title: 'Specialist in sales, only',
-    description: 'Not IT staffing, not generic HR. Every mandate we take is a sales or commercial role — SDR to CRO, B2B or B2C — because sales hiring rewards depth, not breadth.',
+    title: 'Enterprise sales, only',
+    description: 'Not IT staffing, not generic HR, not junior or bulk hiring. Every mandate we take is an enterprise sales or sales leadership role at a B2B technology company — because sales hiring rewards depth, not breadth.',
   },
   {
     title: 'Verified, not just self-reported',
@@ -53,10 +68,10 @@ export default function Home() {
     <>
       {/* Hero */}
       <HeroSection
-        eyebrow="Sales hiring, done like a specialist"
-        headline="Your career — and your hiring —"
-        accentText="on the record."
-        subtext="For candidates: a profile that actually captures your performance, not just your title. For employers: shortlists backed by verified data, not a keyword match."
+        eyebrow="Enterprise sales talent for B2B technology"
+        headline="We find the people who sell complex technology —"
+        accentText="to businesses."
+        subtext="Enterprise sales and sales leadership hiring for B2B technology companies in India — cybersecurity, cloud, data & AI, and vertical software. For candidates: a profile that actually captures your performance, not just your title."
         specialization={true}
         backgroundPattern={true}
         visual={<PassportDemoCard />}
@@ -82,6 +97,23 @@ export default function Home() {
           </Link>
         </div>
       </HeroSection>
+
+      {/* Focus strip — editable list (see focusAreas above) of the B2B tech
+          industries we specialize in. Deliberately narrow and named right
+          under the hero, since this is the line a CRO scans for before
+          reading anything else. */}
+      <section className="py-6 bg-white border-b border-[var(--color-line)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm font-medium text-[var(--color-muted)]">
+            {focusAreas.map((area, i) => (
+              <span key={area} className="flex items-center gap-3">
+                <span className="text-[var(--color-ink)]">{area}</span>
+                {i < focusAreas.length - 1 && <span className="text-[var(--color-line)]">·</span>}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Proof-point stat row — anchor-line style */}
       <section className="py-16 border-y border-[var(--color-line)] bg-white">
@@ -139,8 +171,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sales domains we cover */}
-      <SalesDomainsGrid subtitle="Whatever your sales motion, we speak the language fluently." />
+      {/* Roles we hire — editable list (see rolesWeHire above) */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-12 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">Roles we hire</span>
+            <h2 className="heading-lg">Enterprise sales, end to end</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {rolesWeHire.map((role, i) => (
+              <motion.div
+                key={role.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: '-50px' }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="bg-[var(--color-mist)] rounded-2xl p-8 border border-[var(--color-line)]"
+              >
+                <h3 className="font-poppins font-semibold text-lg text-[var(--color-ink)] mb-2 tracking-tight">{role.title}</h3>
+                <p className="text-[var(--color-muted)] leading-relaxed">{role.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <p className="mt-8 text-[var(--color-muted)]">
+            We also hire partnerships and alliances, channel sales, and presales leaders.
+          </p>
+        </div>
+      </section>
 
       {/* Testimonials */}
       <TestimonialCard testimonials={testimonials} title="Client voices" />
