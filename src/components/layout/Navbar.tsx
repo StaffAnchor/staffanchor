@@ -32,7 +32,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems: NavItem[] = [
-    { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about-us' },
     { name: 'Employers', href: '/employers' },
     { name: 'Jobseekers', href: '/jobseekers' },
