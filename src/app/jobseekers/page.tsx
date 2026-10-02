@@ -56,6 +56,17 @@ export default function JobseekersPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
+          <Link
+            href="https://jobs.staffanchor.com/jobs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center justify-center px-7 py-3.5 bg-white text-[var(--color-ink)] border border-[var(--color-line)] font-semibold rounded-xl hover:border-[var(--color-ink)] transition-colors duration-300 min-w-[200px]"
+          >
+            <span>View Current Jobs</span>
+            <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
         </div>
         <p className="text-sm text-[var(--color-muted)] mt-8 max-w-2xl">
           Your profile is never shared with an employer without your knowledge.
@@ -210,17 +221,27 @@ export default function JobseekersPage() {
             <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
               About 9 minutes, tailored to your specialization. Your profile is never shared without your knowledge.
             </p>
-            <Link
-              href="https://jobs.staffanchor.com/register"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--color-ink)] font-semibold rounded-xl hover:bg-[var(--color-accent)] hover:text-white transition-colors duration-300"
-            >
-              <span>Register Now</span>
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="https://jobs.staffanchor.com/register"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--color-ink)] font-semibold rounded-xl hover:bg-[var(--color-accent)] hover:text-white transition-colors duration-300"
+              >
+                <span>Register Now</span>
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              <Link
+                href="https://jobs.staffanchor.com/jobs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white font-semibold rounded-xl hover:bg-white hover:text-[var(--color-ink)] transition-colors duration-300"
+              >
+                <span>View Current Jobs</span>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
