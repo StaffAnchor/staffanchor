@@ -11,6 +11,10 @@ type NavSubItem = {
   name: string;
   href: string;
   targetBlank?: boolean;
+  // Rendered as the group's heading (bold, with its children indented below).
+  heading?: boolean;
+  // Rendered indented beneath the heading.
+  child?: boolean;
 };
 
 type NavItem = {
@@ -38,8 +42,8 @@ const Navbar = () => {
       name: 'Employers',
       href: '/employers',
       submenu: [
-        { name: 'All employer services', href: '/employers' },
-        ...employerServices.map((s) => ({ name: s.title, href: s.href })),
+        { name: 'All services', href: '/employers', heading: true },
+        ...employerServices.map((s) => ({ name: s.title, href: s.href, child: true })),
       ],
     },
     { name: 'Jobseekers', href: '/jobseekers' },
@@ -120,17 +124,34 @@ const Navbar = () => {
                     <div className="absolute top-full left-0 pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
                      <div className="bg-white rounded-xl shadow-xl border border-[var(--color-line)]">
                       <div className="py-2">
-                        {item.submenu.map((subItem) => (
+                        {item.submenu.filter((x) => !x.child).map((subItem) => (
                           <Link
                             key={subItem.name}
                             href={subItem.href}
                             target={subItem.targetBlank ? '_blank' : undefined}
                             rel={subItem.targetBlank ? 'noopener noreferrer' : undefined}
-                            className="block px-4 py-2 text-sm text-[var(--color-muted)] hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)] transition-colors duration-200"
+                            className={`block px-4 py-2 text-sm transition-colors duration-200 hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)] ${
+                              subItem.heading ? 'font-semibold text-[var(--color-ink)]' : 'text-[var(--color-muted)]'
+                            }`}
                           >
                             {subItem.name}
                           </Link>
                         ))}
+                        {item.submenu.some((x) => x.child) && (
+                          <div className="ml-6 mb-1 border-l border-[var(--color-line)]">
+                            {item.submenu.filter((x) => x.child).map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                href={subItem.href}
+                                target={subItem.targetBlank ? '_blank' : undefined}
+                                rel={subItem.targetBlank ? 'noopener noreferrer' : undefined}
+                                className="block px-4 py-2 text-sm text-[var(--color-muted)] hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)] transition-colors duration-200"
+                              >
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
                       </div>
                      </div>
                     </div>
@@ -230,7 +251,11 @@ const Navbar = () => {
                             href={subItem.href}
                             target={subItem.targetBlank ? '_blank' : undefined}
                             rel={subItem.targetBlank ? 'noopener noreferrer' : undefined}
-                            className="block px-4 py-2 text-sm text-[var(--color-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-mist)] rounded-lg transition-colors duration-200"
+                            className={`block py-2 text-sm hover:text-[var(--color-ink)] hover:bg-[var(--color-mist)] rounded-lg transition-colors duration-200 ${
+                              subItem.heading
+                                ? 'px-4 font-semibold text-[var(--color-ink)]'
+                                : 'ml-4 border-l border-[var(--color-line)] pl-6 pr-4 rounded-l-none text-[var(--color-muted)]'
+                            }`}
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
                             {subItem.name}
