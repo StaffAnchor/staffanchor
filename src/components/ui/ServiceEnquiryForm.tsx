@@ -5,7 +5,7 @@ import { posthog } from '@/lib/posthog';
 import { submitContactForm } from '@/utils/googleSheets';
 
 // A short contact request for the services that start with a conversation
-// rather than a full hiring mandate (leadership search, dedicated teams,
+// rather than a full hiring mandate (leadership search, RPO, managed teams,
 // sales enablement, hiring advisory). Goes through the same pipeline as the
 // Contact page, so it lands in the same inbox and CRM list.
 export default function ServiceEnquiryForm({

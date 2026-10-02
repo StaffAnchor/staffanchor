@@ -9,6 +9,7 @@ import EmployerForm from '@/components/ui/EmployerForm';
 import ServiceEnquiryForm from '@/components/ui/ServiceEnquiryForm';
 import { submitEmployerForm } from '@/utils/mandates';
 import type { Block, ServicePageConfig } from '@/data/servicePages';
+import { ServiceSwitcher, OtherServices } from '@/components/services/ServiceSwitcher';
 
 const fade = {
   initial: { opacity: 0, y: 20 },
@@ -185,6 +186,8 @@ export default function ServicePage({ config }: { config: ServicePageConfig }) {
         </a>
       </HeroSection>
 
+      <ServiceSwitcher currentSlug={config.slug} />
+
       {config.blocks.map((block, i) => (
         <BlockView key={`${block.type}-${i}`} block={block} bg={i % 2 === 0 ? 'bg-white' : 'bg-[var(--color-mist)]'} />
       ))}
@@ -211,6 +214,8 @@ export default function ServicePage({ config }: { config: ServicePageConfig }) {
           )}
         </div>
       </section>
+
+      <OtherServices currentSlug={config.slug} />
 
       <section className="py-12 bg-white border-t border-[var(--color-line)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

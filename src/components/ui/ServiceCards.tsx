@@ -44,7 +44,7 @@ export default function ServiceCards({ variant, location }: { variant: 'home' | 
         <p className="pt-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-muted-soft)]">Also available</p>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {small.map((s, i) => (
           <motion.div
             key={s.slug}

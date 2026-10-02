@@ -200,84 +200,147 @@ export const servicePages: Record<string, ServicePageConfig> = {
     also: { label: 'Also consider: Sales Hiring Advisory', href: '/employers/sales-hiring-advisory' },
   },
 
-  'dedicated-sales-teams': {
-    slug: 'dedicated-sales-teams',
+  'recruitment-process-outsourcing': {
+    slug: 'recruitment-process-outsourcing',
     seo: {
-      title: 'Dedicated Sales Hiring Partner India | StaffAnchor',
+      title: 'Sales Recruitment Process Outsourcing (RPO) India | StaffAnchor',
       description:
-        'An embedded StaffAnchor recruiter who runs your sales hiring, so you scale without building a recruiting function.',
+        'An embedded StaffAnchor recruiter who runs your sales hiring end to end, so you scale without building a recruiting function.',
     },
-    eyebrow: 'Dedicated Sales Teams',
+    eyebrow: 'Recruitment Process Outsourcing',
     h1: 'Your sales hiring, run by a team that only does',
     accent: 'sales.',
-    sub: 'An embedded hiring partner or contract sales hires, so you scale without building a recruiting function.',
-    cta: 'Talk about a dedicated team',
+    sub: 'A dedicated StaffAnchor recruiter embedded in your team, running your sales hiring end to end for a monthly fee.',
+    cta: 'Talk about RPO',
     form: {
       kind: 'enquiry',
-      service: 'Dedicated Sales Team',
-      title: 'Talk about a dedicated team',
+      service: 'Recruitment Process Outsourcing (RPO)',
+      title: 'Talk about a recruitment partner',
       subtitle: 'Tell us a little about your hiring plan. We will reach out within one business day.',
-      submit: 'Talk about a dedicated team →',
+      submit: 'Talk about RPO →',
       messageLabel: 'How many sales hires are you planning? (optional)',
     },
     blocks: [
-      {
-        type: 'options',
-        eyebrow: 'Two options',
-        title: 'Choose how we work with you',
-        options: [
-          {
-            name: 'Embedded Hiring Partner',
-            bestFor: 'Companies hiring 10 or more sellers a year',
-            how: 'A dedicated StaffAnchor recruiter runs your sales hiring for a monthly fee.',
-          },
-          {
-            name: 'Contract / On-roll Sales Hires',
-            bestFor: 'Pilots, new markets and project needs',
-            how: 'We hire and payroll sellers for you, with payroll and statutory compliance handled.',
-            comingSoon: true,
-          },
-        ],
-      },
-      {
-        type: 'bullets',
-        eyebrow: 'Included',
-        title: 'What a dedicated engagement covers',
-        items: [
-          'Hiring plan and role design',
-          'Sourcing and verification',
-          'Interview scorecards',
-          'A weekly hiring dashboard',
-          'Offer support',
-        ],
-      },
       {
         type: 'cards',
         eyebrow: 'Who it is for',
         title: 'Built for steady, ongoing sales hiring',
         items: [
-          { title: 'Scaling sales teams', text: 'You hire sellers throughout the year and want one partner, not a new agency each time.' },
+          { title: 'Scaling sales teams', text: 'You hire 10 or more sellers a year and want one partner, not a new agency for every role.' },
           { title: 'No recruiting function yet', text: 'You want hiring run well without building an in-house team around it.' },
+          { title: 'Several roles open at once', text: 'Account executives, managers and leaders are all open, and you need one owner to keep them moving.' },
+        ],
+      },
+      {
+        type: 'steps',
+        eyebrow: 'How it works',
+        title: 'From hiring plan to a steady rhythm',
+        steps: [
+          { title: 'Scope your hiring plan', text: 'We agree the roles, the sequence and what good looks like for each.' },
+          { title: 'Embed a recruiter', text: 'A dedicated StaffAnchor recruiter works as part of your team, in your tools where it helps.' },
+          { title: 'Run a weekly cadence', text: 'A weekly review of every open role, every candidate and every blocker.' },
+          { title: 'Review and refine', text: 'We look at what is working and adjust the plan as your needs change.' },
+        ],
+      },
+      {
+        type: 'bullets',
+        eyebrow: 'Included',
+        title: 'What an RPO engagement covers',
+        items: ['Hiring plan and role design', 'Sourcing and verification', 'Interview scorecards', 'A weekly hiring dashboard', 'Offer support'],
+      },
+      {
+        type: 'engagement',
+        eyebrow: 'Engagement',
+        title: 'A monthly fee, with clear terms',
+        text: 'RPO is a monthly fee for a dedicated recruiter. The minimum commitment and terms are agreed on enquiry.',
+      },
+      {
+        type: 'faq',
+        title: 'Questions about RPO',
+        items: [
+          { q: 'How is this different from permanent hiring?', a: 'Permanent hiring is success-based and per role. RPO puts one recruiter on your hiring continuously for a monthly fee.' },
+          { q: 'Can I meet the recruiter first?', a: 'Yes. The conversation starts with your hiring plan, and you will meet the recruiter proposed for your account before committing.' },
+          { q: 'What is the minimum commitment?', a: 'It is agreed per engagement. We start with a conversation about your hiring plan and propose terms from there.' },
+          { q: 'How do you report progress?', a: 'A weekly hiring dashboard shows every open role, where candidates are in the process and what is blocking progress.' },
+        ],
+      },
+    ],
+    also: { label: 'Also consider: Managed Sales Teams', href: '/employers/managed-sales-teams' },
+  },
+
+  'managed-sales-teams': {
+    slug: 'managed-sales-teams',
+    seo: {
+      title: 'Managed Sales Teams | Contract and On-roll Sales Hiring India | StaffAnchor',
+      description:
+        'Contract and on-roll sellers hired, onboarded and payrolled by StaffAnchor, so you add sales capacity without hiring or payroll overhead.',
+    },
+    eyebrow: 'Managed Sales Teams',
+    h1: 'Add sales capacity without the hiring and payroll',
+    accent: 'overhead.',
+    sub: 'We hire, onboard and payroll contract or on-roll sellers for you, with statutory compliance handled.',
+    cta: 'Talk about a managed team',
+    form: {
+      kind: 'enquiry',
+      service: 'Managed Sales Team',
+      title: 'Talk about a managed sales team',
+      subtitle: 'Tell us what you are trying to do. We will reach out within one business day.',
+      submit: 'Talk about a managed team →',
+      messageLabel: 'What do you need sellers for, and for how long? (optional)',
+    },
+    blocks: [
+      {
+        type: 'cards',
+        eyebrow: 'When teams use it',
+        title: 'Capacity for the moments that need it',
+        items: [
+          { title: 'Pilots', text: 'Test a product or a segment before committing to permanent headcount.' },
+          { title: 'New markets', text: 'Build presence in a new city quickly, without setting up the hiring and payroll first.' },
+          { title: 'Project needs', text: 'Add sellers for a launch or a time-bound push.' },
+        ],
+      },
+      {
+        type: 'steps',
+        eyebrow: 'How it works',
+        title: 'From brief to a working team',
+        steps: [
+          { title: 'Agree roles and duration', text: 'The profile you need, the number of sellers and how long you need them.' },
+          { title: 'We hire and verify', text: 'Sourced and verified against your role scorecard, with you approving every hire.' },
+          { title: 'We onboard and payroll', text: 'Onboarding, documentation, payroll and statutory compliance, handled by us.' },
+          { title: 'You direct the selling', text: 'You set targets and direct the work. We manage everything around it.' },
+        ],
+      },
+      {
+        type: 'bullets',
+        eyebrow: 'Included',
+        title: 'What a managed team covers',
+        items: [
+          'Hiring and verification against your role scorecard',
+          'Onboarding and documentation',
+          'Payroll and statutory compliance',
+          'Regular check-ins on performance and attendance',
+          'An option to convert hires to permanent',
         ],
       },
       {
         type: 'engagement',
         eyebrow: 'Engagement',
-        title: 'Simple, predictable terms',
-        text: 'The Embedded Hiring Partner is a monthly fee. Contract and on-roll hires, when available, will be priced as cost-plus or a management fee. Terms are agreed on enquiry.',
+        title: 'Cost-plus or a management fee',
+        text: 'Managed teams are priced as cost-plus or a management fee. Terms are agreed on enquiry.',
+        points: ['The employment structure and each party’s responsibilities are set out in the agreement before any hire starts.'],
       },
       {
         type: 'faq',
-        title: 'Questions about dedicated teams',
+        title: 'Questions about managed sales teams',
         items: [
-          { q: 'How is this different from permanent hiring?', a: 'Permanent hiring is success-based and per role. A dedicated engagement puts one recruiter on your hiring continuously for a monthly fee.' },
-          { q: 'Can contract hires convert to permanent?', a: 'Contract and on-roll hiring is coming soon. When it launches, conversion terms will be agreed up front.' },
-          { q: 'Can I meet the dedicated recruiter first?', a: 'Yes. The conversation starts with your hiring plan, and you will meet the recruiter proposed for your account before committing.' },
-          { q: 'What is the minimum commitment?', a: 'It is agreed per engagement. We start with a conversation about your hiring plan and propose terms from there.' },
+          { q: 'How is this different from RPO?', a: 'RPO adds a recruiter to run your hiring of your own employees. Managed Sales Teams puts sellers on contract or on our payroll for you.' },
+          { q: 'Can contract hires convert to permanent?', a: 'Yes. Conversion terms are agreed up front.' },
+          { q: 'Who manages the sellers day to day?', a: 'You direct the selling work and set the targets. StaffAnchor handles hiring, onboarding, payroll and compliance.' },
+          { q: 'What is the minimum duration?', a: 'It is agreed per engagement, based on the pilot or project.' },
         ],
       },
     ],
-    also: { label: 'Also consider: Permanent Hiring', href: '/employers/permanent-hiring' },
+    also: { label: 'Also consider: Recruitment Process Outsourcing', href: '/employers/recruitment-process-outsourcing' },
   },
 
   'sales-enablement': {
@@ -351,7 +414,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
         ],
       },
     ],
-    also: { label: 'Also consider: Dedicated Sales Teams', href: '/employers/dedicated-sales-teams' },
+    also: { label: 'Also consider: Recruitment Process Outsourcing', href: '/employers/recruitment-process-outsourcing' },
   },
 
   'sales-hiring-advisory': {

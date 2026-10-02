@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Wallet } from 'lucide-react';
+import { employerServices } from '@/data/employerServices';
 
 type NavSubItem = {
   name: string;
@@ -33,7 +34,14 @@ const Navbar = () => {
 
   const navItems: NavItem[] = [
     { name: 'About Us', href: '/about-us' },
-    { name: 'Employers', href: '/employers' },
+    {
+      name: 'Employers',
+      href: '/employers',
+      submenu: [
+        { name: 'All employer services', href: '/employers' },
+        ...employerServices.map((s) => ({ name: s.title, href: s.href })),
+      ],
+    },
     { name: 'Jobseekers', href: '/jobseekers' },
     { name: 'Current Jobs', href: 'https://jobs.staffanchor.com/jobs', targetBlank: true },
     { name: 'Refer & Earn', href: '/sales-circle', highlight: true, badge: 'Up to ₹75K', icon: 'wallet' },
@@ -109,7 +117,8 @@ const Navbar = () => {
 
                   {/* Dropdown Menu */}
                   {item.submenu && (
-                    <div className="absolute top-full left-0 mt-1 w-60 bg-white rounded-xl shadow-xl border border-[var(--color-line)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="absolute top-full left-0 pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
+                     <div className="bg-white rounded-xl shadow-xl border border-[var(--color-line)]">
                       <div className="py-2">
                         {item.submenu.map((subItem) => (
                           <Link
@@ -123,6 +132,7 @@ const Navbar = () => {
                           </Link>
                         ))}
                       </div>
+                     </div>
                     </div>
                   )}
                 </div>

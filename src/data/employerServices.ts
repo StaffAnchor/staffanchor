@@ -5,7 +5,8 @@
 export const SERVICE_OPTIONS = [
   'Permanent Hiring',
   'Leadership Search',
-  'Dedicated Sales Team',
+  'Recruitment Process Outsourcing (RPO)',
+  'Managed Sales Team',
   'Sales Enablement',
   'Not sure, advise me',
 ] as const;
@@ -16,6 +17,8 @@ export interface EmployerService {
   slug: string;
   href: string;
   title: string;
+  // Compact label for pills and tight spaces.
+  shortTitle: string;
   // Used in the "What do you need?" dropdown to pre-select on that page.
   option: ServiceOption;
   featured: boolean; // Permanent Hiring and Leadership Search are the lead services
@@ -28,6 +31,7 @@ export const employerServices: EmployerService[] = [
     slug: 'permanent-hiring',
     href: '/employers/permanent-hiring',
     title: 'Permanent Hiring',
+    shortTitle: 'Permanent Hiring',
     option: 'Permanent Hiring',
     featured: true,
     oneLiner: 'Verified shortlists for Account Executives, Key Account Managers and Sales Managers.',
@@ -38,6 +42,7 @@ export const employerServices: EmployerService[] = [
     slug: 'leadership-search',
     href: '/employers/leadership-search',
     title: 'Leadership Search',
+    shortTitle: 'Leadership Search',
     option: 'Leadership Search',
     featured: true,
     oneLiner: 'Confidential, retained search for Sales Directors, VPs and Country Heads.',
@@ -45,19 +50,32 @@ export const employerServices: EmployerService[] = [
       'Retained search for Sales Directors, VPs, Country Heads and CRO roles. Led personally by a sales leader, with a mapped search that reaches passive candidates and handles replacement searches discreetly.',
   },
   {
-    slug: 'dedicated-sales-teams',
-    href: '/employers/dedicated-sales-teams',
-    title: 'Dedicated Sales Teams',
-    option: 'Dedicated Sales Team',
+    slug: 'recruitment-process-outsourcing',
+    href: '/employers/recruitment-process-outsourcing',
+    title: 'Recruitment Process Outsourcing',
+    shortTitle: 'RPO',
+    option: 'Recruitment Process Outsourcing (RPO)',
     featured: false,
-    oneLiner: 'An embedded hiring partner or contract sales hires, so you scale without building a recruiting function.',
+    oneLiner: 'An embedded StaffAnchor recruiter who runs your sales hiring, so you scale without building a recruiting function.',
     description:
-      'An embedded StaffAnchor recruiter who runs your sales hiring, so you scale without building a recruiting function. Contract and on-roll sales hires are coming soon.',
+      'A dedicated recruiter embedded in your team, running your sales hiring end to end for a monthly fee, with a weekly dashboard so you always know where every role stands.',
+  },
+  {
+    slug: 'managed-sales-teams',
+    href: '/employers/managed-sales-teams',
+    title: 'Managed Sales Teams',
+    shortTitle: 'Managed Sales Teams',
+    option: 'Managed Sales Team',
+    featured: false,
+    oneLiner: 'Contract or on-roll sellers hired and managed by us, with payroll and compliance handled.',
+    description:
+      'We hire, onboard and payroll contract or on-roll sellers for pilots, new markets and project needs, so you add sales capacity without adding hiring or payroll overhead.',
   },
   {
     slug: 'sales-enablement',
     href: '/employers/sales-enablement',
     title: 'Sales Enablement',
+    shortTitle: 'Sales Enablement',
     option: 'Sales Enablement',
     featured: false,
     oneLiner: 'Onboarding and training programs for your sales team.',

@@ -98,7 +98,7 @@ export default function Home() {
           </Link>
         </div>
         <p className="mt-5 text-sm text-[var(--color-muted)]">
-          Also: dedicated sales teams and sales enablement.{' '}
+          Also: recruitment process outsourcing, managed sales teams and sales enablement.{' '}
           <Link href="/employers" className="font-semibold text-[var(--color-accent)] underline-offset-4 hover:underline">
             See how we work with employers
           </Link>
