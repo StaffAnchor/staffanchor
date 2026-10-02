@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { posthog } from '@/lib/posthog';
 import { submitContactForm } from '@/utils/googleSheets';
+import { isValidMobile, MOBILE_ERROR } from '@/utils/validation';
 
 // A short contact request for the services that start with a conversation
 // rather than a full hiring mandate (leadership search, RPO, managed teams,
@@ -44,6 +45,7 @@ export default function ServiceEnquiryForm({
     const email = String(fd.get('email') || '').trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) next.email = 'Please enter a valid work email.';
     if (!String(fd.get('company') || '').trim()) next.company = 'Please enter your company.';
+    if (!isValidMobile(String(fd.get('phone') || ''))) next.phone = MOBILE_ERROR;
     setErrors(next);
     if (Object.keys(next).length > 0) return;
 
@@ -108,8 +110,20 @@ export default function ServiceEnquiryForm({
             {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email}</p>}
           </div>
           <div>
-            <label htmlFor="enquiry-phone" className="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
-            <input id="enquiry-phone" name="phone" type="tel" className={inputClasses} placeholder="Optional" />
+            <label htmlFor="enquiry-phone" className="block text-sm font-medium text-gray-700 mb-2">
+              Mobile Number <span className="text-red-500">*</span>
+            </label>
+            <input
+              id="enquiry-phone"
+              name="phone"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              className={inputClasses}
+              placeholder="10-digit mobile number"
+              aria-invalid={!!errors.phone}
+            />
+            {errors.phone && <p className="text-sm text-red-600 mt-1" role="alert">{errors.phone}</p>}
           </div>
         </div>
         <div>

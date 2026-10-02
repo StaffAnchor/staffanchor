@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { posthog } from '@/lib/posthog';
 import { SERVICE_OPTIONS } from '@/data/employerServices';
+import { isValidMobile, MOBILE_ERROR } from '@/utils/validation';
 
 interface FormField {
   name: string;
@@ -57,7 +58,7 @@ const employerFormFields: FormField[] = [
   { name: "fullName", label: "Full Name", type: "text", required: true, placeholder: "Enter your full name" },
   { name: "designation", label: "Designation", type: "text", required: true, placeholder: "HR Manager, CEO, Founder, etc." },
   { name: "workEmail", label: "Work Email", type: "email", required: true, placeholder: "Enter your work email" },
-  { name: "mobileNumber", label: "Mobile Number", type: "tel", required: true, placeholder: "Enter your mobile number" }
+  { name: "mobileNumber", label: "Mobile Number", type: "tel", required: true, placeholder: "10-digit mobile number" }
 ];
 
 const EmployerForm = ({ 
@@ -73,6 +74,7 @@ const EmployerForm = ({
   const initialData = (): { [key: string]: string } => (defaultService ? { serviceNeeded: defaultService } : {});
   const [formData, setFormData] = useState<{[key: string]: string}>(initialData);
   const [showCustomIndustry, setShowCustomIndustry] = useState(false);
+  const [phoneError, setPhoneError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,6 +90,15 @@ const EmployerForm = ({
       (e.target as HTMLFormElement).reset();
       return;
     }
+
+    // A mobile number is mandatory (we phone employers back), and has to look
+    // like a real one -- the browser's `required` alone accepts "1".
+    if (!isValidMobile(formData.mobileNumber || '')) {
+      setPhoneError(MOBILE_ERROR);
+      document.getElementById(`${idPrefix}-mobileNumber`)?.focus();
+      return;
+    }
+    setPhoneError('');
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
@@ -108,6 +119,7 @@ const EmployerForm = ({
       });
       setFormData(initialData());
       setShowCustomIndustry(false);
+      setPhoneError('');
       (e.target as HTMLFormElement).reset();
     } catch (error) {
       console.error('Form submission error:', error);
@@ -118,6 +130,7 @@ const EmployerForm = ({
   };
 
   const handleInputChange = (fieldName: string, value: string) => {
+    if (fieldName === 'mobileNumber' && phoneError) setPhoneError('');
     setFormData(prev => ({
       ...prev,
       [fieldName]: value
@@ -215,6 +228,7 @@ const EmployerForm = ({
         return (
           <input
             type={field.type}
+            {...(field.type === 'tel' ? { inputMode: 'tel' as const, autoComplete: 'tel' } : {})}
             name={field.name}
             id={`${idPrefix}-${field.name}`}
             value={formData[field.name] || ''}
@@ -263,6 +277,9 @@ const EmployerForm = ({
               {field.label} {field.required && <span className="text-red-500">*</span>}
             </label>
             {renderField(field)}
+            {field.name === 'mobileNumber' && phoneError && (
+              <p className="mt-1 text-sm text-red-600" role="alert">{phoneError}</p>
+            )}
           </div>
         ))}
 
