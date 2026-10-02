@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import EmployerForm from '@/components/ui/EmployerForm';
 import { submitEmployerForm } from '@/utils/mandates';
-import SalesDomainsGrid from '@/components/ui/SalesDomainsGrid';
+import ServiceCards from '@/components/ui/ServiceCards';
+import { B2B_DOMAINS } from '@/data/employerServices';
 import HeroSection from '@/components/ui/HeroSection';
 import RecruiterInsightsCard from '@/components/ui/RecruiterInsightsCard';
 
@@ -50,7 +51,7 @@ const whatMakesDifferent = [
 ];
 
 const rolesWePlace = [
-  { level: 'Individual Contributor', roles: 'SDR / BDR, Inside Sales Executive, Account Executive, Key Account Manager' },
+  { level: 'Individual Contributor', roles: 'Account Executive, Strategic Account Executive, Key Account Manager' },
   { level: 'Management', roles: 'Sales Manager, Regional / City Head, Team Lead' },
   { level: 'Leadership', roles: 'Director of Sales, VP Sales, Country Head, CRO / Business Head (P&L)' },
 ];
@@ -71,6 +72,23 @@ export default function EmployersPage() {
           Submit a hiring mandate →
         </a>
       </HeroSection>
+
+      {/* Ways we work with you */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-12 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">How we work with you</span>
+            <h2 className="heading-lg">Choose the service that fits</h2>
+          </motion.div>
+          <ServiceCards variant="hub" location="employers_hub" />
+        </div>
+      </section>
 
       {/* How it works */}
       <section className="section-padding bg-[var(--color-mist)]">
@@ -142,6 +160,7 @@ export default function EmployersPage() {
           </div>
 
           <EmployerForm
+            idPrefix="top"
             title="Hiring Mandate"
             subtitle="Complete this form and a StaffAnchor recruiter will follow up within one business day."
             submitText="Submit Mandate →"
@@ -175,12 +194,31 @@ export default function EmployersPage() {
         </div>
       </section>
 
-      {/* Industries / domains */}
-      <SalesDomainsGrid
-        eyebrow="Whatever your motion"
-        title="We've placed for it"
-        subtitle="B2B sales and GTM hiring is our core focus — with B2C sales expertise built for it too."
-      />
+      {/* Motions we place for -- B2B core list */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-12 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">Whatever your motion</span>
+            <h2 className="heading-lg">We&apos;ve placed for it</h2>
+            <p className="mt-3 text-[var(--color-muted)] leading-relaxed">
+              Enterprise sales and GTM hiring for B2B technology companies is our core focus.
+            </p>
+          </motion.div>
+          <div className="flex flex-wrap gap-3">
+            {B2B_DOMAINS.map((d) => (
+              <span key={d} className="rounded-full border border-[var(--color-line)] bg-[var(--color-mist)] px-5 py-2.5 text-sm font-medium text-[var(--color-ink)]">
+                {d}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Was a grid of "Client logo placeholder" boxes shipped straight to
           production -- a fabricated trust marker (dashed boxes implying
@@ -204,7 +242,7 @@ export default function EmployersPage() {
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              { value: '750+', label: 'Sales & GTM profiles in our database' },
+              { value: '600+', label: 'Sales & GTM profiles in our database' },
               { value: '2', label: 'Specialist practices — Enterprise Tech GTM, Industrial Commercial' },
               { value: '1 business day', label: 'Response time on every mandate submitted' },
             ].map((s) => (
@@ -228,6 +266,7 @@ export default function EmployersPage() {
           </div>
 
           <EmployerForm
+            idPrefix="bottom"
             title="Hiring Mandate"
             subtitle="Complete this form and a StaffAnchor recruiter will follow up within one business day."
             submitText="Submit Mandate →"

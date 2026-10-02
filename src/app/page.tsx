@@ -6,9 +6,10 @@ import Image from 'next/image';
 import HeroSection from '@/components/ui/HeroSection';
 import TestimonialCard from '@/components/ui/TestimonialCard';
 import PassportDemoCard from '@/components/ui/PassportDemoCard';
+import ServiceCards from '@/components/ui/ServiceCards';
 
-// Repositioning pass (Sept 2026): narrowed from "sales, any industry,
-// SDR-to-CRO" to enterprise/leadership sales roles at B2B technology
+// Repositioning pass (Sept 2026): narrowed to enterprise/leadership sales
+// roles at B2B technology
 // companies specifically. These two lists are the editable building
 // blocks for that -- kept as plain arrays (not hardcoded into JSX) so the
 // industry focus and role list can change without touching layout code,
@@ -37,8 +38,8 @@ const proofStats = [
 
 const whyDifferent = [
   {
-    title: 'Enterprise sales, only',
-    description: 'Not IT staffing, not generic HR, not junior or bulk hiring. Every mandate we take is an enterprise sales or sales leadership role at a B2B technology company — because sales hiring rewards depth, not breadth.',
+    title: 'Enterprise sales, end to end.',
+    description: 'Every mandate is an enterprise sales or sales leadership role at a B2B technology company, because sales hiring rewards depth, not breadth.',
   },
   {
     title: 'Verified, not just self-reported',
@@ -71,7 +72,7 @@ export default function Home() {
         eyebrow="Enterprise sales talent for B2B technology"
         headline="We find the people who sell complex technology —"
         accentText="to businesses."
-        subtext="Enterprise sales and sales leadership hiring for B2B technology companies in India — cybersecurity, cloud, data & AI, and vertical software. For candidates: a profile that actually captures your performance, not just your title."
+        subtext="Enterprise sales hiring and leadership search for B2B technology companies in India. Backed by verified performance data."
         specialization={true}
         backgroundPattern={true}
         visual={<PassportDemoCard />}
@@ -96,6 +97,12 @@ export default function Home() {
             </svg>
           </Link>
         </div>
+        <p className="mt-5 text-sm text-[var(--color-muted)]">
+          Also: dedicated sales teams and sales enablement.{' '}
+          <Link href="/employers" className="font-semibold text-[var(--color-accent)] underline-offset-4 hover:underline">
+            See how we work with employers
+          </Link>
+        </p>
       </HeroSection>
 
       {/* Focus strip — editable list (see focusAreas above) of the B2B tech
@@ -171,7 +178,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Roles we hire — editable list (see rolesWeHire above) */}
+      {/* How we work with you */}
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -181,8 +188,25 @@ export default function Home() {
             viewport={{ margin: '-100px' }}
             transition={{ duration: 0.6 }}
           >
+            <span className="eyebrow mb-3 block">For employers</span>
+            <h2 className="heading-lg">How we work with you</h2>
+          </motion.div>
+          <ServiceCards variant="home" location="homepage" />
+        </div>
+      </section>
+
+      {/* Roles we hire — editable list (see rolesWeHire above) */}
+      <section className="section-padding bg-[var(--color-mist)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-12 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
             <span className="eyebrow mb-3 block">Roles we hire</span>
-            <h2 className="heading-lg">Enterprise sales, end to end</h2>
+            <h2 className="heading-lg">From first enterprise hire to country head</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -193,7 +217,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ margin: '-50px' }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-[var(--color-mist)] rounded-2xl p-8 border border-[var(--color-line)]"
+                className="bg-white rounded-2xl p-8 border border-[var(--color-line)]"
               >
                 <h3 className="font-poppins font-semibold text-lg text-[var(--color-ink)] mb-2 tracking-tight">{role.title}</h3>
                 <p className="text-[var(--color-muted)] leading-relaxed">{role.description}</p>
@@ -239,6 +263,7 @@ export default function Home() {
                   <div>
                     <p className="font-semibold text-[var(--color-ink)] text-lg">Gagan Sharma</p>
                     <p className="text-[var(--color-muted)] text-sm">Founder, StaffAnchor Talent Solutions</p>
+                    <p className="text-[var(--color-muted)] text-sm mt-1">15 years building and leading sales teams</p>
                   </div>
 
                   <a
@@ -319,6 +344,15 @@ export default function Home() {
                 Build my profile →
               </Link>
             </div>
+          </div>
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-white/10 px-8 py-6">
+            <p className="text-white/80">Not sure what you need? Book a 20-minute sales hiring consultation.</p>
+            <Link
+              href="/employers/sales-hiring-advisory#get-started"
+              className="inline-flex shrink-0 items-center justify-center px-6 py-3 border border-white/30 text-white font-semibold rounded-xl hover:bg-white hover:text-[var(--color-ink)] transition-colors duration-300"
+            >
+              Book a consultation →
+            </Link>
           </div>
         </div>
       </section>

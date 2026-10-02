@@ -9,7 +9,7 @@ const Footer = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   // Pages that have sidebar
-  const sidebarPages = ['/sales-hiring', '/leadership-hiring', '/volume-hiring', '/sales-talent-intelligence', '/interim'];
+  const sidebarPages = ['/sales-hiring', '/leadership-hiring', '/sales-talent-intelligence', '/interim'];
   const hasSidebar = sidebarPages.includes(pathname);
 
   // Listen for sidebar state changes via custom events
@@ -30,6 +30,11 @@ const Footer = () => {
   const footerLinks = {
     services: [
       { name: 'For Employers', href: '/employers' },
+      { name: 'Permanent Hiring', href: '/employers/permanent-hiring' },
+      { name: 'Leadership Search', href: '/employers/leadership-search' },
+      { name: 'Dedicated Sales Teams', href: '/employers/dedicated-sales-teams' },
+      { name: 'Sales Enablement', href: '/employers/sales-enablement' },
+      { name: 'Sales Hiring Advisory', href: '/employers/sales-hiring-advisory' },
       { name: 'For Jobseekers', href: '/jobseekers' },
     ],
     company: [

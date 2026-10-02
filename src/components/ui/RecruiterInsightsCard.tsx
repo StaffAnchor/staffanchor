@@ -29,7 +29,7 @@ const SAMPLES = [
     gap: 'Notice period is 45 days — longer than your stated timeline',
   },
   {
-    role: 'Regional Sales Manager · BFSI',
+    role: 'Regional Sales Manager · Cloud',
     match: 86,
     recommend: 'Strong fit',
     standout: [
@@ -43,7 +43,7 @@ const SAMPLES = [
     gap: '2 job changes in the last 3 years — worth asking about directly',
   },
   {
-    role: 'Inside Sales Team Lead · EdTech',
+    role: 'Sales Manager · Cybersecurity',
     match: 94,
     recommend: 'Strong fit',
     standout: [
@@ -51,7 +51,7 @@ const SAMPLES = [
       'Already coaching 3 reps informally — ready for a formal lead role',
     ],
     questions: [
-      "What's your approach to ramping a new SDR in their first 30 days?",
+      "What's your approach to ramping a new Account Executive in their first 90 days?",
       'How do you forecast pipeline for your team?',
     ],
     gap: 'No prior formal people-management title — first time as a lead',

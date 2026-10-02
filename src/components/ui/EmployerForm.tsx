@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { posthog } from '@/lib/posthog';
+import { SERVICE_OPTIONS } from '@/data/employerServices';
 
 interface FormField {
   name: string;
@@ -18,18 +19,30 @@ interface EmployerFormProps {
   subtitle?: string;
   submitText?: string;
   onSubmit: (formData: FormData) => Promise<void>;
+  // Pre-selects "What do you need?" -- used on each service sub-page.
+  defaultService?: string;
+  // Distinguishes the two forms on one page (ids must be unique).
+  idPrefix?: string;
 }
 
 const employerFormFields: FormField[] = [
   { name: "companyName", label: "Company Name", type: "text", required: true, placeholder: "Enter your company name" },
   { name: "roleTitle", label: "Role Title", type: "text", required: true, placeholder: "e.g. Enterprise Account Executive" },
   {
+    name: "serviceNeeded",
+    label: "What do you need?",
+    type: "select",
+    required: true,
+    placeholder: "Select a service",
+    options: [...SERVICE_OPTIONS]
+  },
+  {
     name: "salesCategory",
     label: "Sales Category",
     type: "select",
     required: true,
     placeholder: "Select category",
-    options: ["B2B Sales", "B2C Sales", "Non-Sales / Other"]
+    options: ["B2B Sales", "Other, discuss with us"]
   },
   { name: "city", label: "City", type: "text", required: true, placeholder: "e.g. Bengaluru, Mumbai, Delhi NCR" },
   {
@@ -51,11 +64,14 @@ const EmployerForm = ({
   title, 
   subtitle, 
   submitText = "Submit",
-  onSubmit
+  onSubmit,
+  defaultService,
+  idPrefix = 'mandate',
 }: EmployerFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [formData, setFormData] = useState<{[key: string]: string}>({});
+  const initialData = (): { [key: string]: string } => (defaultService ? { serviceNeeded: defaultService } : {});
+  const [formData, setFormData] = useState<{[key: string]: string}>(initialData);
   const [showCustomIndustry, setShowCustomIndustry] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -67,7 +83,7 @@ const EmployerForm = ({
     // certainly a bot, so we pretend success without ever calling onSubmit.
     if (formData.website && formData.website.trim() !== '') {
       setSubmitStatus('success');
-      setFormData({});
+      setFormData(initialData());
       setShowCustomIndustry(false);
       (e.target as HTMLFormElement).reset();
       return;
@@ -88,8 +104,9 @@ const EmployerForm = ({
       setSubmitStatus('success');
       posthog.capture('employer_mandate_submitted', {
         salesCategory: formDataToSubmit.get('salesCategory')?.toString() ?? undefined,
+        serviceNeeded: formDataToSubmit.get('serviceNeeded')?.toString() ?? undefined,
       });
-      setFormData({});
+      setFormData(initialData());
       setShowCustomIndustry(false);
       (e.target as HTMLFormElement).reset();
     } catch (error) {
@@ -116,6 +133,7 @@ const EmployerForm = ({
         <div className="space-y-4">
           <select
             name={field.name}
+            id={`${idPrefix}-${field.name}`}
             value={showCustomIndustry ? 'Other' : (formData[field.name] || '')}
             onChange={(e) => {
               if (e.target.value === 'Other') {
@@ -164,6 +182,7 @@ const EmployerForm = ({
         return (
           <textarea
             name={field.name}
+            id={`${idPrefix}-${field.name}`}
             value={formData[field.name] || ''}
             onChange={(e) => handleInputChange(field.name, e.target.value)}
             placeholder={field.placeholder}
@@ -177,6 +196,7 @@ const EmployerForm = ({
         return (
           <select
             name={field.name}
+            id={`${idPrefix}-${field.name}`}
             value={formData[field.name] || ''}
             onChange={(e) => handleInputChange(field.name, e.target.value)}
             required={field.required}
@@ -196,6 +216,7 @@ const EmployerForm = ({
           <input
             type={field.type}
             name={field.name}
+            id={`${idPrefix}-${field.name}`}
             value={formData[field.name] || ''}
             onChange={(e) => handleInputChange(field.name, e.target.value)}
             placeholder={field.placeholder}
@@ -226,9 +247,9 @@ const EmployerForm = ({
         {/* Honeypot -- hidden off-screen, never shown or required to a real
             visitor. See handleSubmit above for the spam check. */}
         <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }} aria-hidden="true">
-          <label htmlFor="website">Leave this field blank</label>
+          <label htmlFor={`${idPrefix}-website`}>Leave this field blank</label>
           <input
-            id="website"
+            id={`${idPrefix}-website`}
             name="website"
             tabIndex={-1}
             autoComplete="off"
@@ -238,7 +259,7 @@ const EmployerForm = ({
         </div>
         {employerFormFields.map((field) => (
           <div key={field.name}>
-            <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor={`${idPrefix}-${field.name}`} className="block text-sm font-medium text-gray-700 mb-2">
               {field.label} {field.required && <span className="text-red-500">*</span>}
             </label>
             {renderField(field)}

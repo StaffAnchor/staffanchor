@@ -1,9 +1,9 @@
 import { supabase } from '@/lib/supabaseClient';
 
+// "Other, discuss with us" is stored with no category so a recruiter sorts it
+// out on the first call.
 const CATEGORY_MAP: Record<string, string> = {
   'B2B Sales': 'b2b_sales',
-  'B2C Sales': 'b2c_sales',
-  'Non-Sales / Other': 'non_sales',
 };
 
 const BUDGET_RANGE_MAP: Record<string, { min: number | null; max: number | null }> = {
@@ -26,6 +26,7 @@ export const submitEmployerForm = async (formData: FormData): Promise<void> => {
   const get = (key: string) => (formData.get(key) as string | null) ?? '';
 
   const salesCategory = get('salesCategory');
+  const serviceNeeded = get('serviceNeeded');
   const budgetRange = get('budgetRange');
   const budget = BUDGET_RANGE_MAP[budgetRange] ?? { min: null, max: null };
 
@@ -40,7 +41,9 @@ export const submitEmployerForm = async (formData: FormData): Promise<void> => {
     designation: get('designation'),
     work_email: get('workEmail'),
     mobile_number: get('mobileNumber'),
-    message: get('description'),
+    // The inquiry table has no "service" column, so the service the employer
+    // picked leads the message -- visible to the recruiter in the CRM.
+    message: serviceNeeded ? `[Service needed: ${serviceNeeded}] ${get('description')}` : get('description'),
     source: 'employers_page',
   };
 
