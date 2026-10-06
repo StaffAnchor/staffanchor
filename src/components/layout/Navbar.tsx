@@ -74,7 +74,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation Items */}
-          <div className="hidden lg:flex items-center justify-center flex-1">
+          <div className="hidden min-[1360px]:flex items-center justify-center flex-1">
             <nav className="flex items-center space-x-1">
               {navItems.map((item) => (
                 <div key={item.name} className="relative group">
@@ -162,7 +162,7 @@ const Navbar = () => {
           </div>
 
           {/* CTA Buttons Section */}
-          <div className="hidden lg:flex items-center shrink-0">
+          <div className="hidden min-[1360px]:flex items-center shrink-0">
             <div className="flex items-center space-x-3">
               <Link
                 href="/employers"
@@ -180,7 +180,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden shrink-0">
+          <div className="min-[1360px]:hidden shrink-0">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 rounded-md text-[var(--color-muted)] hover:text-[var(--color-ink)] hover:bg-[var(--color-mist)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
@@ -206,7 +206,7 @@ const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="lg:hidden border-t border-[var(--color-line)] bg-white"
+              className="min-[1360px]:hidden border-t border-[var(--color-line)] bg-white"
             >
               <div className="px-4 pt-4 pb-4 space-y-2">
                 {/* Mobile Navigation Items */}
