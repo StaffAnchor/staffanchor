@@ -85,7 +85,7 @@ export default function Home() {
         eyebrow="Enterprise tech sales hiring · India"
         headline="We hire the sellers who close enterprise tech deals."
         accentText="First shortlist in 72 hours."
-        subtext="Account executives, key account managers, sales heads and country leaders for B2B technology companies. Every candidate is checked against each of your requirements by a recruiter who has spoken to them. The gaps are shown, not hidden."
+        subtext="Account executives to country heads, for B2B tech companies in India. A recruiter speaks to every candidate and checks them against each of your must-haves. If someone misses one, you see it."
         specialization={true}
         backgroundPattern={true}
         visual={<ShortlistDemoCard />}
@@ -212,8 +212,8 @@ export default function Home() {
             <span className="eyebrow mb-3 block">What you receive</span>
             <h2 className="heading-lg mb-4">A shortlist you can judge at a glance, in 72 hours</h2>
             <p className="text-lg text-[var(--color-muted)] leading-relaxed">
-              For every candidate you see how they measure against each of your must-haves. Where someone falls short, you see it up front
-              and decide with the full picture.
+              Every candidate is scored against each of your must-haves: met, partly met or not met. If someone falls short, you see it
+              before you spend an hour with them.
             </p>
           </motion.div>
 

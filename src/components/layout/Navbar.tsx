@@ -35,6 +35,14 @@ type NavItem = {
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // The desktop dropdown opens on hover/focus alone, so after a click the link keeps focus and the
+  // pointer is still over the menu: it would stay open on the new page. Hide it as soon as a
+  // choice is made, and let the next hover open it again.
+  const [suppressedMenu, setSuppressedMenu] = useState<string | null>(null);
+  const closeMenu = (name: string) => {
+    setSuppressedMenu(name);
+    (document.activeElement as HTMLElement | null)?.blur();
+  };
 
   const navItems: NavItem[] = [
     { name: 'About Us', href: '/about-us' },
@@ -77,7 +85,11 @@ const Navbar = () => {
           <div className="hidden min-[1360px]:flex items-center justify-center flex-1">
             <nav className="flex items-center space-x-1">
               {navItems.map((item) => (
-                <div key={item.name} className="relative group">
+                <div
+                  key={item.name}
+                  className="relative group"
+                  onMouseLeave={() => setSuppressedMenu((cur) => (cur === item.name ? null : cur))}
+                >
                   {item.highlight ? (
                     <Link
                       href={item.href}
@@ -108,6 +120,7 @@ const Navbar = () => {
                       href={item.href}
                       target={item.targetBlank ? '_blank' : undefined}
                       rel={item.targetBlank ? 'noopener noreferrer' : undefined}
+                      onClick={() => item.submenu && closeMenu(item.name)}
                       className="whitespace-nowrap text-[var(--color-muted)] hover:text-[var(--color-ink)] px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center rounded-md"
                     >
                       {item.name}
@@ -121,7 +134,10 @@ const Navbar = () => {
 
                   {/* Dropdown Menu */}
                   {item.submenu && (
-                    <div className="absolute top-full left-0 pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
+                    <div
+                      style={suppressedMenu === item.name ? { opacity: 0, visibility: 'hidden' } : undefined}
+                      className="absolute top-full left-0 pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50"
+                    >
                      <div className="bg-white rounded-xl shadow-xl border border-[var(--color-line)]">
                       <div className="py-2">
                         {item.submenu.filter((x) => !x.child).map((subItem) => (
@@ -130,6 +146,7 @@ const Navbar = () => {
                             href={subItem.href}
                             target={subItem.targetBlank ? '_blank' : undefined}
                             rel={subItem.targetBlank ? 'noopener noreferrer' : undefined}
+                            onClick={() => closeMenu(item.name)}
                             className={`block px-4 py-2 text-sm transition-colors duration-200 hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)] ${
                               subItem.heading ? 'font-semibold text-[var(--color-ink)]' : 'text-[var(--color-muted)]'
                             }`}
@@ -145,6 +162,7 @@ const Navbar = () => {
                                 href={subItem.href}
                                 target={subItem.targetBlank ? '_blank' : undefined}
                                 rel={subItem.targetBlank ? 'noopener noreferrer' : undefined}
+                                onClick={() => closeMenu(item.name)}
                                 className="block px-4 py-2 text-sm text-[var(--color-muted)] hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)] transition-colors duration-200"
                               >
                                 {subItem.name}

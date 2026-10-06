@@ -48,7 +48,7 @@ export default function EmployersPage() {
         eyebrow="For employers"
         headline="A shortlist of enterprise tech sellers,"
         accentText="in 72 hours."
-        subtext="Every candidate is checked against each of your requirements by a recruiter who has spoken to them. Where someone falls short, you see it up front, so you decide with the full picture. The 72 hours start when your brief is confirmed."
+        subtext="A recruiter speaks to every candidate and checks them against each of your must-haves. If someone misses one, you see it before you meet them. The 72 hours start when your brief is confirmed."
         backgroundPattern={true}
         visual={<RecruiterInsightsCard />}
       >
