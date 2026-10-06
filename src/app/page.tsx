@@ -4,64 +4,77 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import HeroSection from '@/components/ui/HeroSection';
-import TestimonialCard from '@/components/ui/TestimonialCard';
-import PassportDemoCard from '@/components/ui/PassportDemoCard';
-import ServiceCards from '@/components/ui/ServiceCards';
+import ShortlistDemoCard from '@/components/ui/ShortlistDemoCard';
 
-// Repositioning pass (Sept 2026): narrowed to enterprise/leadership sales
-// roles at B2B technology
-// companies specifically. These two lists are the editable building
-// blocks for that -- kept as plain arrays (not hardcoded into JSX) so the
-// industry focus and role list can change without touching layout code,
-// per the brief's ask to keep these sections editable for future
-// "specialism" pages (cybersecurity, infra, etc.).
-const focusAreas: string[] = ['Cybersecurity', 'Cloud', 'Data & AI', 'B2B SaaS & Vertical Software'];
+// Positioning (Oct 2026): the specialist for enterprise technology sales hiring in India.
+// Credibility comes from how specifically we talk about selling, not from counts or client
+// results (none are published yet). Everything below is plain data so the wording can change
+// without touching layout code.
+const focusAreas: string[] = [
+  'Cybersecurity',
+  'Cloud & infrastructure',
+  'Data & AI',
+  'B2B SaaS (horizontal & vertical)',
+  'ERP, CRM & HRMS software',
+  'Industrial & infrastructure technology',
+];
+
+// How a sales leader reads a seller. Each is something we record for every candidate.
+const howWeReadASeller = [
+  {
+    title: 'The sales motion',
+    description: 'Outbound account-based, partner or channel-led, inbound, or product-led? A seller who thrives in one often struggles in another.',
+  },
+  {
+    title: 'Deal size and cycle',
+    description: 'A ₹5L deal in a month and a ₹1Cr deal in nine months are different jobs. We record both for each role they held.',
+  },
+  {
+    title: 'Quota and attainment',
+    description: 'The size of the number, how they reached it, and how it held up over three years. Not "consistently exceeded targets".',
+  },
+  {
+    title: 'Who they sold to',
+    description: 'CXOs, CTOs, procurement and security reviewers. The level and function of the buyer, not just the word "enterprise".',
+  },
+  {
+    title: 'How much of the cycle they owned',
+    description: 'Who built the pipeline, ran the demo, negotiated and closed. Full-cycle ownership or a hand-off role.',
+  },
+  {
+    title: 'New logos or expansion',
+    description: 'Hunting new accounts, growing the install base, or both, and whether they have led a team while carrying a number.',
+  },
+];
+
+// Opinions, not claims: this is where a specialist's point of view shows.
+const whatHiringGetsWrong = [
+  {
+    title: 'A title is not a motion.',
+    description: 'Two "Senior Account Executives" can be doing opposite jobs. We hire on what they sold, to whom, and how.',
+  },
+  {
+    title: 'Quota without deal size means little.',
+    description: '100% of a small number tells you almost nothing. We always capture both, for every role.',
+  },
+  {
+    title: 'Pay and notice surprises end searches late.',
+    description: 'We confirm expected CTC, notice period and relocation on a call before you meet anyone.',
+  },
+];
+
+const seventyTwoHours = [
+  { step: '01', title: 'Share the role', description: 'A short form: role, city, budget and your must-haves. It takes minutes.' },
+  { step: '02', title: 'We confirm the brief', description: 'A recruiter checks the must-haves and the sales motion with you. The 72 hours start here.' },
+  { step: '03', title: 'We search and speak to people', description: 'From our own bank of enterprise sellers and the market. A recruiter speaks to each candidate and confirms they want your role.' },
+  { step: '04', title: 'Your shortlist, in your portal', description: 'Every candidate reviewed against each of your must-haves: met, partly met or not met, with the recruiter\u2019s note.' },
+];
 
 const rolesWeHire = [
-  { title: 'Enterprise & Strategic Account Executives', description: 'Win and close large, complex deals.' },
-  { title: 'Account Managers & Key Account Directors', description: 'Grow and protect your most important customer relationships.' },
-  { title: 'Sales Managers, Regional Heads & Sales Directors', description: 'Build and lead high-performing sales teams.' },
-  { title: 'Country Heads & VPs of Sales', description: 'Own revenue for a market or a business.' },
-];
-
-// Every figure below is a fact about how we operate or what's actually in
-// the candidate database today (verified against live data), not a
-// placement outcome — so unlike the old "Illustrative figures, pending
-// real placement data" framing, none of these need a hedge. They stand on
-// their own regardless of how many placements have closed so far.
-const proofStats = [
-  { value: '3-Year', label: 'Quota attainment tracked', note: 'Every candidate’s performance history, not just their title.' },
-  { value: '100%', label: 'Verified by a real conversation', note: 'No profile reaches a client without a recruiter call.' },
-  { value: '20+', label: 'Sales sub-domains covered', note: 'Cybersecurity, Cloud, Data & AI, B2B SaaS & vertical software.' },
-  { value: 'Upfront', label: 'Notice period confirmed', note: 'Every candidate confirms their notice period before submission — never a surprise later.' },
-];
-
-const whyDifferent = [
-  {
-    title: 'Enterprise sales, end to end.',
-    description: 'Every mandate is an enterprise sales or sales leadership role at a B2B technology company, because sales hiring rewards depth, not breadth.',
-  },
-  {
-    title: 'Verified, not just self-reported',
-    description: 'Candidates share their quota attainment, deal size and sales cycle. A recruiter independently verifies it on a real call before it ever reaches you.',
-  },
-  {
-    title: 'Fast, confident shortlists',
-    description: 'Because the data is structured and verified before you see it, a shortlist is something you can act on the same day — not something you have to re-screen.',
-  },
-];
-
-const testimonials = [
-  {
-    quote: 'They think like consultants, not recruiters. Every shortlist was spot-on.',
-    title: 'CHRO',
-    company: 'D2C Brand',
-  },
-  {
-    quote: 'Our leadership role was closed in 3 weeks — flawless process.',
-    title: 'Founder',
-    company: 'B2B FinTech Startup',
-  },
+  { title: 'Enterprise & Strategic Account Executives', description: 'Own large, multi-stakeholder deals with long cycles: security reviews, procurement and CXO buying committees.' },
+  { title: 'Key Account Managers & Directors', description: 'Expand and retain your largest accounts: renewals, upsell and multi-year relationships.' },
+  { title: 'Sales Managers, Regional Heads & Directors', description: 'Lead a team that carries a number: hiring, forecasting, coaching and pipeline reviews.' },
+  { title: 'VPs of Sales, Country Heads & Business Heads', description: 'Own revenue and the P&L for a market or a business.' },
 ];
 
 export default function Home() {
@@ -69,48 +82,51 @@ export default function Home() {
     <>
       {/* Hero */}
       <HeroSection
-        eyebrow="Enterprise sales talent for B2B technology"
-        headline="We find the people who sell complex technology —"
-        accentText="to businesses."
-        subtext="Enterprise sales hiring and leadership search for B2B technology companies in India. Backed by verified performance data."
+        eyebrow="Enterprise tech sales hiring · India"
+        headline="We hire the sellers who close enterprise tech deals."
+        accentText="First shortlist in 72 hours."
+        subtext="Account executives to country heads, for B2B tech companies in India. A recruiter speaks to every candidate and checks them against each of your must-haves. If someone misses one, you see it."
         specialization={true}
         backgroundPattern={true}
-        visual={<PassportDemoCard />}
+        visual={<ShortlistDemoCard />}
       >
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
-            href="/employers"
+            href="/employers#mandate-form"
             className="group inline-flex items-center justify-center px-7 py-3.5 bg-[var(--color-ink)] text-white font-semibold rounded-xl hover:bg-[var(--color-accent)] transition-colors duration-300 min-w-[200px]"
           >
-            <span>I&apos;m hiring</span>
+            <span>Share a role</span>
             <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
-          <Link
-            href="/jobseekers"
-            className="group inline-flex items-center justify-center px-7 py-3.5 bg-white text-[var(--color-ink)] border border-[var(--color-line)] font-semibold rounded-xl hover:border-[var(--color-ink)] transition-colors duration-300 min-w-[200px]"
+          <a
+            href="#what-you-get"
+            className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-[var(--color-ink)] border border-[var(--color-line)] font-semibold rounded-xl hover:border-[var(--color-ink)] transition-colors duration-300 min-w-[200px]"
           >
-            <span>I&apos;m looking for a role</span>
-            <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </Link>
+            See what you receive
+          </a>
         </div>
         <p className="mt-5 text-sm text-[var(--color-muted)]">
-          Also: recruitment process outsourcing, managed sales teams and sales enablement.{' '}
+          The 72 hours start when your brief is confirmed: role, must-haves, budget and city.
+        </p>
+        <p className="mt-2 text-sm text-[var(--color-muted)]">
+          Looking for a role?{' '}
+          <Link href="/jobseekers" className="font-semibold text-[var(--color-accent)] underline-offset-4 hover:underline">
+            Create your profile
+          </Link>
+          {' · '}
           <Link href="/employers" className="font-semibold text-[var(--color-accent)] underline-offset-4 hover:underline">
-            See how we work with employers
+            Retained search, RPO and other ways we work
           </Link>
         </p>
       </HeroSection>
 
-      {/* Focus strip — editable list (see focusAreas above) of the B2B tech
-          industries we specialize in. Deliberately narrow and named right
-          under the hero, since this is the line a CRO scans for before
-          reading anything else. */}
+      {/* Where we are deep -- editable list (see focusAreas above). Named right under the hero:
+          this is the line a sales head scans for before reading anything else. */}
       <section className="py-6 bg-white border-b border-[var(--color-line)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs text-[var(--color-muted-soft)] mb-3 uppercase tracking-wider font-semibold">Where we are deep</p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm font-medium text-[var(--color-muted)]">
             {focusAreas.map((area, i) => (
               <span key={area} className="flex items-center gap-3">
@@ -122,55 +138,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Proof-point stat row — anchor-line style */}
-      <section className="py-16 border-y border-[var(--color-line)] bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs text-[var(--color-muted-soft)] mb-8 uppercase tracking-wider font-semibold">Built into every candidate profile</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {proofStats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="anchor-line"
-              >
-                <div className="text-3xl font-semibold font-poppins text-[var(--color-ink)] tracking-tight mb-1">{stat.value}</div>
-                <div className="text-sm font-semibold text-[var(--color-ink)] mb-1">{stat.label}</div>
-                <div className="text-sm text-[var(--color-muted)]">{stat.note}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why StaffAnchor is different */}
+      {/* How we read a seller */}
       <section className="section-padding bg-[var(--color-mist)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="mb-16 max-w-2xl"
+            className="mb-14 max-w-3xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ margin: '-100px' }}
             transition={{ duration: 0.6 }}
           >
-            <span className="eyebrow mb-3 block">Why us</span>
-            <h2 className="heading-lg">Why StaffAnchor is different</h2>
+            <span className="eyebrow mb-3 block">Our expertise</span>
+            <h2 className="heading-lg mb-4">We read a seller the way a sales leader does</h2>
+            <p className="text-lg text-[var(--color-muted)] leading-relaxed">
+              A resume says &ldquo;consistently exceeded targets&rdquo;. A sales leader asks six questions. We record the answers for every
+              candidate, so you never have to ask them cold.
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {whyDifferent.map((item, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {howWeReadASeller.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white rounded-2xl p-8 border border-[var(--color-line)]"
+                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
+                className="bg-white rounded-2xl p-7 border border-[var(--color-line)]"
               >
                 <span className="text-xs font-mono text-[var(--color-muted)] mb-4 block">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-3 tracking-tight">{item.title}</h3>
+                <h3 className="font-poppins font-semibold text-lg text-[var(--color-ink)] mb-2 tracking-tight">{item.title}</h3>
                 <p className="text-[var(--color-muted)] leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
@@ -178,7 +175,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How we work with you */}
+      {/* What most sales hiring gets wrong -- a specialist's point of view */}
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -188,15 +185,59 @@ export default function Home() {
             viewport={{ margin: '-100px' }}
             transition={{ duration: 0.6 }}
           >
-            <span className="eyebrow mb-3 block">For employers</span>
-            <h2 className="heading-lg">How we work with you</h2>
+            <span className="eyebrow mb-3 block">Our point of view</span>
+            <h2 className="heading-lg">What most sales hiring gets wrong</h2>
           </motion.div>
-          <ServiceCards variant="home" location="homepage" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {whatHiringGetsWrong.map((item) => (
+              <div key={item.title} className="anchor-line py-1">
+                <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-2 tracking-tight">{item.title}</h3>
+                <p className="text-[var(--color-muted)] leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Roles we hire — editable list (see rolesWeHire above) */}
-      <section className="section-padding bg-[var(--color-mist)]">
+      {/* What you get in 72 hours */}
+      <section id="what-you-get" className="section-padding bg-[var(--color-mist)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-14 max-w-3xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="eyebrow mb-3 block">What you receive</span>
+            <h2 className="heading-lg mb-4">A shortlist you can judge at a glance, in 72 hours</h2>
+            <p className="text-lg text-[var(--color-muted)] leading-relaxed">
+              Every candidate is scored against each of your must-haves: met, partly met or not met. If someone falls short, you see it
+              before you spend an hour with them.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {seventyTwoHours.map((item, i) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: '-50px' }}
+                transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}
+                className="bg-white rounded-2xl p-7 border border-[var(--color-line)]"
+              >
+                <span className="text-xs font-mono text-[var(--color-muted)] mb-3 block">{item.step}</span>
+                <h3 className="font-poppins font-semibold text-lg text-[var(--color-ink)] mb-2 tracking-tight">{item.title}</h3>
+                <p className="text-[var(--color-muted)] leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Roles we hire -- editable list (see rolesWeHire above) */}
+      <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="mb-12 max-w-2xl"
@@ -206,7 +247,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <span className="eyebrow mb-3 block">Roles we hire</span>
-            <h2 className="heading-lg">From first enterprise hire to country head</h2>
+            <h2 className="heading-lg">From your first enterprise seller to the country head</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -217,7 +258,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ margin: '-50px' }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-white rounded-2xl p-8 border border-[var(--color-line)]"
+                className="bg-[var(--color-mist)] rounded-2xl p-8 border border-[var(--color-line)]"
               >
                 <h3 className="font-poppins font-semibold text-lg text-[var(--color-ink)] mb-2 tracking-tight">{role.title}</h3>
                 <p className="text-[var(--color-muted)] leading-relaxed">{role.description}</p>
@@ -230,9 +271,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
-      {/* Testimonials */}
-      <TestimonialCard testimonials={testimonials} title="Client voices" />
 
       {/* Founder's Note */}
       <section className="section-padding bg-white" id="leadership">
@@ -320,18 +358,18 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-poppins font-semibold text-3xl md:text-5xl tracking-tight">
-              Ready to work with specialists?
+              Hiring enterprise tech sellers?
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-[var(--color-ink-soft)] rounded-2xl p-8 border border-white/10">
               <h3 className="font-poppins font-semibold text-xl mb-2">Hiring sales talent?</h3>
-              <p className="text-white/60 mb-6">Get a shortlist backed by verified performance data — not a resume dump.</p>
+              <p className="text-white/60 mb-6">Tell us the role. Your first shortlist arrives within 72 hours of a confirmed brief.</p>
               <Link
-                href="/employers"
+                href="/employers#mandate-form"
                 className="inline-flex items-center justify-center px-6 py-3 bg-[var(--color-accent)] text-white font-semibold rounded-xl hover:bg-white hover:text-[var(--color-ink)] transition-colors duration-300"
               >
-                Submit a hiring mandate →
+                Share a role →
               </Link>
             </div>
             <div className="bg-[var(--color-ink-soft)] rounded-2xl p-8 border border-white/10">
