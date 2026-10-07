@@ -169,6 +169,14 @@ const Footer = () => {
           <p className="text-gray-400 text-xs">
             © {currentYear} StaffAnchor Talent Solutions. All rights reserved.
           </p>
+          <div className="flex items-center gap-4 text-xs text-gray-400 mt-2 md:mt-0">
+            <Link href="/privacy" className="hover:text-[var(--color-accent)] transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-[var(--color-accent)] transition-colors">
+              Terms of Use
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
