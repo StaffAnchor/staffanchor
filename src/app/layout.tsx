@@ -5,7 +5,6 @@ import { Inter, Space_Grotesk, Fraunces } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import StickyConsultationButton from "@/components/ui/StickyConsultationButton";
 import PostHogProvider from "@/components/providers/PostHogProvider";
 
 const inter = Inter({
@@ -82,7 +81,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <StickyConsultationButton />
         <FloatingWhatsApp />
       </body>
     </html>
