@@ -1,3 +1,4 @@
+import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Inter, Space_Grotesk, Fraunces } from "next/font/google";
@@ -82,6 +83,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <StickyConsultationButton />
+        <FloatingWhatsApp />
       </body>
     </html>
   );
