@@ -1,5 +1,6 @@
 'use client';
 
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import HeroSection from '@/components/ui/HeroSection';
 import ContactForm from '@/components/ui/ContactForm';
 import { submitContactForm } from '@/utils/googleSheets';
@@ -34,6 +35,14 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Contact details */}
             <div className="lg:col-span-2 space-y-8">
+              <div className="anchor-line">
+                <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-2">WhatsApp</p>
+                <WhatsAppButton
+                  source="contact_page"
+                  label="Message us on WhatsApp"
+                  text="Hi StaffAnchor, I have a question."
+                />
+              </div>
               <div className="anchor-line">
                 <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-muted)] mb-1">Email</p>
                 <a href="mailto:info@staffanchor.com" className="text-lg font-semibold text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors">

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import { motion } from 'framer-motion';
 import HeroSection from '@/components/ui/HeroSection';
 import SalesDomainsGrid from '@/components/ui/SalesDomainsGrid';
@@ -67,6 +68,11 @@ export default function JobseekersPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
+          <WhatsAppButton
+            source="jobseekers_hero"
+            label="Chat with a recruiter"
+            text="Hi StaffAnchor, I'm a sales professional and I'm looking for new roles. Could you help?"
+          />
         </div>
         <p className="text-sm text-[var(--color-muted)] mt-8 max-w-2xl">
           Your profile is never shared with an employer without your knowledge.

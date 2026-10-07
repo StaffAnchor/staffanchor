@@ -1,5 +1,6 @@
 'use client';
 
+import { whatsappChatLink } from '@/lib/whatsapp';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -87,6 +88,19 @@ const Footer = () => {
                 </svg>
                 <a href="tel:+917273000088" className="hover:text-[var(--color-accent)] transition-colors">
                   +91 7273000088
+                </a>
+              </div>
+              <div className="flex items-center space-x-2">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.5 3.5A11 11 0 003.2 17.3L2 22l4.8-1.2A11 11 0 1020.5 3.5zm-8.5 17a9 9 0 01-4.6-1.3l-.3-.2-2.8.7.8-2.7-.2-.3a9 9 0 1117.1-4.7 9 9 0 01-10 8.5z" />
+                </svg>
+                <a
+                  href={whatsappChatLink('Hi StaffAnchor, I have a question.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[var(--color-accent)] transition-colors"
+                >
+                  Chat on WhatsApp
                 </a>
               </div>
             </div>
