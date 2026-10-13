@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import HeroSection from '@/components/ui/HeroSection';
 import ShortlistDemoCard from '@/components/ui/ShortlistDemoCard';
+import AssistEmbed from '@/components/ui/AssistEmbed';
 
 // Positioning (Oct 2026): the specialist for enterprise technology sales hiring in India.
 // Credibility comes from how specifically we talk about selling, not from counts or client
@@ -121,6 +122,13 @@ export default function Home() {
           </Link>
         </p>
       </HeroSection>
+
+      {/* Type a message: understands who is writing and points to the right next step. */}
+      <section className="py-10 bg-white border-b border-[var(--color-line)]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AssistEmbed site="main" />
+        </div>
+      </section>
 
       {/* Where we are deep -- editable list (see focusAreas above). Named right under the hero:
           this is the line a sales head scans for before reading anything else. */}
