@@ -14,7 +14,7 @@ export default function AssistEmbed({ site }: { site: 'main' | 'jobs' }) {
     function onMessage(e: MessageEvent) {
       if (e.origin !== origin) return;
       const d = e.data as { type?: string; height?: number } | null;
-      if (d?.type === 'sa-assist-height' && typeof d.height === 'number') setHeight(Math.min(Math.max(d.height, 300), 900));
+      if (d?.type === 'sa-assist-height' && typeof d.height === 'number') setHeight(Math.min(Math.max(d.height, 300), 1400));
     }
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
