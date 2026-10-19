@@ -48,7 +48,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: "StaffAnchor Talent Solutions",
     description: "Enterprise sales hiring and leadership search for B2B technology companies in India, backed by verified performance data.",
-    url: "https://www.staffanchor.com",
     siteName: "StaffAnchor Talent Solutions",
     type: "website",
     images: [
