@@ -4,7 +4,7 @@ import LegalPage from '@/components/ui/LegalPage';
 export const metadata: Metadata = {
   title: 'Terms of Use | StaffAnchor',
   description: 'The terms for using StaffAnchor Talent Solutions websites and services.',
-  alternates: { canonical: 'https://staffanchor.com/terms' },
+  alternates: { canonical: 'https://www.staffanchor.com/terms' },
 };
 
 export default function TermsPage() {

@@ -4,7 +4,7 @@ import LegalPage from '@/components/ui/LegalPage';
 export const metadata: Metadata = {
   title: 'Privacy Policy | StaffAnchor',
   description: 'How StaffAnchor Talent Solutions collects, uses and protects personal information, including WhatsApp messaging.',
-  alternates: { canonical: 'https://staffanchor.com/privacy' },
+  alternates: { canonical: 'https://www.staffanchor.com/privacy' },
 };
 
 const list = (items: string[]) => (
