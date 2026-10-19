@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     title: "For Employers | StaffAnchor Talent Solutions",
     description: "Verified enterprise sales shortlists and leadership search for B2B technology companies in India.",
     url: "https://www.staffanchor.com/employers",
+    images: [{ url: '/og-home.png', width: 1200, height: 630, alt: 'StaffAnchor Talent Solutions' }],
   },
   alternates: { canonical: "https://www.staffanchor.com/employers" },
 };

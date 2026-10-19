@@ -37,7 +37,10 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://staffanchor.com'),
+  // The site redirects staffanchor.com to www, so www is the one address used for canonicals and shares.
+  metadataBase: new URL('https://www.staffanchor.com'),
+  // Each page points at itself unless it sets its own canonical.
+  alternates: { canonical: './' },
   title: "StaffAnchor Talent Solutions | Enterprise Sales Hiring for B2B Technology",
   description: "Enterprise sales hiring and leadership search for B2B technology companies in India, backed by verified performance data.",
   keywords: "enterprise sales hiring, sales leadership search, B2B sales recruitment India, account executive recruitment, key account manager hiring, VP sales hiring, CRO recruitment, sales director recruitment, B2B technology sales hiring, cybersecurity sales hiring, cloud sales hiring, SaaS sales recruitment, sales enablement, India recruitment",
@@ -45,15 +48,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "StaffAnchor Talent Solutions",
     description: "Enterprise sales hiring and leadership search for B2B technology companies in India, backed by verified performance data.",
-    url: "https://staffanchor.com",
     siteName: "StaffAnchor Talent Solutions",
     type: "website",
     images: [
       {
-        url: "/favicon.ico",
+        url: "/og-home.png",
         width: 1200,
         height: 630,
-        alt: "StaffAnchor Talent Solutions Logo",
+        alt: "StaffAnchor Talent Solutions: enterprise sales hiring for B2B technology",
       },
     ],
   },
@@ -61,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "StaffAnchor Talent Solutions | Enterprise Sales Hiring for B2B Technology",
     description: "Enterprise sales hiring and leadership search for B2B technology companies in India, backed by verified performance data.",
-    images: ["/favicon.ico"],
+    images: ["/og-home.png"],
   },
 };
 
