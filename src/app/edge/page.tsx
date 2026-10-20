@@ -4,14 +4,14 @@ import Link from 'next/link';
 import { ArrowRight, CalendarCheck, CreditCard, Video } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Pro Sessions | Mock Interview, Job Search Strategy and Resume Rebuild | StaffAnchor',
+  title: 'StaffAnchor Edge | Mock Interview, Job Search Strategy and Resume Rebuild',
   description:
     '1:1 video sessions with Gagan Sharma, founder of StaffAnchor, for sales and leadership professionals: a full mock interview, a job search strategy with a resume rebuild, and resume writing.',
-  alternates: { canonical: 'https://www.staffanchor.com/pro-sessions' },
+  alternates: { canonical: 'https://www.staffanchor.com/edge' },
 };
 
 // Booking and payment happen on jobs.staffanchor.com.
-const BOOK = 'https://jobs.staffanchor.com/pro-sessions/book';
+const BOOK = 'https://jobs.staffanchor.com/edge/book';
 
 const SESSIONS = [
   {
@@ -68,9 +68,9 @@ export default function ProSessionsPage() {
       <section className="section-padding bg-[var(--color-mist)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)] bg-[var(--color-accent-soft)] rounded-full px-3 py-1 mb-4">
-            Pro Sessions
+            StaffAnchor Edge
           </span>
-          <h1 className="heading-xl mb-4">1:1 sessions to land your next sales role</h1>
+          <h1 className="heading-xl mb-4">Your edge in sales hiring</h1>
           <p className="text-lg text-[var(--color-muted)] max-w-2xl mx-auto mb-8">
             Practise with a hiring leader, fix your resume, and get a plan for where your next role really comes from. Book a time that suits you and pay securely online.
           </p>

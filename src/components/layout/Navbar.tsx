@@ -55,7 +55,7 @@ const Navbar = () => {
       ],
     },
     { name: 'Jobseekers', href: '/jobseekers' },
-    { name: 'Pro Sessions', href: '/pro-sessions' },
+    { name: 'Edge', href: '/edge' },
     { name: 'Current Jobs', href: 'https://jobs.staffanchor.com/jobs', targetBlank: true },
     { name: 'Refer & Earn', href: '/sales-circle', highlight: true, badge: 'Up to ₹75K', icon: 'wallet' },
     { name: 'Free Tools', href: '/free-tools', highlight: true },
