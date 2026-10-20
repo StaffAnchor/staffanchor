@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://www.staffanchor.com/pro-sessions' },
 };
 
-const BOOK = 'https://clients.staffanchor.com/book';
+// Booking and payment happen on jobs.staffanchor.com.
+const BOOK = 'https://jobs.staffanchor.com/pro-sessions/book';
 
 const SESSIONS = [
   {
