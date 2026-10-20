@@ -102,7 +102,7 @@ export default function ProSessionsPage() {
                   ))}
                 </ul>
                 <div className="flex items-center justify-between pt-4 border-t border-[var(--color-line)]">
-                  <span className="font-poppins font-semibold text-lg text-[var(--color-ink)]">{s.price}</span>
+                  <span className="font-poppins font-semibold text-lg text-[var(--color-ink)]">{s.price} <span className="text-xs font-normal text-[var(--color-muted)]">incl. GST</span></span>
                   <Link
                     href={s.href}
                     className="group inline-flex items-center justify-center px-5 py-2.5 bg-[var(--color-ink)] text-white text-sm font-semibold rounded-xl hover:bg-[var(--color-accent)] transition-colors duration-300"
