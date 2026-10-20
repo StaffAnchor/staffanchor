@@ -55,7 +55,7 @@ const Navbar = () => {
       ],
     },
     { name: 'Jobseekers', href: '/jobseekers' },
-    { name: 'Edge', href: '/edge', highlight: true },
+    { name: 'Edge', href: 'https://jobs.staffanchor.com/edge?src=staffanchor_menu', targetBlank: true, highlight: true },
     { name: 'Current Jobs', href: 'https://jobs.staffanchor.com/jobs', targetBlank: true },
     { name: 'Refer & Earn', href: '/sales-circle', highlight: true, badge: 'Up to ₹75K', icon: 'wallet' },
     { name: 'Contact Us', href: '/contact' },
