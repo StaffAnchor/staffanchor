@@ -11,7 +11,10 @@ import {
   TrendingUp,
 } from 'lucide-react';
 
-const RAZORPAY_URL = 'YOUR_RAZORPAY_LINK_HERE';
+// Ordering and payment happen on jobs.staffanchor.com. The price follows years of experience only, so the order
+// page asks for it and picks the plan.
+const ORDER_URL = 'https://jobs.staffanchor.com/resume/order?src=resume_page';
+const CONSULT_URL = 'https://jobs.staffanchor.com/edge/book/job-search-strategy?src=resume_page';
 
 type TierKey = 'early' | 'mid' | 'senior';
 
@@ -230,7 +233,7 @@ export default function JobSeekersPage() {
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
-                href={RAZORPAY_URL}
+                href={ORDER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full bg-[var(--color-ink)] px-7 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-[var(--color-accent)]"
@@ -238,7 +241,7 @@ export default function JobSeekersPage() {
                 Order Resume Now
               </a>
               <a
-                href={RAZORPAY_URL}
+                href={CONSULT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full bg-[var(--color-accent)] px-7 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-[var(--color-accent-dark)]"
@@ -357,7 +360,7 @@ export default function JobSeekersPage() {
               <li>Word + PDF delivery</li>
             </ul>
             <a
-              href={RAZORPAY_URL}
+              href={ORDER_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-[var(--color-ink)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-accent)]"
@@ -461,7 +464,7 @@ export default function JobSeekersPage() {
             <h2 className="font-poppins text-3xl font-light text-gray-900">What your finished resume looks like.</h2>
             <p className="mt-3 text-lg text-gray-600">Clean, structured, and visually compelling.</p>
             <a
-              href={RAZORPAY_URL}
+              href={ORDER_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex w-fit items-center rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-dark)]"
