@@ -231,6 +231,7 @@ export default function JobSeekersPage() {
             <p className="mt-6 text-lg text-gray-700 sm:text-xl">
               Professionally written, ATS-optimised, and visually compelling - crafted for every stage of your career by domain experts.
             </p>
+            <p className="mt-3 text-sm text-gray-500">The price depends on your years of experience, and all prices include GST.</p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href={ORDER_URL}
