@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
       // source tag (for example from LinkedIn) keeps it; any other arrival is tagged as coming from this site.
       { source: '/edge', has: [{ type: 'query', key: 'src' }], destination: 'https://jobs.staffanchor.com/edge', permanent: true },
       { source: '/edge', destination: 'https://jobs.staffanchor.com/edge?src=staffanchor_site', permanent: true },
+      // Resume Writing also lives on the jobs site now, next to where the order and payment happen.
+      { source: '/resume-writing', has: [{ type: 'query', key: 'src' }], destination: 'https://jobs.staffanchor.com/resume-writing', permanent: true },
+      { source: '/resume-writing', destination: 'https://jobs.staffanchor.com/resume-writing?src=staffanchor_site', permanent: true },
     ];
   },
 };
