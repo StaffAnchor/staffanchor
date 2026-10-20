@@ -117,6 +117,26 @@ export default function ProSessionsPage() {
         </div>
       </section>
 
+      <section id="free-tools" className="section-padding bg-[var(--color-mist)]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="inline-flex items-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)] bg-[var(--color-accent-soft)] rounded-full px-3 py-1 mb-3">Free · no sign-up needed</span>
+          <h2 className="heading-lg mb-2">Start with a free tool</h2>
+          <p className="text-[var(--color-muted)] mb-8 max-w-2xl">Warm up before you book a session. Both tools are free and open to anyone.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Link href="https://jobs.staffanchor.com/mock-interview" className="group bg-white rounded-2xl p-7 border border-[var(--color-line)] hover:border-[var(--color-ink)] transition-colors duration-300">
+              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-2">AI Mock Interview</h3>
+              <p className="text-[var(--color-muted)] leading-relaxed mb-5">Answer real discovery, objection-handling, pitching and closing questions, and get instant, specific feedback before your next interview.</p>
+              <span className="inline-flex items-center text-sm font-semibold text-[var(--color-accent)]">Start practising <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" /></span>
+            </Link>
+            <Link href="https://jobs.staffanchor.com/ats-score" className="group bg-white rounded-2xl p-7 border border-[var(--color-line)] hover:border-[var(--color-ink)] transition-colors duration-300">
+              <h3 className="font-poppins font-semibold text-xl text-[var(--color-ink)] mb-2">ATS Score Checker</h3>
+              <p className="text-[var(--color-muted)] leading-relaxed mb-5">Upload your resume to see how it scores for ATS-parsability and keyword match, against a specific job description or general best practices.</p>
+              <span className="inline-flex items-center text-sm font-semibold text-[var(--color-accent)]">Check my score <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" /></span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-[var(--color-mist)]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="heading-lg text-center mb-10">How it works</h2>
