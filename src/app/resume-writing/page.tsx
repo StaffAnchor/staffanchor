@@ -30,11 +30,11 @@ type Tier = {
 const tiers: Tier[] = [
   {
     key: 'early',
-    tabLabel: 'Early Stage (0-6 years)',
+    tabLabel: 'Early Stage (0-5 years)',
     headline: 'Your first impression starts with your resume.',
     subheadline:
       "Whether you're a fresher or a few years in, your resume needs to communicate potential with clarity and confidence.",
-    price: '₹999',
+    price: '₹1,199',
     orderTitle: 'Early Stage Resume Writing',
     revisionRounds: '1 revision round',
     expectedFinalDelivery: '~5 working days',
@@ -55,11 +55,11 @@ const tiers: Tier[] = [
   },
   {
     key: 'mid',
-    tabLabel: 'Mid Level (7-15 years)',
+    tabLabel: 'Mid Level (6-12 years)',
     headline: 'Mid-career deserves mid-career positioning.',
     subheadline:
       'Your resume must go beyond listing roles and present leadership, ownership, and measurable business impact.',
-    price: '₹1,499',
+    price: '₹1,799',
     orderTitle: 'Mid Level Resume Writing',
     revisionRounds: '1 revision round',
     expectedFinalDelivery: '~5 working days',
@@ -81,11 +81,11 @@ const tiers: Tier[] = [
   },
   {
     key: 'senior',
-    tabLabel: 'Senior / CXO (16+ years)',
+    tabLabel: 'Senior / CXO (13+ years)',
     headline: 'Executive presence starts on the page.',
     subheadline:
       'Senior professionals need an executive narrative that communicates strategic leadership, scale, and transformation.',
-    price: '₹1,999',
+    price: '₹2,499',
     orderTitle: 'Senior / CXO Resume Writing',
     revisionRounds: '2 revision rounds',
     expectedFinalDelivery: '~7 working days',
@@ -250,16 +250,16 @@ export default function JobSeekersPage() {
 
           <div className="mt-14 grid gap-4 rounded-2xl border border-gray-200 bg-white p-6 text-sm shadow-sm sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-lg bg-slate-50 p-4">
-              <p className="font-semibold text-[var(--color-ink)]">₹999</p>
-              <p className="mt-1 text-gray-600">Early Stage · 0-6 yrs</p>
+              <p className="font-semibold text-[var(--color-ink)]">₹1,199</p>
+              <p className="mt-1 text-gray-600">Early Stage · 0-5 yrs</p>
             </div>
             <div className="rounded-lg bg-slate-50 p-4">
-              <p className="font-semibold text-[var(--color-ink)]">₹1,499</p>
-              <p className="mt-1 text-gray-600">Mid Level · 7-15 yrs</p>
+              <p className="font-semibold text-[var(--color-ink)]">₹1,799</p>
+              <p className="mt-1 text-gray-600">Mid Level · 6-12 yrs</p>
             </div>
             <div className="rounded-lg bg-slate-50 p-4">
-              <p className="font-semibold text-[var(--color-ink)]">₹1,999</p>
-              <p className="mt-1 text-gray-600">Senior / CXO · 16+ yrs</p>
+              <p className="font-semibold text-[var(--color-ink)]">₹2,499</p>
+              <p className="mt-1 text-gray-600">Senior / CXO · 13+ yrs</p>
             </div>
             <div className="rounded-lg bg-slate-50 p-4">
               <p className="font-semibold text-teal-700">3 Days</p>
@@ -404,28 +404,28 @@ export default function JobSeekersPage() {
               </thead>
               <tbody>
                 <tr className="border-t border-gray-200">
-                  <td className="px-4 py-3">Early Stage (0-6 yrs)</td>
+                  <td className="px-4 py-3">Early Stage (0-5 yrs)</td>
                   <td className="px-4 py-3">3 working days</td>
                   <td className="px-4 py-3">1</td>
                   <td className="px-4 py-3">~5 working days</td>
                   <td className="px-4 py-3">Word + PDF</td>
-                  <td className="px-4 py-3 font-semibold text-gray-900">₹999</td>
+                  <td className="px-4 py-3 font-semibold text-gray-900">₹1,199</td>
                 </tr>
                 <tr className="border-t border-gray-200">
-                  <td className="px-4 py-3">Mid Level (7-15 yrs)</td>
+                  <td className="px-4 py-3">Mid Level (6-12 yrs)</td>
                   <td className="px-4 py-3">3 working days</td>
                   <td className="px-4 py-3">1</td>
                   <td className="px-4 py-3">~5 working days</td>
                   <td className="px-4 py-3">Word + PDF</td>
-                  <td className="px-4 py-3 font-semibold text-gray-900">₹1,499</td>
+                  <td className="px-4 py-3 font-semibold text-gray-900">₹1,799</td>
                 </tr>
                 <tr className="border-t border-gray-200">
-                  <td className="px-4 py-3">Senior / CXO (16+ yrs)</td>
+                  <td className="px-4 py-3">Senior / CXO (13+ yrs)</td>
                   <td className="px-4 py-3">3 working days</td>
                   <td className="px-4 py-3">2</td>
                   <td className="px-4 py-3">~7 working days</td>
                   <td className="px-4 py-3">Word + PDF</td>
-                  <td className="px-4 py-3 font-semibold text-gray-900">₹1,999</td>
+                  <td className="px-4 py-3 font-semibold text-gray-900">₹2,499</td>
                 </tr>
               </tbody>
             </table>
