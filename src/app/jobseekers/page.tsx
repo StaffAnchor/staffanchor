@@ -79,6 +79,24 @@ export default function JobseekersPage() {
         </p>
       </HeroSection>
 
+      {/* A slim pointer to StaffAnchor Edge, directly under the hero */}
+      <section className="bg-white border-b border-[var(--color-line)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-1 text-sm">
+          <p>
+            <span className="font-semibold text-[var(--color-ink)]">StaffAnchor Edge:</span>{' '}
+            <span className="text-[var(--color-muted)]">1:1 mock interviews, job strategy and resume writing with Gagan Sharma, founder of StaffAnchor.</span>
+          </p>
+          <Link
+            href="https://jobs.staffanchor.com/edge?src=staffanchor_jobseekers"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-[var(--color-accent)] hover:underline whitespace-nowrap"
+          >
+            Explore Edge →
+          </Link>
+        </div>
+      </section>
+
       {/* Why register */}
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,6 +152,49 @@ export default function JobseekersPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* StaffAnchor Edge: paid 1:1 sessions with the founder */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--color-ink)] via-[var(--color-ink)] to-indigo-900 px-8 py-12 md:px-14 md:py-16"
+          >
+            <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+              <div className="max-w-2xl">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80 bg-white/10 rounded-full px-3 py-1 mb-4">
+                  StaffAnchor Edge · 1:1 with the founder
+                </span>
+                <h2 className="font-poppins font-semibold text-2xl md:text-3xl text-white tracking-tight mb-3">
+                  Get ready for the role you want
+                </h2>
+                <p className="text-white/75 leading-relaxed mb-5">
+                  Live video sessions with Gagan Sharma, founder of StaffAnchor, built for sales and revenue professionals.
+                </p>
+                <ul className="space-y-2 text-white/85 text-[15px]">
+                  <li>• <span className="font-semibold">Mock interview:</span> a full interview loop for your target role, then a plain debrief</li>
+                  <li>• <span className="font-semibold">Job strategy + resume rebuild:</span> where your next role comes from, plus a resume written for you</li>
+                  <li>• <span className="font-semibold">Resume writing:</span> ATS-friendly, delivered as Word and PDF</li>
+                </ul>
+              </div>
+              <Link
+                href="https://jobs.staffanchor.com/edge?src=staffanchor_jobseekers_card"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center px-7 py-3.5 bg-white text-[var(--color-ink)] font-semibold rounded-xl hover:bg-[var(--color-accent)] hover:text-white transition-colors duration-300 whitespace-nowrap"
+              >
+                <span>See StaffAnchor Edge</span>
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
