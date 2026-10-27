@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-home.png",
+        url: "/og-home-v2.png",
         width: 1200,
         height: 630,
         alt: "StaffAnchor Talent Solutions: enterprise sales hiring for B2B technology",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "StaffAnchor Talent Solutions | Enterprise Sales Hiring for B2B Technology",
     description: "Enterprise sales hiring and leadership search for B2B technology companies in India, backed by verified performance data.",
-    images: ["/og-home.png"],
+    images: ["/og-home-v2.png"],
   },
 };
 
