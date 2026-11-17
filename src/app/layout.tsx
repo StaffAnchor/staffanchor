@@ -84,7 +84,7 @@ export default function RootLayout({
         </main>
         <Footer />
         {/* The StaffAnchor assistant is the one floating contact button: it greets visitors and sends employers and job seekers to the right WhatsApp chat. The chat itself lives in the CRM project. */}
-        <Script src={`${process.env.NEXT_PUBLIC_CHAT_ORIGIN ?? "https://clients.staffanchor.com"}/sa-chat.js`} data-site="main" strategy="lazyOnload" />
+        <Script src={`${process.env.NEXT_PUBLIC_CHAT_ORIGIN ?? "https://clients.staffanchor.com"}/sa-chat.js`} data-site="main" strategy="afterInteractive" />
       </body>
     </html>
   );
