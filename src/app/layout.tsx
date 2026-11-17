@@ -1,4 +1,3 @@
-import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Script from "next/script";
@@ -84,9 +83,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <FloatingWhatsApp />
-        {/* The StaffAnchor assistant: greets visitors and points them to the right next step. The chat itself lives in the CRM project. */}
-        <Script src={`${process.env.NEXT_PUBLIC_CHAT_ORIGIN ?? "https://clients.staffanchor.com"}/sa-chat.js`} data-site="main" data-side="left" strategy="lazyOnload" />
+        {/* The StaffAnchor assistant is the one floating contact button: it greets visitors and sends employers and job seekers to the right WhatsApp chat. The chat itself lives in the CRM project. */}
+        <Script src={`${process.env.NEXT_PUBLIC_CHAT_ORIGIN ?? "https://clients.staffanchor.com"}/sa-chat.js`} data-site="main" strategy="lazyOnload" />
       </body>
     </html>
   );
