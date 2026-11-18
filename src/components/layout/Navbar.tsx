@@ -6,6 +6,9 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Wallet } from 'lucide-react';
 import { employerServices } from '@/data/employerServices';
+import { posthog } from '@/lib/posthog';
+
+const CHANNEL_URL = 'https://whatsapp.com/channel/0029VbASKh5KmCPRj6oejX2u';
 
 type NavSubItem = {
   name: string;
@@ -62,6 +65,22 @@ const Navbar = () => {
   ];
 
   return (
+    <>
+    <div className="bg-[#0A1630] text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-9 items-center justify-center">
+        <a
+          href={CHANNEL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => { try { posthog.capture('whatsapp_channel_click', { source: 'top_strip', path: window.location.pathname }); } catch {} }}
+          className="inline-flex items-center gap-2 text-xs sm:text-[13px] font-medium text-emerald-300 hover:text-emerald-200 transition-colors"
+        >
+          <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" /></svg>
+          <span className="sm:hidden">New sales roles on WhatsApp</span>
+          <span className="hidden sm:inline">New sales roles daily: join our WhatsApp channel</span>
+        </a>
+      </div>
+    </div>
     <nav className="bg-white/90 backdrop-blur-md border-b border-[var(--color-line)] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 py-2">
@@ -307,6 +326,7 @@ const Navbar = () => {
         </AnimatePresence>
       </div>
     </nav>
+    </>
   );
 };
 
