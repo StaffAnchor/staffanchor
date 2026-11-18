@@ -49,6 +49,7 @@ const Footer = () => {
       { name: 'Contact Us', href: '/contact' },
       { name: 'LinkedIn', href: 'https://linkedin.com/company/staffanchor', external: true },
       { name: 'Submit Profile', href: 'https://jobs.staffanchor.com/register', external: true },
+      { name: 'WhatsApp Channel (new roles)', href: 'https://whatsapp.com/channel/0029VbASKh5KmCPRj6oejX2u', external: true },
     ],
   };
 
